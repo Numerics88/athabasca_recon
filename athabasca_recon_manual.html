@@ -1,0 +1,2799 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+    "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+<meta http-equiv="Content-Type" content="application/xhtml+xml; charset=UTF-8" />
+<meta name="generator" content="AsciiDoc 8.6.8" />
+<title>Athabasca Recon Manual</title>
+<style type="text/css">
+/* Shared CSS for AsciiDoc xhtml11 and html5 backends */
+
+/* Default font. */
+body {
+  font-family: Georgia,serif;
+}
+
+/* Title font. */
+h1, h2, h3, h4, h5, h6,
+div.title, caption.title,
+thead, p.table.header,
+#toctitle,
+#author, #revnumber, #revdate, #revremark,
+#footer {
+  font-family: Arial,Helvetica,sans-serif;
+}
+
+body {
+  margin: 1em 5% 1em 5%;
+}
+
+a {
+  color: blue;
+  text-decoration: underline;
+}
+a:visited {
+  color: fuchsia;
+}
+
+em {
+  font-style: italic;
+  color: navy;
+}
+
+strong {
+  font-weight: bold;
+  color: #083194;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: #527bbd;
+  margin-top: 1.2em;
+  margin-bottom: 0.5em;
+  line-height: 1.3;
+}
+
+h1, h2, h3 {
+  border-bottom: 2px solid silver;
+}
+h2 {
+  padding-top: 0.5em;
+}
+h3 {
+  float: left;
+}
+h3 + * {
+  clear: left;
+}
+h5 {
+  font-size: 1.0em;
+}
+
+div.sectionbody {
+  margin-left: 0;
+}
+
+hr {
+  border: 1px solid silver;
+}
+
+p {
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+}
+
+ul, ol, li > p {
+  margin-top: 0;
+}
+ul > li     { color: #aaa; }
+ul > li > * { color: black; }
+
+.monospaced, code, pre {
+  font-family: "Courier New", Courier, monospace;
+  font-size: inherit;
+  color: navy;
+  padding: 0;
+  margin: 0;
+}
+
+
+#author {
+  color: #527bbd;
+  font-weight: bold;
+  font-size: 1.1em;
+}
+#email {
+}
+#revnumber, #revdate, #revremark {
+}
+
+#footer {
+  font-size: small;
+  border-top: 2px solid silver;
+  padding-top: 0.5em;
+  margin-top: 4.0em;
+}
+#footer-text {
+  float: left;
+  padding-bottom: 0.5em;
+}
+#footer-badges {
+  float: right;
+  padding-bottom: 0.5em;
+}
+
+#preamble {
+  margin-top: 1.5em;
+  margin-bottom: 1.5em;
+}
+div.imageblock, div.exampleblock, div.verseblock,
+div.quoteblock, div.literalblock, div.listingblock, div.sidebarblock,
+div.admonitionblock {
+  margin-top: 1.0em;
+  margin-bottom: 1.5em;
+}
+div.admonitionblock {
+  margin-top: 2.0em;
+  margin-bottom: 2.0em;
+  margin-right: 10%;
+  color: #606060;
+}
+
+div.content { /* Block element content. */
+  padding: 0;
+}
+
+/* Block element titles. */
+div.title, caption.title {
+  color: #527bbd;
+  font-weight: bold;
+  text-align: left;
+  margin-top: 1.0em;
+  margin-bottom: 0.5em;
+}
+div.title + * {
+  margin-top: 0;
+}
+
+td div.title:first-child {
+  margin-top: 0.0em;
+}
+div.content div.title:first-child {
+  margin-top: 0.0em;
+}
+div.content + div.title {
+  margin-top: 0.0em;
+}
+
+div.sidebarblock > div.content {
+  background: #ffffee;
+  border: 1px solid #dddddd;
+  border-left: 4px solid #f0f0f0;
+  padding: 0.5em;
+}
+
+div.listingblock > div.content {
+  border: 1px solid #dddddd;
+  border-left: 5px solid #f0f0f0;
+  background: #f8f8f8;
+  padding: 0.5em;
+}
+
+div.quoteblock, div.verseblock {
+  padding-left: 1.0em;
+  margin-left: 1.0em;
+  margin-right: 10%;
+  border-left: 5px solid #f0f0f0;
+  color: #888;
+}
+
+div.quoteblock > div.attribution {
+  padding-top: 0.5em;
+  text-align: right;
+}
+
+div.verseblock > pre.content {
+  font-family: inherit;
+  font-size: inherit;
+}
+div.verseblock > div.attribution {
+  padding-top: 0.75em;
+  text-align: left;
+}
+/* DEPRECATED: Pre version 8.2.7 verse style literal block. */
+div.verseblock + div.attribution {
+  text-align: left;
+}
+
+div.admonitionblock .icon {
+  vertical-align: top;
+  font-size: 1.1em;
+  font-weight: bold;
+  text-decoration: underline;
+  color: #527bbd;
+  padding-right: 0.5em;
+}
+div.admonitionblock td.content {
+  padding-left: 0.5em;
+  border-left: 3px solid #dddddd;
+}
+
+div.exampleblock > div.content {
+  border-left: 3px solid #dddddd;
+  padding-left: 0.5em;
+}
+
+div.imageblock div.content { padding-left: 0; }
+span.image img { border-style: none; }
+a.image:visited { color: white; }
+
+dl {
+  margin-top: 0.8em;
+  margin-bottom: 0.8em;
+}
+dt {
+  margin-top: 0.5em;
+  margin-bottom: 0;
+  font-style: normal;
+  color: navy;
+}
+dd > *:first-child {
+  margin-top: 0.1em;
+}
+
+ul, ol {
+    list-style-position: outside;
+}
+ol.arabic {
+  list-style-type: decimal;
+}
+ol.loweralpha {
+  list-style-type: lower-alpha;
+}
+ol.upperalpha {
+  list-style-type: upper-alpha;
+}
+ol.lowerroman {
+  list-style-type: lower-roman;
+}
+ol.upperroman {
+  list-style-type: upper-roman;
+}
+
+div.compact ul, div.compact ol,
+div.compact p, div.compact p,
+div.compact div, div.compact div {
+  margin-top: 0.1em;
+  margin-bottom: 0.1em;
+}
+
+tfoot {
+  font-weight: bold;
+}
+td > div.verse {
+  white-space: pre;
+}
+
+div.hdlist {
+  margin-top: 0.8em;
+  margin-bottom: 0.8em;
+}
+div.hdlist tr {
+  padding-bottom: 15px;
+}
+dt.hdlist1.strong, td.hdlist1.strong {
+  font-weight: bold;
+}
+td.hdlist1 {
+  vertical-align: top;
+  font-style: normal;
+  padding-right: 0.8em;
+  color: navy;
+}
+td.hdlist2 {
+  vertical-align: top;
+}
+div.hdlist.compact tr {
+  margin: 0;
+  padding-bottom: 0;
+}
+
+.comment {
+  background: yellow;
+}
+
+.footnote, .footnoteref {
+  font-size: 0.8em;
+}
+
+span.footnote, span.footnoteref {
+  vertical-align: super;
+}
+
+#footnotes {
+  margin: 20px 0 20px 0;
+  padding: 7px 0 0 0;
+}
+
+#footnotes div.footnote {
+  margin: 0 0 5px 0;
+}
+
+#footnotes hr {
+  border: none;
+  border-top: 1px solid silver;
+  height: 1px;
+  text-align: left;
+  margin-left: 0;
+  width: 20%;
+  min-width: 100px;
+}
+
+div.colist td {
+  padding-right: 0.5em;
+  padding-bottom: 0.3em;
+  vertical-align: top;
+}
+div.colist td img {
+  margin-top: 0.3em;
+}
+
+@media print {
+  #footer-badges { display: none; }
+}
+
+#toc {
+  margin-bottom: 2.5em;
+}
+
+#toctitle {
+  color: #527bbd;
+  font-size: 1.1em;
+  font-weight: bold;
+  margin-top: 1.0em;
+  margin-bottom: 0.1em;
+}
+
+div.toclevel0, div.toclevel1, div.toclevel2, div.toclevel3, div.toclevel4 {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+div.toclevel2 {
+  margin-left: 2em;
+  font-size: 0.9em;
+}
+div.toclevel3 {
+  margin-left: 4em;
+  font-size: 0.9em;
+}
+div.toclevel4 {
+  margin-left: 6em;
+  font-size: 0.9em;
+}
+
+span.aqua { color: aqua; }
+span.black { color: black; }
+span.blue { color: blue; }
+span.fuchsia { color: fuchsia; }
+span.gray { color: gray; }
+span.green { color: green; }
+span.lime { color: lime; }
+span.maroon { color: maroon; }
+span.navy { color: navy; }
+span.olive { color: olive; }
+span.purple { color: purple; }
+span.red { color: red; }
+span.silver { color: silver; }
+span.teal { color: teal; }
+span.white { color: white; }
+span.yellow { color: yellow; }
+
+span.aqua-background { background: aqua; }
+span.black-background { background: black; }
+span.blue-background { background: blue; }
+span.fuchsia-background { background: fuchsia; }
+span.gray-background { background: gray; }
+span.green-background { background: green; }
+span.lime-background { background: lime; }
+span.maroon-background { background: maroon; }
+span.navy-background { background: navy; }
+span.olive-background { background: olive; }
+span.purple-background { background: purple; }
+span.red-background { background: red; }
+span.silver-background { background: silver; }
+span.teal-background { background: teal; }
+span.white-background { background: white; }
+span.yellow-background { background: yellow; }
+
+span.big { font-size: 2em; }
+span.small { font-size: 0.6em; }
+
+span.underline { text-decoration: underline; }
+span.overline { text-decoration: overline; }
+span.line-through { text-decoration: line-through; }
+
+div.unbreakable { page-break-inside: avoid; }
+
+
+/*
+ * xhtml11 specific
+ *
+ * */
+
+div.tableblock {
+  margin-top: 1.0em;
+  margin-bottom: 1.5em;
+}
+div.tableblock > table {
+  border: 3px solid #527bbd;
+}
+thead, p.table.header {
+  font-weight: bold;
+  color: #527bbd;
+}
+p.table {
+  margin-top: 0;
+}
+/* Because the table frame attribute is overriden by CSS in most browsers. */
+div.tableblock > table[frame="void"] {
+  border-style: none;
+}
+div.tableblock > table[frame="hsides"] {
+  border-left-style: none;
+  border-right-style: none;
+}
+div.tableblock > table[frame="vsides"] {
+  border-top-style: none;
+  border-bottom-style: none;
+}
+
+
+/*
+ * html5 specific
+ *
+ * */
+
+table.tableblock {
+  margin-top: 1.0em;
+  margin-bottom: 1.5em;
+}
+thead, p.tableblock.header {
+  font-weight: bold;
+  color: #527bbd;
+}
+p.tableblock {
+  margin-top: 0;
+}
+table.tableblock {
+  border-width: 3px;
+  border-spacing: 0px;
+  border-style: solid;
+  border-color: #527bbd;
+  border-collapse: collapse;
+}
+th.tableblock, td.tableblock {
+  border-width: 1px;
+  padding: 4px;
+  border-style: solid;
+  border-color: #527bbd;
+}
+
+table.tableblock.frame-topbot {
+  border-left-style: hidden;
+  border-right-style: hidden;
+}
+table.tableblock.frame-sides {
+  border-top-style: hidden;
+  border-bottom-style: hidden;
+}
+table.tableblock.frame-none {
+  border-style: hidden;
+}
+
+th.tableblock.halign-left, td.tableblock.halign-left {
+  text-align: left;
+}
+th.tableblock.halign-center, td.tableblock.halign-center {
+  text-align: center;
+}
+th.tableblock.halign-right, td.tableblock.halign-right {
+  text-align: right;
+}
+
+th.tableblock.valign-top, td.tableblock.valign-top {
+  vertical-align: top;
+}
+th.tableblock.valign-middle, td.tableblock.valign-middle {
+  vertical-align: middle;
+}
+th.tableblock.valign-bottom, td.tableblock.valign-bottom {
+  vertical-align: bottom;
+}
+
+
+/*
+ * manpage specific
+ *
+ * */
+
+body.manpage h1 {
+  padding-top: 0.5em;
+  padding-bottom: 0.5em;
+  border-top: 2px solid silver;
+  border-bottom: 2px solid silver;
+}
+body.manpage h2 {
+  border-style: none;
+}
+body.manpage div.sectionbody {
+  margin-left: 3em;
+}
+
+@media print {
+  body.manpage div#toc { display: none; }
+}
+
+
+</style>
+<script type="text/javascript">
+/*<![CDATA[*/
+var asciidoc = {  // Namespace.
+
+/////////////////////////////////////////////////////////////////////
+// Table Of Contents generator
+/////////////////////////////////////////////////////////////////////
+
+/* Author: Mihai Bazon, September 2002
+ * http://students.infoiasi.ro/~mishoo
+ *
+ * Table Of Content generator
+ * Version: 0.4
+ *
+ * Feel free to use this script under the terms of the GNU General Public
+ * License, as long as you do not remove or alter this notice.
+ */
+
+ /* modified by Troy D. Hanson, September 2006. License: GPL */
+ /* modified by Stuart Rackham, 2006, 2009. License: GPL */
+
+// toclevels = 1..4.
+toc: function (toclevels) {
+
+  function getText(el) {
+    var text = "";
+    for (var i = el.firstChild; i != null; i = i.nextSibling) {
+      if (i.nodeType == 3 /* Node.TEXT_NODE */) // IE doesn't speak constants.
+        text += i.data;
+      else if (i.firstChild != null)
+        text += getText(i);
+    }
+    return text;
+  }
+
+  function TocEntry(el, text, toclevel) {
+    this.element = el;
+    this.text = text;
+    this.toclevel = toclevel;
+  }
+
+  function tocEntries(el, toclevels) {
+    var result = new Array;
+    var re = new RegExp('[hH]([1-'+(toclevels+1)+'])');
+    // Function that scans the DOM tree for header elements (the DOM2
+    // nodeIterator API would be a better technique but not supported by all
+    // browsers).
+    var iterate = function (el) {
+      for (var i = el.firstChild; i != null; i = i.nextSibling) {
+        if (i.nodeType == 1 /* Node.ELEMENT_NODE */) {
+          var mo = re.exec(i.tagName);
+          if (mo && (i.getAttribute("class") || i.getAttribute("className")) != "float") {
+            result[result.length] = new TocEntry(i, getText(i), mo[1]-1);
+          }
+          iterate(i);
+        }
+      }
+    }
+    iterate(el);
+    return result;
+  }
+
+  var toc = document.getElementById("toc");
+  if (!toc) {
+    return;
+  }
+
+  // Delete existing TOC entries in case we're reloading the TOC.
+  var tocEntriesToRemove = [];
+  var i;
+  for (i = 0; i < toc.childNodes.length; i++) {
+    var entry = toc.childNodes[i];
+    if (entry.nodeName.toLowerCase() == 'div'
+     && entry.getAttribute("class")
+     && entry.getAttribute("class").match(/^toclevel/))
+      tocEntriesToRemove.push(entry);
+  }
+  for (i = 0; i < tocEntriesToRemove.length; i++) {
+    toc.removeChild(tocEntriesToRemove[i]);
+  }
+
+  // Rebuild TOC entries.
+  var entries = tocEntries(document.getElementById("content"), toclevels);
+  for (var i = 0; i < entries.length; ++i) {
+    var entry = entries[i];
+    if (entry.element.id == "")
+      entry.element.id = "_toc_" + i;
+    var a = document.createElement("a");
+    a.href = "#" + entry.element.id;
+    a.appendChild(document.createTextNode(entry.text));
+    var div = document.createElement("div");
+    div.appendChild(a);
+    div.className = "toclevel" + entry.toclevel;
+    toc.appendChild(div);
+  }
+  if (entries.length == 0)
+    toc.parentNode.removeChild(toc);
+},
+
+
+/////////////////////////////////////////////////////////////////////
+// Footnotes generator
+/////////////////////////////////////////////////////////////////////
+
+/* Based on footnote generation code from:
+ * http://www.brandspankingnew.net/archive/2005/07/format_footnote.html
+ */
+
+footnotes: function () {
+  // Delete existing footnote entries in case we're reloading the footnodes.
+  var i;
+  var noteholder = document.getElementById("footnotes");
+  if (!noteholder) {
+    return;
+  }
+  var entriesToRemove = [];
+  for (i = 0; i < noteholder.childNodes.length; i++) {
+    var entry = noteholder.childNodes[i];
+    if (entry.nodeName.toLowerCase() == 'div' && entry.getAttribute("class") == "footnote")
+      entriesToRemove.push(entry);
+  }
+  for (i = 0; i < entriesToRemove.length; i++) {
+    noteholder.removeChild(entriesToRemove[i]);
+  }
+
+  // Rebuild footnote entries.
+  var cont = document.getElementById("content");
+  var spans = cont.getElementsByTagName("span");
+  var refs = {};
+  var n = 0;
+  for (i=0; i<spans.length; i++) {
+    if (spans[i].className == "footnote") {
+      n++;
+      var note = spans[i].getAttribute("data-note");
+      if (!note) {
+        // Use [\s\S] in place of . so multi-line matches work.
+        // Because JavaScript has no s (dotall) regex flag.
+        note = spans[i].innerHTML.match(/\s*\[([\s\S]*)]\s*/)[1];
+        spans[i].innerHTML =
+          "[<a id='_footnoteref_" + n + "' href='#_footnote_" + n +
+          "' title='View footnote' class='footnote'>" + n + "</a>]";
+        spans[i].setAttribute("data-note", note);
+      }
+      noteholder.innerHTML +=
+        "<div class='footnote' id='_footnote_" + n + "'>" +
+        "<a href='#_footnoteref_" + n + "' title='Return to text'>" +
+        n + "</a>. " + note + "</div>";
+      var id =spans[i].getAttribute("id");
+      if (id != null) refs["#"+id] = n;
+    }
+  }
+  if (n == 0)
+    noteholder.parentNode.removeChild(noteholder);
+  else {
+    // Process footnoterefs.
+    for (i=0; i<spans.length; i++) {
+      if (spans[i].className == "footnoteref") {
+        var href = spans[i].getElementsByTagName("a")[0].getAttribute("href");
+        href = href.match(/#.*/)[0];  // Because IE return full URL.
+        n = refs[href];
+        spans[i].innerHTML =
+          "[<a href='#_footnote_" + n +
+          "' title='View footnote' class='footnote'>" + n + "</a>]";
+      }
+    }
+  }
+},
+
+install: function(toclevels) {
+  var timerId;
+
+  function reinstall() {
+    asciidoc.footnotes();
+    if (toclevels) {
+      asciidoc.toc(toclevels);
+    }
+  }
+
+  function reinstallAndRemoveTimer() {
+    clearInterval(timerId);
+    reinstall();
+  }
+
+  timerId = setInterval(reinstall, 500);
+  if (document.addEventListener)
+    document.addEventListener("DOMContentLoaded", reinstallAndRemoveTimer, false);
+  else
+    window.onload = reinstallAndRemoveTimer;
+}
+
+}
+asciidoc.install(4);
+/*]]>*/
+</script>
+</head>
+<body class="book">
+<div id="header">
+<h1>Athabasca Recon Manual</h1>
+<span id="author">Eric Nodwell and Steven K Boyd</span><br />
+<span id="revnumber">version 1.3</span>
+<div id="toc">
+  <div id="toctitle">Table of Contents</div>
+  <noscript><p><b>JavaScript must be enabled in your browser to display the table of contents.</b></p></noscript>
+</div>
+</div>
+<div id="content">
+<div id="preamble">
+<div class="sectionbody">
+<div class="sidebarblock">
+<div class="content">
+<div class="paragraph"><p>Copyright (c) 2011-2015, Eric Nodwell</p></div>
+<div class="paragraph"><p><a href="http://numerics88.com/">http://numerics88.com/</a></p></div>
+</div></div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_about_athabasca_recon">1. About Athabasca Recon</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>Athabasca Recon is a program for CT reconstruction using filtered back-projection.  It has the following features:</p></div>
+<div class="paragraph"><p><strong>Precise</strong>.  Athabasca Recon includes an ImageJ plug-in for optimal alignment of the input projections.  It allows you to identify and correct even tiny errors in the center of rotation or the rotation axis.  Athabasca Recon also implements a number of methods to correct for beam power decay.</p></div>
+<div class="paragraph"><p><strong>Fast</strong>. It is fully multi-threaded, and makes full use of all available processing cores.</p></div>
+<div class="paragraph"><p><strong>Memory efficient</strong>. Athabasca Recon will use as much memory as you
+specify (defaults to slightly less than the amount of physical system memory), but
+is not limited at all in the size of models in can reconstruct, regardless
+of the memory limit.  Projection data are streamed and never loaded
+all into memory at once, reducing the required memory.</p></div>
+<div class="paragraph"><p><strong>Cross-platform</strong>. It has been compiled on OS X, Linux and Windows.</p></div>
+<div class="paragraph"><p>Because it was created to process synchrotron tomographic data, it currently only handles parallel beam reconstruction.</p></div>
+<div class="paragraph"><p>The home page for Athabasca Recon is <a href="http://numerics88.github.io/athabasca_recon/">http://numerics88.github.io/athabasca_recon/</a> .</p></div>
+<div class="paragraph"><p>Athabasca Recon was originally developed by Eric Nodwell
+at the Bone Imaging Laboratory,
+University of Calgary (<a href="http://bonelab.ucalgary.ca/">http://bonelab.ucalgary.ca/</a>) under the supervision
+of Dr. Steven K. Boyd for the purpose of processing data synchrotron
+data obtained at the Canadian Light Source. It is now supported and
+maintained by Numerics88 Solutions Ltd. (<a href="http://numerics88.com./">http://numerics88.com./</a>)</p></div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_license">2. License</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>Athabasca Recon is licensed under GPL version 2.  Here is the
+standard licensing statement that goes with it:</p></div>
+<div class="literalblock">
+<div class="content">
+<pre><code>This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 2 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see &lt;http://www.gnu.org/licenses/&gt;.</code></pre>
+</div></div>
+<div class="paragraph"><p>The complete text of the license is in the file <code>LICENSE.txt</code>, distributed
+with the source code.</p></div>
+<div class="paragraph"><p>We are interested to know who is using our software.  If you find this software useful,
+please send us an email at <a href="mailto:skboyd@ucalgary.ca">skboyd@ucalgary.ca</a> .</p></div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_definitions_and_conventions">3. Definitions and conventions</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="geometry_and_coordinate_system">3.1. Geometry and coordinate systems</h3>
+<div class="paragraph"><p>The following figure shows the defined geometry and coordinate systems, as
+viewed from above (<em>z</em> and <em>v</em> are up in this figure).</p></div>
+<div class="imageblock">
+<div class="content">
+<img src="images/basic_geometry.png" alt="images/basic_geometry.png" />
+</div>
+</div>
+<div class="admonitionblock">
+<table><tr>
+<td class="icon">
+<img src="./images/icons/note.png" alt="Note" />
+</td>
+<td class="content">For the direction of
+rotation, the above convention is equivalent to the following: as you scroll forward through your projections, you
+should have the impression of walking to your right around the object.
+However, for parallel projections, it isn&#8217;t possible to distinguish
+"walking to the right around the object" from "walking to the left around
+a mirror image of the object".  So getting the direction of rotation
+incorrect for parallel rotations merely mirrors the reconstructed image.
+For cone beam however, getting the direction of rotation incorrect
+results in severe distortion in the reconstruction.</td>
+</tr></table>
+</div>
+<div class="paragraph"><p>Vector values, written as number tuples, are denoted in the order
+(<em>x</em>,<em>y</em>,<em>z</em>) for volume, and (<em>u</em>,<em>v</em>) for projections.</p></div>
+<div class="admonitionblock">
+<table><tr>
+<td class="icon">
+<img src="./images/icons/note.png" alt="Note" />
+</td>
+<td class="content">Internally, Athabasca Recon consistently uses (<em>z</em>,<em>y</em>,<em>x</em>) and
+(<em>v</em>,<em>u</em>), in accordance with the fastest-changing index by memory
+address being last.  This however is relevant only for developers; users do
+not need to be aware of this.</td>
+</tr></table>
+</div>
+<div class="paragraph"><p>Pixels (and their 3D counterparts Voxels) have a finite size, which inevitably
+leads to the question, "Is the position of pixels denoted by their lower-left
+corners, or by their centers?"  Here we using
+the center-of-the-pixel convention.  Thus the origin of the projections
+will give the <em>center</em> position of the pixel with index (0,0), and the
+origin of the reconstruction volume will be the <em>center</em> of the voxel with index(0,0,0).  This convention is perhaps more commonly
+used than the other one when dealing with images.  Be aware however, that it has the disadvantage
+that the numerical value of the origin changes if the pixel/voxel size
+is changed (as happens if for example you decimate or bin the data to reduce the data size
+and the resolution).  Unfortunately, ImageJ uses a pixel-corner-as-the-origin
+convention.  You&#8217;ll just have to add/subtract half a pixel when using ImageJ
+to compute values such as the center of mass.</p></div>
+<div class="admonitionblock">
+<table><tr>
+<td class="icon">
+<img src="./images/icons/note.png" alt="Note" />
+</td>
+<td class="content">The above image is drawn with a "origin is the lower left of image" convention.
+(Not to be confused with the convention of giving pixel coordinates from the corner or the edge, which is a different issue.)
+Be
+aware that most image viewing software places the image origin at the <em>upper</em>
+left corner.  This results in
+the projections, and possibly the reconstructed volume, appearing as an inverted
+image.  Most detectors work similarly, but we don&#8217;t, because we&#8217;re fond of right-handed coordinate systems.</td>
+</tr></table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_units">3.2. Units</h3>
+<div class="paragraph"><p>The only units that are used in Athabasca Recon are units of length.  No
+particular units are assumed; rather length units are used consistently.
+Hence if you specify a numerical value for the projection pixel size in
+microns for example, you must also use microns for the voxel size, and
+the resulting reconstruction attenuation densities will have units of inverse
+microns.  This may be inconvenient, as for example, the usual units for
+attenuation density is inverse cm.  However, the output can be scaled;
+see <a href="#Reconstruction_ScalingFactor">Reconstruction.ScalingFactor</a>.</p></div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_running_athabasca_recon">4. Running Athabasca Recon</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>I&#8217;m going to jump right in to showing how to do simple reconstructions
+with Athabasca Recon.</p></div>
+<div class="paragraph"><p>In order to follow along, you will need to install ImageJ and some plug-ins.
+That is described in the section <a href="#imagej_and_data_file_formats">ImageJ and data file formats</a>.</p></div>
+<div class="sect2">
+<h3 id="_configuration_file">4.1. Configuration file</h3>
+<div class="paragraph"><p>The execution of <code>athabasca_recon</code> is controlled with a configuration file,
+which must be specified when it is run, like this:</p></div>
+<div class="listingblock">
+<div class="content">
+<pre><code>athabasca_recon recon.conf</code></pre>
+</div></div>
+<div class="paragraph"><p>The configuration file has a simple structure and can be created and edited
+with any text editor.  It can also be given any extension.  I prefer to
+use <code>.conf</code>, but this is not required.  Here is a simple example of a configuration file:</p></div>
+<div class="listingblock">
+<div class="content">
+<pre><code># Example minimal configuration file (recon.conf)
+
+[Input]
+RawProjectionsFile = projections.mhd
+DarkFieldFile = projections-dark.mhd
+BrightFieldFile = projections-bright.mhd
+
+[Output]
+VolumeFile = reconstructed_volume.mhd
+
+[Volume]
+Dimensions = 100 100 50
+VoxelSize = 0.8 0.8 0.8</code></pre>
+</div></div>
+<div class="paragraph"><p>The file is divided into sections, denoted with section headings enclosed in
+square brackets.  Within each section is any number of kay/value pairs.
+The keys and values are case sensitive.</p></div>
+<div class="paragraph"><p>The parameters which can be specified in this file are described in the
+following sections.In this manual, we will specify the complete key by prepending the
+section with a period, for example <code>Volume.Dimensions</code> .</p></div>
+<div class="paragraph"><p>For a complete list of possible configuration parameters, refer to <a href="#configuration_file_reference">Configuration file reference</a> .</p></div>
+<div class="paragraph"><p>Some comments of the formatting follow.</p></div>
+<div class="paragraph" id="configuration_tuples"><div class="title">Tuples</div><p>Some values can be specified as a list of multiple values (a "tuple").
+There are several
+acceptable ways to write these.  The following are all acceptable and equivalent:</p></div>
+<div class="listingblock">
+<div class="content">
+<pre><code>Dimensions = 100 100 50
+Dimensions = 100, 100, 50
+Dimensions = 100,100,50
+Dimensions = (100 100 50)
+Dimensions = (100,100,50)</code></pre>
+</div></div>
+<div class="paragraph"><p>Tuples are ordered as (<em>x</em>,<em>y</em>,<em>z</em>), or (<em>u</em>,<em>v</em>).</p></div>
+<div class="paragraph" id="configuration_text"><div class="title">Text</div><p>Quoting of text values is unsupported, so the following is WRONG:</p></div>
+<div class="listingblock">
+<div class="content">
+<pre><code>RawProjectionsFile = "my amazing projections.mhd"</code></pre>
+</div></div>
+<div class="paragraph"><p>The following is OK:</p></div>
+<div class="listingblock">
+<div class="content">
+<pre><code>RawProjectionsFile = my amazing projections.mhd</code></pre>
+</div></div>
+<div class="paragraph"><p>Obviously, without quoting and escaping, not every possible string
+value can be represented.  I really don&#8217;t expect this to be an insurmountable  problem
+for anyone.</p></div>
+<div class="paragraph" id="configuration_integers"><div class="title">Integers</div><p>Integer values cannot have a decimal point.  The following will cause an error because NumberOfProjections is supposed to be
+an integer:</p></div>
+<div class="listingblock">
+<div class="content">
+<pre><code>NumberOfProjections = 128.0</code></pre>
+</div></div>
+</div>
+<div class="sect2">
+<h3 id="_example_run">4.2. Example run</h3>
+<div class="paragraph"><p>Here I&#8217;m going to show a simple example of running Athabasca recon.</p></div>
+<div class="paragraph"><p>The input data is the example file <code>projections.mhd</code>, which is distributed
+with Athabasca Recon.  This data file consists of 129 projections of 4 spheres
+of constant density.</p></div>
+<div class="paragraph"><p>Here is the configuration file we will use.  It&#8217;s similar to the simple example above,
+except that we are also writing out the Attenuation Projections, because
+I want to inspect them.  Also, we&#8217;re not going to specify anything about
+the volume; Athabasca Recon chooses pretty reasonable default values.</p></div>
+<div class="listingblock">
+<div class="content">
+<pre><code># example.conf
+
+[Input]
+RawProjectionsFile = projections.mhd
+DarkFieldFile = projections-dark.mhd
+BrightFieldFile = projections-bright.mhd
+
+[Output]
+AttenuationProjectionsFile = attenuation_projections.mhd
+VolumeFile = reconstructed_volume.mhd</code></pre>
+</div></div>
+<div class="paragraph"><p>Before running the reconstruction, we can get the complete configuration,
+which includes all the default values, as well as values deduced from
+the data files.  The command to obtain the complete configuration is:</p></div>
+<div class="listingblock">
+<div class="content">
+<pre><code>athabasca_recon --config example.conf</code></pre>
+</div></div>
+<div class="paragraph"><p>The output looks like this:</p></div>
+<div class="listingblock">
+<div class="content">
+<pre><code>Athabasca Recon version 1.3
+Copyright 2011, Eric Nodwell and Steven K. Boyd
+http://bonelab.ucalgary.ca/
+
+Reading configuration file example.conf .
+Reading information from projections.mhd .
+
+Complete Configuration:
+ --------------------------------------------------------------------
+[Input]
+RawProjectionsFile = projections.mhd
+DarkFieldFile = projections-dark.mhd
+BrightFieldFile = projections-bright.mhd
+
+[Output]
+AttenuationProjectionsFile = attenuation_projections.mhd
+VolumeFile = reconstructed_volume.mhd
+
+[Projections]
+DataType = INT16
+Dimensions = (96,64)
+NumberOfProjections = 129
+PixelSize = (0.8,0.8)
+CenterPixelU = 47.5
+OffsetV = -25.2
+ReverseRotation = False
+ProjectionAt180 = True
+
+[Volume]
+VoxelSize = (0.8,0.8,0.8)
+Dimensions = (96,96,64)
+Origin = (-38,-38,-25.2)
+
+[Reconstruction]
+BadPixelCorrection = Averaging
+FlatFieldBadThreshold = 10
+BeamPowerCorrection = None
+PixelInterpolation = BilinearWithFallback
+SmoothingFilter = Gaussian
+SmoothingFilterRadius = 0.5
+
+[Software]
+Engine = MultiThreaded
+Threads = Automatic
+MaximumVolumeMemory = Automatic
+FilteringModule = vDSP
+ --------------------------------------------------------------------</code></pre>
+</div></div>
+<div class="paragraph"><p>If you&#8217;re satisfied with all the parameters for the reconstruction
+(and I really do recommend that you make it a habit to look them over
+before performing the reconstruction),
+then the reconstruction itself is run with this command:</p></div>
+<div class="listingblock">
+<div class="content">
+<pre><code>athabasca_recon example.conf</code></pre>
+</div></div>
+<div class="paragraph"><p>This will start again with reporting the complete configuration as above.
+The output that follows is shown below.  Comments follow.</p></div>
+<div class="listingblock">
+<div class="content">
+<pre><code>Reading dark field data.
+Reading bright field data.
+Identified 0 bad pixel(s).
+Processing the volume in 1 pass. <img src="./images/icons/callouts/1.png" alt="1" />
+Volume memory usage will be 3 MB.
+Launching 4 worker threads.
+
+Projections 0-3 at angles 0.00 to 4.22 : R P C F W B <img src="./images/icons/callouts/2.png" alt="2" />
+Projections 4-7 at angles 5.62 to 9.84 : R P C F W B
+Projections 8-11 at angles 11.25 to 15.47 : R P C F W B
+Projections 12-15 at angles 16.88 to 21.09 : R P C F W B
+Projections 16-19 at angles 22.50 to 26.72 : R P C F W B
+Projections 20-23 at angles 28.13 to 32.34 : R P C F W B
+Projections 24-27 at angles 33.75 to 37.97 : R P C F W B
+Projections 28-31 at angles 39.38 to 43.59 : R P C F W B
+Projections 32-35 at angles 45.00 to 49.22 : R P C F W B
+Projections 36-39 at angles 50.62 to 54.84 : R P C F W B
+Projections 40-43 at angles 56.25 to 60.47 : R P C F W B
+Projections 44-47 at angles 61.88 to 66.09 : R P C F W B
+Projections 48-51 at angles 67.50 to 71.72 : R P C F W B
+Projections 52-55 at angles 73.12 to 77.34 : R P C F W B
+Projections 56-59 at angles 78.75 to 82.97 : R P C F W B
+Projections 60-63 at angles 84.37 to 88.59 : R P C F W B
+Projections 64-67 at angles 90.00 to 94.22 : R P C F W B
+Projections 68-71 at angles 95.63 to 99.84 : R P C F W B
+Projections 72-75 at angles 101.25 to 105.47 : R P C F W B
+Projections 76-79 at angles 106.88 to 111.09 : R P C F W B
+Projections 80-83 at angles 112.50 to 116.72 : R P C F W B
+Projections 84-87 at angles 118.12 to 122.34 : R P C F W B
+Projections 88-91 at angles 123.75 to 127.97 : R P C F W B
+Projections 92-95 at angles 129.38 to 133.59 : R P C F W B
+Projections 96-99 at angles 135.00 to 139.22 : R P C F W B
+Projections 100-103 at angles 140.62 to 144.84 : R P C F W B
+Projections 104-107 at angles 146.25 to 150.47 : R P C F W B
+Projections 108-111 at angles 151.88 to 156.09 : R P C F W B
+Projections 112-115 at angles 157.50 to 161.72 : R P C F W B
+Projections 116-119 at angles 163.12 to 167.34 : R P C F W B
+Projections 120-123 at angles 168.75 to 172.97 : R P C F W B
+Projections 124-127 at angles 174.38 to 178.59 : R P C F W B
+Projections 128-128 at angles 180.00 to 180.00 : R P C F W <img src="./images/icons/callouts/3.png" alt="3" />
+Writing out volume data.
+
+Done.</code></pre>
+</div></div>
+<div class="colist arabic"><table>
+<tr><td><img src="./images/icons/callouts/1.png" alt="1" /></td><td>
+For this small volume, one pass is sufficient to reconstruct the entire
+volume in the available memory.
+</td></tr>
+<tr><td><img src="./images/icons/callouts/2.png" alt="2" /></td><td>
+You can observe the progress of the program as it processes projections.
+In this case, it is processing 4 projections simultaneously (it was run
+on a 4-core computer).  The letters give some indication of
+progress through the calculation stages; these are described in
+<a href="#progress_indicators">Progress indicators</a>.
+</td></tr>
+<tr><td><img src="./images/icons/callouts/3.png" alt="3" /></td><td>
+Notice that for this data the last projection is not back-projected.
+See <a href="#Projections_ProjectionAt180">Projections.ProjectionAt180</a>.
+</td></tr>
+</table></div>
+<div class="paragraph"><p>After running it, you may want to compare the raw projections with the
+Attenuation Projections.</p></div>
+<div class="paragraph"><p>The following figure shows the first raw projection, as viewed in ImageJ,
+scaled to 400%.</p></div>
+<div class="admonitionblock">
+<table><tr>
+<td class="icon">
+<img src="./images/icons/note.png" alt="Note" />
+</td>
+<td class="content">These are very low resolution data files, which is suitable
+for quick experimentation.  The images look poor though.  If you prefer
+prettier images, you&#8217;ll need some test files with greater resolution.</td>
+</tr></table>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/raw_projection.png" alt="images/raw_projection.png" />
+</div>
+</div>
+<div class="paragraph"><p>This looks like an X-Ray shadow, as it should.  Here is the corresponding Attenuation Projection.  (If you don&#8217;t know what an Attenuation Projection is, see <a href="#the_meaning_of_attenuation_projections">The meaning of Attenuation Projections</a>.)</p></div>
+<div class="imageblock">
+<div class="content">
+<img src="images/attenuation_projection.png" alt="images/attenuation_projection.png" />
+</div>
+</div>
+<div class="paragraph"><p>Notice that the objects in the Attenuation Projection are bright, and the
+background is dark.  The background ought to be zero.  We can check that.
+One way is to use an area selector tool in ImageJ, select some background,
+and choose Analyze &#8594; Measure from the menu.  Another visual way is to
+select the line tool, mark a line across the image, and choose Analyze &#8594;
+Plot Profile.  For this data, a plot along the vertical center looks like this:</p></div>
+<div class="imageblock">
+<div class="content">
+<img src="images/plot_profile_attenuation_projection.png" alt="images/plot_profile_attenuation_projection.png" />
+</div>
+</div>
+<div class="paragraph"><p>We see that the background goes nicely to zero.</p></div>
+<div class="paragraph"><p>Now let&#8217;s open the reconstructed volume, and scroll to the middle slice (32/64).</p></div>
+<div class="imageblock">
+<div class="content">
+<img src="images/reconstructed_volume_example.png" alt="images/reconstructed_volume_example.png" />
+</div>
+</div>
+<div class="paragraph"><p>We can measure the degree of unevenness in the reconstruction by selecting
+an area inside one of the spheres with the Circle selection tool (in the
+image above, the area I selected is the yellow circle).  Then
+from the Analyze menu, select Set Measurements and make sure that
+Standard Deviation is checked.  Finally, select Analyze &#8594; Measure.  The
+following results are reported.</p></div>
+<div class="imageblock">
+<div class="content">
+<img src="images/sphere_measurements.png" alt="images/sphere_measurements.png" />
+</div>
+</div>
+<div class="paragraph"><p>We can investigate the sharpness by using the line tool to mark a line
+passing through the centers of the two larger spheres, and selecting Analyze &#8594;
+Plot Profile.  This results in the following plot.  The degree of blurring of the
+sharp edge of the sphere is clearly visible; higher resolution projections
+would be needed for better sharpness.</p></div>
+<div class="imageblock">
+<div class="content">
+<img src="images/line_plot_two_spheres.png" alt="images/line_plot_two_spheres.png" />
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="progress_indicators">4.3. Progress indicators</h3>
+<div class="paragraph"><p>As the program processes each batch of projections, it reports its
+progress through the calculation stages with a series of letters.  These
+letters are flushed to standard out, so they hopefully will appear in
+your terminal window at the same time as the program sends them.  The purpose
+of these indicators is to give some indication of what fraction of time the
+program is spending on each calculation step.</p></div>
+<div class="admonitionblock">
+<table><tr>
+<td class="icon">
+<img src="./images/icons/note.png" alt="Note" />
+</td>
+<td class="content">If you&#8217;re using the MultiThreaded engine the timing of the progress letters is not
+so simple.  The letter is displayed when the main thread issues corresponding
+messages to the worker threads, because that is the only information that
+the main thread has.  This can be quite different
+to when the worker threads actually get the message and carry out the
+requested task.  (There is a message queue, so worker requests can pile up
+well ahead of the task that a worker thread is actually working on).  However, the threads need to be synchronized before
+back-projection, so what <em>is</em> true for the MultiThreaded engine is that
+when the letter <code>B</code> appears, all the preceding steps have in fact completed.</td>
+</tr></table>
+</div>
+<div class="tableblock">
+<table rules="all"
+width="100%"
+frame="border"
+cellspacing="0" cellpadding="4">
+<caption class="title">Table 1. Progress Letters</caption>
+<col width="50%" />
+<col width="50%" />
+<thead>
+<tr>
+<th align="left" valign="top">Letter </th>
+<th align="left" valign="top"> Task</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left" valign="top"><p class="table">R</p></td>
+<td align="left" valign="top"><p class="table">Data is being read from disk.</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table">P</p></td>
+<td align="left" valign="top"><p class="table">Raw projection data is being converted to attenuation values.</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table">C</p></td>
+<td align="left" valign="top"><p class="table">Bad pixels are being corrected/fudged.</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table">X</p></td>
+<td align="left" valign="top"><p class="table">Beam power corrections are being applied.</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table">W</p></td>
+<td align="left" valign="top"><p class="table">Data is being written to disk.</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table">F</p></td>
+<td align="left" valign="top"><p class="table">Projections are being filtered (<em>i.e.</em> convolved with the ramp function kernel, plus whatever other filterings you have requested).</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table">B</p></td>
+<td align="left" valign="top"><p class="table">Projections are being back-projected onto the volume data.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="align_projections_tool">4.4. Using the Align Projections tool</h3>
+<div class="paragraph"><p>It often happens that the center of the projections is not known exactly.  Perhaps
+additionally there is a small unknown misalignment (rotation) between the
+detector and the axis of rotation.  In these cases the Align Projections
+tool can be used.  It is implemented as an ImageJ plug-in.</p></div>
+<div class="paragraph"><p>The Align Projections tool works only on parallel projection data (for now),
+and it requires that the last projection obtained is at 180º from the
+first projection (see <a href="#Projections_ProjectionAt180">Projections.ProjectionAt180</a>).  It works
+by aligning the first projection with a mirrored copy of the last projection.</p></div>
+<div class="paragraph"><p>This section will provide a brief tutorial demonstrating the use of the ImageJ plug-in.</p></div>
+<div class="admonitionblock">
+<table><tr>
+<td class="icon">
+<img src="./images/icons/tip.png" alt="Tip" />
+</td>
+<td class="content">This tutorial uses real data obtained at the Canadian Light Source,
+as it best shows the utility of the alignment tool.
+The data files are too large to distribute with Athabasca Recon, but you
+can follow the tutorial using the much smaller data set <code>projections_offset.mhd</code>, which is distributed with Athabasca Recon.</td>
+</tr></table>
+</div>
+<div class="paragraph"><div class="title">Step 1. Use Athabasca Recon to generate Attenuation Projections</div><p>The Align Projections tool should be run on Attenuation Projections, and not
+raw projections (see <a href="#the_meaning_of_attenuation_projections">The meaning of attenuation projections</a>).  The reasons for this are:</p></div>
+<div class="olist arabic"><ol class="arabic">
+<li>
+<p>
+The Attenuation Projections are corrected for various factors, such as bright field, dark field, bad pixels, and variable beam power, resulting in much better correlation between the first and last images.
+</p>
+</li>
+<li>
+<p>
+The Align Projections tool as currently implemented can align the whole
+stack of projections, but currently has no facility to equivalently apply
+the alignment also to the dark and bright fields, as would be required if
+we wanted to apply the alignment to the raw projections.
+</p>
+</li>
+</ol></div>
+<div class="paragraph"><p>The following configuration file generates attenuation projections:</p></div>
+<div class="listingblock">
+<div class="content">
+<pre><code># create_atten.conf
+#
+# Example configuration file for generating Attenuation Projections
+
+[Input]
+RawProjectionsFile = tomo.mhd
+DarkFieldFile = dark before.mhd
+BrightFieldFile = flat before.mhd
+
+[Output]
+AttenuationProjectionsFile = attenuation_projections.mhd <img src="./images/icons/callouts/1.png" alt="1" />
+
+[Projections]
+ProjectionAt180 = True <img src="./images/icons/callouts/2.png" alt="2" />
+
+[Reconstruction]
+BeamPowerCorrection = NullProjectionEdge <img src="./images/icons/callouts/3.png" alt="3" /></code></pre>
+</div></div>
+<div class="colist arabic"><table>
+<tr><td><img src="./images/icons/callouts/1.png" alt="1" /></td><td>
+Notice that we specify <code>Output.AttenuationProjectionsFile</code> but not
+<code>Output.VolumeFile</code>.  Athabasca Recon will stop processing before
+performing back-projection, as it is not requested.
+</td></tr>
+<tr><td><img src="./images/icons/callouts/2.png" alt="2" /></td><td>
+This is the default, but it doesn&#8217;t hurt to be explicit.
+</td></tr>
+<tr><td><img src="./images/icons/callouts/3.png" alt="3" /></td><td>
+Any corrections that are applied the projections, such as beam
+power correction, must be applied at this step.
+</td></tr>
+</table></div>
+<div class="paragraph"><p>Run Athabasca Recon like this to generate the Attenuation Projections:</p></div>
+<div class="listingblock">
+<div class="content">
+<pre><code>athabasca_recon create_atten.conf</code></pre>
+</div></div>
+<div class="paragraph"><div class="title">Step 2. Load the data in ImageJ and start the Align Projections plug-in</div><p>Open the resulting file <code>attenuation_projections.mhd</code> in ImageJ.  Note that,
+if installed correctly, the MetaImage reader will be found under Plugins &#8594;
+3D IO &#8594; MetaImage Reader&#8230;</p></div>
+<div class="admonitionblock">
+<table><tr>
+<td class="icon">
+<img src="./images/icons/tip.png" alt="Tip" />
+</td>
+<td class="content">You will likely need to use the option <code>use virtual stack</code>
+in the plug-in Import MetaImage, as the projection data set can be quite large.</td>
+</tr></table>
+</div>
+<div class="paragraph"><p>You will find the Align Projections tool under Plugins &#8594; Align Projections.</p></div>
+<div class="imageblock">
+<div class="content">
+<img src="images/align_projections_tool.png" alt="images/align_projections_tool.png" />
+</div>
+</div>
+<div class="paragraph"><p>Note that the default center pixel is the middle of the projection.</p></div>
+<div class="admonitionblock">
+<table><tr>
+<td class="icon">
+<img src="./images/icons/important.png" alt="Important" />
+</td>
+<td class="content">In this example, the projection row length is 3200 pixels.  Because
+this tool uses pixel coordinates from the pixel centers in order to be
+consistent with Athabasca Recon, the middle of the
+projection is at (3200-1)/2 = 1599.5 .  Unfortunately, ImageJ itself uses a
+coordinate system with origin at pixel corners.  Just be aware of this if
+using any ImageJ tools to make measurements on the images.</td>
+</tr></table>
+</div>
+<div class="paragraph"><p>Two things happen when we click the <code>Update</code> button:</p></div>
+<div class="olist arabic"><ol class="arabic">
+<li>
+<p>
+We get a new image, which is an overlay of the first image in the stack (in
+red), with a mirrored version of the last image (in cyan).  Note that the colors are chosen to be complementary, so that if the images are perfectly coincident,
+the color will disappear, leaving a purely gray-scale image.
+</p>
+</li>
+<li>
+<p>
+A cross-correlation value is calculated.  If the images are perfectly aligned (and identical), the cross-correlation will go to 1.
+</p>
+</li>
+</ol></div>
+<div class="paragraph"><p>As you see from the figure, the red image (which is the first projection)
+is to the right of the cyan image; hence the actual rotation center is somewhat greater than
+the trial value for Center Pixel that we used.</p></div>
+<div class="imageblock">
+<div class="content">
+<img src="images/projection_overlay.png" alt="images/projection_overlay.png" />
+</div>
+</div>
+<div class="paragraph"><p>Let&#8217;s try a larger value for Center Pixel.  Try entering 1750 and hitting
+<code>Update</code>.  While we&#8217;re at it, let&#8217;s reduce the image to the actual region
+of interest for the reconstruction; enter 200 for <code>Top Border</code>, <code>Bottom
+Border</code>, and <code>Horizontal Border</code>.</p></div>
+<div class="admonitionblock">
+<table><tr>
+<td class="icon">
+<img src="./images/icons/note.png" alt="Note" />
+</td>
+<td class="content">Updates are not automatic when you change the input values, because
+updates are computationally expensive and you may want to modify more than
+one parameter.  You must manually hit Update each time.</td>
+</tr></table>
+</div>
+<div class="paragraph"><p>You can see from the image below that the two images are better aligned;
+the cross-correlation has increased to 0.9928.  You may have to repeat this
+a few times to get close to alignment.</p></div>
+<div class="imageblock">
+<div class="content">
+<img src="images/projection_overlay2.png" alt="images/projection_overlay2.png" />
+</div>
+</div>
+<div class="paragraph"><p>Once you are close to alignment, you can click <code>Optimize</code> and the plug-in will
+optimize the parmeters by maximizing the cross-correlation.  This can take
+several minutes.</p></div>
+<div class="admonitionblock">
+<table><tr>
+<td class="icon">
+<img src="./images/icons/warning.png" alt="Warning" />
+</td>
+<td class="content">The optimization algorithm can be fooled by local maxima if the starting
+parameters are not sufficiently close to aligned.</td>
+</tr></table>
+</div>
+<div class="paragraph"><p>The image below shows the final projection overlay; it appears sharp, with
+no hint of color, and the cross-correlation has increased to 0.9993 .</p></div>
+<div class="imageblock">
+<div class="content">
+<img src="images/projection_overlay3.png" alt="images/projection_overlay3.png" />
+</div>
+</div>
+<div class="paragraph"><div class="title">Step 3. Apply the alignment to the projections</div><p>Click the <code>Apply to stack and save</code> button.  You will be prompted for
+a file name with extension <code>mhd</code>.  In this example we&#8217;ll use <code>aligned_projections.mhd</code>.  The Align Projections plug-in will now write
+the entire projection stack to the specified file, with the alignment transformations applied to each image using bi-linear interpolation.  This can take several minutes;
+when finished, the image stack will be opened as a new virtual stack.</p></div>
+<div class="admonitionblock">
+<table><tr>
+<td class="icon">
+<img src="./images/icons/note.png" alt="Note" />
+</td>
+<td class="content">As an alternative to generating an aligned projection data set, you
+can set the parameter <a href="#Projections_CenterPixelU">Projections.CenterPixelU</a>
+to the value of <code>Center Pixel</code> of the Align Projections tool when performing the back-projection.  This has the
+advantage, besides saving disk space, of avoiding one interpolation.
+The disadvantage is that the detector to axis of rotation angle cannot be adjusted this way,
+since there is no corresponding parameter.</td>
+</tr></table>
+</div>
+<div class="admonitionblock">
+<table><tr>
+<td class="icon">
+<img src="./images/icons/note.png" alt="Note" />
+</td>
+<td class="content">To subsequently use the Apply Projections with a different data set, you will first
+have to select the other image stack, then click the <code>Reset</code> button.</td>
+</tr></table>
+</div>
+<div class="paragraph"><div class="title">Step 4. Carry out back-projection on the aligned attenuation projections</div><p>To now carry out back-projection, we create a configuration file like the
+following example.  Note that <a href="#Projections_CenterPixelU">Projections.CenterPixelU</a> does not have
+to be specified, since the projections in <code>aligned_projections.mhd</code> are centered, which is assumed by default.</p></div>
+<div class="listingblock">
+<div class="content">
+<pre><code># backproject_aligned.conf
+#
+# Example configuration file for back-projecting Attenuation Projections
+# that have been aligned with the Align Projection tool.
+
+[Input]
+AttenuationProjectionsFile = aligned_projections.mhd
+
+[Output]
+VolumeFile = reconstructed_volume.mhd
+
+[Reconstruction]
+SmoothingFilter = Gaussian <img src="./images/icons/callouts/1.png" alt="1" />
+SmoothingFilterRadius = 1</code></pre>
+</div></div>
+<div class="colist arabic"><table>
+<tr><td><img src="./images/icons/callouts/1.png" alt="1" /></td><td>
+Any parameters that affect the back-projection or the filtering should
+be set at this stage.
+</td></tr>
+</table></div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="discussion_of_issues_related_to_ct_reconstruction">5. Discussion of issues related to CT reconstruction</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>This section is not meant to teach the theory of CT Reconstruction.  There
+are a lot of good books that do that.  (One I recommend is "Computed Tomography, Principles, Design, Artifacts, and Recent Advances", by Jiang Hsieh, 2003, published by SPIE - The International Society for Optical Engineering).  Here I merely intend
+to point out some practical implications that the user needs to be aware
+of in order to obtain good reconstructions.</p></div>
+<div class="sect2">
+<h3 id="the_meaning_of_attenuation_projections">5.1. The meaning of Attenuation Projections</h3>
+<div class="paragraph"><p>The first step in CT reconstruction is converting the raw projections
+to attenuation values.  For the end user, it is useful to be familiar
+with these attenuation projections, because they can be both inputs and
+outputs to Athabasca Recon, and they are needed for many refinements
+(<em>e.g.</em> for correcting for changing beam power).  Also, it can be very
+illustrative to view the Attenuation Projections with an image viewer,
+particularly if there are problems with the reconstruction.</p></div>
+<div class="paragraph"><p>A little bit of math is useful here, even though we&#8217;re
+not going to go into the whole theory of reconstruction.</p></div>
+<div class="paragraph"><p>A (non-diverging or parallel) ray that passes through a medium decreases
+in intensity according to</p></div>
+<div class="imageblock">
+<div class="content">
+<img src="images/equation_attenuation_rate.png" alt="images/equation_attenuation_rate.png" />
+</div>
+</div>
+<div class="paragraph"><p>where &#945; is the attenuation coefficient.  Integrating this, we obtain
+the intensity, which is more or less what we measure experimentally:</p></div>
+<div class="imageblock">
+<div class="content">
+<img src="images/equation_intensity_solution.png" alt="images/equation_intensity_solution.png" />
+</div>
+</div>
+<div class="paragraph"><p>This is not very practical for direct fast reconstruction, as it is nonlinear in &#945;.
+However if we take the logarithm, thereby converting it to attenuation, as shown, then we have a nice
+linear equation relating a quantity, <em>A</em>, derived from the data, to something we want to know, &#945;, the attenuation coefficient, often referred to simply as the density in CT reconstruction, and everything is now copacetic:</p></div>
+<div class="imageblock" id="equation_attenuation_integration">
+<div class="content">
+<img src="images/equation_attenuation_integration.png" alt="images/equation_attenuation_integration.png" />
+</div>
+</div>
+<div class="paragraph"><p>To obtain the Attenuation Projections as output from Athabasca Recon,
+set <a href="#Output_AttenuationProjectionsFile">Output.AttenuationProjectionsFile</a>.
+To use a set of Attenuation Projections as input, use
+<a href="#Input_AttenuationProjectionsFile">Input.AttenuationProjectionsFile</a>.</p></div>
+</div>
+<div class="sect2">
+<h3 id="_correcting_for_detector_response_and_beam_distribution_bright_fields_dark_fields_and_flat_fields">5.2. Correcting for detector response and beam distribution: Bright Fields, Dark Fields and Flat Fields</h3>
+<div class="paragraph"><p>CT images are typically obtained under conditions of non-uniform
+beam intensity, and real X-ray detectors have dark current, and often a
+non-uniform response.  To deal with these realities, in practice a "dark field"
+is measured with no X-ray illumination, and then a "bright" field is measured
+with the X-ray source on at operating level, but no object in the field of
+view.  Then we calculate the attenuation, on a per-pixel basis, according to</p></div>
+<div class="imageblock">
+<div class="content">
+<img src="images/equation_corrected_attenuation.png" alt="images/equation_corrected_attenuation.png" />
+</div>
+</div>
+<div class="paragraph"><p>In this manual, and in Athabasca Recon, the difference of the bright and the dark fields is referred to as the "flat field".</p></div>
+<div class="admonitionblock">
+<table><tr>
+<td class="icon">
+<img src="./images/icons/note.png" alt="Note" />
+</td>
+<td class="content">This terminology is not universal.  Very often, "flat field" is
+used synonymously with "bright field".</td>
+</tr></table>
+</div>
+<div class="paragraph"><p>The files containing the Bright and Dark Fields are specified with
+<a href="#Input_DarkFieldFile">Input.DarkFieldFile</a> and <a href="#Input_BrightFieldFile">Input.BrightFieldFile</a>.  The Bright field is
+required; the Dark field is optional.</p></div>
+<div class="admonitionblock">
+<table><tr>
+<td class="icon">
+<img src="./images/icons/note.png" alt="Note" />
+</td>
+<td class="content">Some CT file formats contain the bright and dark fields together
+with the projection data and all the meta-data in a single file.  For these
+types of files, it is not necessary to specify a value for <a href="#Input_BrightFieldFile">Input.BrightFieldFile</a> or <a href="#Input_DarkFieldFile">Input.DarkFieldFile</a>.</td>
+</tr></table>
+</div>
+<div class="paragraph"><p>Note that noise in the bright and dark fields is additive, as it becomes a systematic perturbation applied to every projection, while noise in an individual projection is effectively decreased by averaging over all projections (by
+a factor of 1/sqrt(N) ).  For this reason, it is desirable to have lower noise
+in bright and dark fields than in the projections.  It is therefore not uncommon to obtain several field measurements so that they can be averaged together.  Athabasca Recon will
+average together multiple bright/dark fields if they are provided.</p></div>
+<div class="admonitionblock">
+<table><tr>
+<td class="icon">
+<img src="./images/icons/note.png" alt="Note" />
+</td>
+<td class="content">A longer exposure time for the bright and dark fields is an alternative
+approach to taking several individual field measurements.  This
+does has the disadvantage of possibly leading to overflow of the data format
+used.  In any case, Athabasca Recon
+does not in the current version support a different measurement time
+for the bright and dark fields as compared with the projections, although this would be simple to implement.  If your data is like this, and you don&#8217;t
+want to modify Athabasca Recon, you can convert your Bright and Dark fields
+to floating point format and scale appropriately; there is no requirement
+that the data type of the Bright and Dark Field files be the same as that
+of the projections data file.</td>
+</tr></table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_the_meaning_of_filtered_projections">5.3. The meaning of Filtered Projections</h3>
+<div class="paragraph"><p>Before being back-projected, the Attenuation Projections must be convolved
+with a so-called ramp function.  This is typically done by processing
+with a FFT (Fast Fourier Transform), hence the name of the method "filtered backprojection".</p></div>
+<div class="paragraph"><p>As with the Attenuation Projections, the Filtered Projections can be specified
+as both input and output; see <a href="#Input_FilteredProjectionsFile">Input.FilteredProjectionsFile</a> and
+<a href="#Output_FilteredProjectionsFile">Output.FilteredProjectionsFile</a>.  Unlike
+the attenuation projections, there are few calculations that can be performed
+on the filtered projections, and it is rarely illuminating to view them
+with an image viewer.  However, saving the filtered projections can in certain
+cases speed up processing, as they can, like the Attenuation Projections, be
+specified as input.</p></div>
+<div class="admonitionblock">
+<table><tr>
+<td class="icon">
+<img src="./images/icons/note.png" alt="Note" />
+</td>
+<td class="content">A example scenario for saving and re-using the filtered projections is a single large volume on a memory-limited machine,
+where the volume to be reconstructed cannot be held all in
+the specified memory limit at once. Athabasca Recon will reconstruct the
+volume in several chunks.  Each chunk requires a re-processing of the
+projections, since the projection data are streamed and not stored.  It
+may in this case be beneficial to save the Filtered Projections to re-use
+as input.  However typically it is the back-projection and not the filtering that is the
+time-limiting step.  Therefore, most often, it&#8217;s not worth the bother
+to save and re-use the filtered projections.</td>
+</tr></table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="bad_pixel_correction">5.4. Bad pixel correction</h3>
+<div class="paragraph"><p>X-Ray detectors sometimes have a few bad pixels.  Although a small
+number of pixels in a high resolution detector represent a negligible
+loss of information, we do still have to do something explicit with them.
+In the best base, this avoids ring artefacts, which can arise when bad pixel
+values are far out of the range of neighbouring pixels.  In the worst case,
+it avoids catastrophic failure of
+the calculation which can occur when illegal values (such as negative inputs
+to the log function) result in NaNs which the subsequent FFT then propagates
+to the entire projection row.</p></div>
+<div class="paragraph"><p>In practice, the actual scheme for dealing with bad pixels matters little
+as the number of bad pixels is very small and the information content
+correspondingly so.  (If the number of bad pixels is not very small, no
+miraculous transformation will fix the data and replacement of the detector
+is required.)  Generally, we want to take some sort of average of neighbouring
+good pixels.  The slight complication is that we cannot assume a given
+neighbouring pixel is good; in fact is not at all atypical in some detectors
+for bad pixels to occur in clumps.  But this is merely a book-keeping issue
+for the software.</p></div>
+<div class="paragraph"><p>Bad pixels can typically be identified as pixels with excessively large
+values in the dark field, or pixels with excessively small values in the
+flat field.</p></div>
+<div class="paragraph"><p>Bad Pixel Correction can be turned on with the setting
+<a href="#Reconstruction_BadPixelCorrection">Reconstruction.BadPixelCorrection</a>.
+This turns on both automatic identification of bad pixels, as well as
+automatic correction/fudging.  See also
+<a href="#Reconstruction_FlatFieldBadThreshold">Reconstruction.FlatFieldBadThreshold</a>
+and <a href="#Reconstruction_DarkFieldBadThreshold">Reconstruction.DarkFieldBadThreshold</a>.</p></div>
+<div class="admonitionblock">
+<table><tr>
+<td class="icon">
+<img src="./images/icons/note.png" alt="Note" />
+</td>
+<td class="content">A future version of the software might allow for the manual
+specification of known bad pixels, since this is sometimes known.  Additionally,
+some CT file formats are capable of storing a list of bad pixels.</td>
+</tr></table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="beam_power_correction">5.5. Correction for decaying beam power</h3>
+<div class="paragraph"><p>For synchrotron tomography, the beam power decays with time, and this can be
+significant over the time of the measurement.</p></div>
+<div class="paragraph"><p>There are several possible approaches to correcting for this, which are described below.  The method is selected with <a href="#Reconstruction_BeamPowerCorrection">Reconstruction.BeamPowerCorrection</a></p></div>
+<div class="sect3">
+<h4 id="beam_power_normalization_method_manual">5.5.1. Beam power normalization method: Manual</h4>
+<div class="paragraph"><p>The Manual method allows one to specify a constant term and a linear term
+to be applied to each Attenuation Projection.  The linear term is proportional to
+the elapsed measurement time or to the projection number, as specified with
+<a href="#Reconstruction_BeamPowerIndependentVariable">Reconstruction.BeamPowerIndependentVariable</a>.  Note that using the projection number as the dependent
+variable is only effective if the projections were acquired at constant time
+intervals (which is typically the case).</p></div>
+<div class="paragraph"><p>Because the Attenuation Projections are the logarithm of the intensity,
+this corresponds to an exponential correction of the beam power.</p></div>
+<div class="paragraph"><p>The correction terms are set with <a href="#Reconstruction_BeamPowerDecayConstantTerm">Reconstruction.BeamPowerDecayConstantTerm</a> and <a href="#Reconstruction_BeamPowerDecayLinearTerm">Reconstruction.BeamPowerDecayLinearTerm</a>.</p></div>
+<div class="paragraph"><p>As an example, to correct for a beam power that decays by a factor of 0.99 for each projection,
+the required value for <code>Reconstruction.BeamPowerDecayLinearTerm</code> is log(1/0.99) = 0.01005 .
+If in addition the beam power decayed by 0.90 between the measurement of the
+bright field and the measurement of the first projection, then the required
+value for <code>Reconstruction.BeamPowerDecayConstantTerm</code> is log(1/0.90) = 0.1054 .</p></div>
+</div>
+<div class="sect3">
+<h4 id="beam_power_normalization_method_before_and_after_bright_field">5.5.2. Beam power normalization method: Before and after bright field</h4>
+<div class="paragraph"><p>This method is similar to the <a href="#beam_power_normalization_method_manual">Manual method</a>, except that the values of the coefficients are automatically
+determined based on bright fields measurement both before and after the
+projection measurements.  To use this method, <a href="#Input_PostScanBrightFieldFile">Input.PostScanBrightFieldFile</a> must be set.</p></div>
+<div class="paragraph"><p>This method works best if the acquisition times are available.  See
+<a href="#Reconstruction_BeamPowerIndependentVariable">Reconstruction.BeamPowerIndependentVariable</a>.  If no acquisition times are available, it is not possible
+to automatically determine the constant term.  You may however specify
+a value for the constant term with
+<a href="#Reconstruction_BeamPowerDecayConstantTerm">Reconstruction.BeamPowerDecayConstantTerm</a>.</p></div>
+</div>
+<div class="sect3">
+<h4 id="beam_power_normalization_method_null_projection_edge">5.5.3. Beam power normalization method: Null projection edge</h4>
+<div class="paragraph"><p>This method is based on the assumption that at the row edges (right and left sides) of each projection, there is a strip of pixels that are unoccluded in
+every projection.  (This is generally reasonable to assume, since if the attenuation projections don&#8217;t go to zero at the edges, one of the assumptions of filtered back-projection is violated.)  These areas thus provide a measurement of the
+unattenuated beam power for each projection.  In this method, a correction is calculated individually for each projection
+to null the average Attenuation in the edge regions.</p></div>
+<div class="paragraph"><p>The width of the edge strips assumed to be always unoccluded (but illuminated) is
+specified with <a href="#Reconstruction_ProjectionBackgroundEdgeWidth">Reconstruction.ProjectionBackgroundEdgeWidth</a>.</p></div>
+</div>
+<div class="sect3">
+<h4 id="beam_power_normalization_method_constant_total_attenuation">5.5.4. Beam power normalization method: Constant total attenuation</h4>
+<div class="paragraph"><p>Automatic normalization
+is possible, if we observe from the attenuation relationship (see <a href="#the_meaning_of_attenuation_projections">The meaning of Attenuation Projections</a>)
+that the integral of the attenuation coefficient over the sample volume
+is equal to the integration of the calculated attenuation over the detector
+surface:</p></div>
+<div class="imageblock">
+<div class="content">
+<img src="images/equation_constant_integrated_attenuation.png" alt="images/equation_constant_integrated_attenuation.png" />
+</div>
+</div>
+<div class="paragraph"><p>From which it is clear that the integrated attenuation of each projection
+ought to be a constant.  We can therefore shift the attenuation of each projection
+to ensure this.</p></div>
+<div class="paragraph"><p>This method will typically result in an overall offset, since it cannot be applied
+to the bright field and thus cannot account for the beam power change between
+the bright field measurement and the acquisition of the first projection.  (The "constant" reference projection is taken as the
+first one.)  You may however specify
+a value for the constant term with
+<a href="#Reconstruction_BeamPowerDecayConstantTerm">Reconstruction.BeamPowerDecayConstantTerm</a>.</p></div>
+<div class="paragraph"><p>This method is suitable only for synchrotron data
+which exhibits no beam hardening or extinction, or near-extinction
+or other non-linearity, as any of these effects will change the calculated
+value of the total attenuation.</p></div>
+<div class="paragraph"><p>The best way to use this method may be not to use it directly, but to apply
+a best fit to the corrections obtained by this method.  This is
+described below in <a href="#example_using_a_best_fit_to_constant_total_attenuation">Example: Using a best fit to Constant Total Attenuation</a>.</p></div>
+</div>
+<div class="sect3">
+<h4 id="_saving_and_plotting_the_beam_power_corrections">5.5.5. Saving and plotting the beam power corrections</h4>
+<div class="paragraph"><p>If any beam power correction method is used, the parameter <a href="#Output_AttenuationCorrectionsFile">Output.AttenuationCorrectionsFile</a>
+may be set to generate a file containing the applied corrections
+as a function of the selected independent variable (<em>i.e.</em> time or projection number, see <a href="#Reconstruction_BeamPowerIndependentVariable">Reconstruction.BeamPowerIndependentVariable</a>).  This file is a 2-column text file that is suitable for
+importing into a spreadsheet or plotting program.  This will allow you to plot and examine
+the applied attenuation corrections.  They should lie on a smooth curve, exhibiting little noise or scatter; if this is not the case, the beam power
+correction is likely adversely affecting
+the quality of the reconstruction.</p></div>
+<div class="paragraph"><p>In addition, a best linear fit to the logarithmic beam power corrections
+is automatically performed and reported, as in this example:</p></div>
+<div class="listingblock">
+<div class="content">
+<pre><code>Linear fit to beam power corrections gives -2.43665e-05, 0.0100527 .</code></pre>
+</div></div>
+<div class="paragraph"><p>The first number is the constant term, while the second number is the linear
+term.  These numbers can be used directly as inputs to the <code>Manual</code> method
+for beam power correction (see <a href="#Reconstruction_BeamPowerDecayConstantTerm">Reconstruction.BeamPowerDecayConstantTerm</a> and <a href="#Reconstruction_BeamPowerDecayLinearTerm">Reconstruction.BeamPowerDecayLinearTerm</a>).</p></div>
+</div>
+<div class="sect3">
+<h4 id="example_using_a_best_fit_to_constant_total_attenuation">5.5.6. Example: Using a best fit to Constant Total Attenuation</h4>
+<div class="paragraph"><p>Because the Constant Total Attenuation method calculates a correction value
+for each projection, it can be subject to noise and scatter that
+adversely affect the quality of the reconstruction.  However, overall it
+may be rather good at identifying the beam power trend.  To take
+advantage of this method without being subject to the scatter penalty, we
+can apply a best fit to the corrections obtained by this method, then
+do the actual back-projection with this best fit.  This is done in two steps.</p></div>
+<div class="paragraph"><div class="title">Step 1: Generate the best fit to the constant total attenuation method</div><p>Run Athabasca Recon with a configuration file like this example.</p></div>
+<div class="listingblock">
+<div class="content">
+<pre><code>[Input]
+RawProjectionsFile = projections_decay.mhd <img src="./images/icons/callouts/1.png" alt="1" />
+DarkFieldFile = projections_decay-dark.mhd
+BrightFieldFile = projections_decay-bright.mhd
+
+[Output]
+AttenuationProjectionsFile = attenuation_projections.mhd
+AttenuationCorrectionsFile = attenuation_corrections.txt
+
+[Reconstruction]
+BeamPowerCorrection = ConstantTotalAttenuation</code></pre>
+</div></div>
+<div class="colist arabic"><table>
+<tr><td><img src="./images/icons/callouts/1.png" alt="1" /></td><td>
+You can find this example data set in the distributed test data.
+</td></tr>
+</table></div>
+<div class="paragraph"><p>Notice that we specify <a href="#Output_AttenuationProjectionsFile">Output.AttenuationProjectionsFile</a> but not
+<a href="#Output_VolumeFile">Output.VolumeFile</a>.  Athabasca Recon will stop processing before
+performing back-projection, as it is not requested.  When it has
+completed, because <a href="#Output_AttenuationCorrectionsFile">Output.AttenuationCorrectionsFile</a> is specified,
+it will report the best fit as in this example:</p></div>
+<div class="listingblock">
+<div class="content">
+<pre><code>Linear fit to beam power corrections gives -2.3575e-05, 0.0100527</code></pre>
+</div></div>
+<div class="paragraph"><p>I recommend that you do plot the curve from the data in the file
+<code>attenuation_corrections.txt</code>, and not just rely on these reported values.</p></div>
+<div class="paragraph" id="step_2_run_the_reconstruction_with_manual"><div class="title">Step 2: Run the reconstruction with a Manual beam power correction and the given coefficients</div><p>We now make a configuration file for the actual reconstruction:</p></div>
+<div class="listingblock">
+<div class="content">
+<pre><code>[Input]
+RawProjectionsFile = projections_decay.mhd
+DarkFieldFile = projections_decay-dark.mhd
+BrightFieldFile = projections_decay-bright.mhd
+
+[Output]
+VolumeFile = reconstructed_volume.mhd
+
+[Reconstruction]
+BeamPowerCorrection = Manual
+BeamPowerDecayConstantTerm = -2.3575e-05
+BeamPowerDecayLinearTerm = 0.0100527</code></pre>
+</div></div>
+<div class="paragraph"><p>Notice that we can&#8217;t re-use the Attenuation Projections from the
+first step, as the ConstantTotalAttenuation beam power correction method
+has already been applied to them; we must go back to the raw projections.</p></div>
+<div class="admonitionblock">
+<table><tr>
+<td class="icon">
+<img src="./images/icons/tip.png" alt="Tip" />
+</td>
+<td class="content">Don&#8217;t forget that the ConstantTotalAttenuation can&#8217;t determine the
+constant term of the exponential decay; that is the term that arises due
+to the change in beam power between the measurement of the bright field
+and the measurement of the first projection.  You can experiment with
+setting <a href="#Reconstruction_BeamPowerDecayConstantTerm">Reconstruction.BeamPowerDecayConstantTerm</a>;
+you may be able to estimate a value if the measurement times are known.</td>
+</tr></table>
+</div>
+</div>
+<div class="sect3">
+<h4 id="example_using_the_background_of_the_first_and_last_projections">5.5.7. Example: Using the background of the first and last projections</h4>
+<div class="paragraph"><p>This example shows how to apply the NullProjectionEdge method, but based on
+only the first and last projections.  It is similar to the previous
+example, in that first we will do a quick run to determine values
+that will be subsequently used as inputs to the Manual method.</p></div>
+<div class="paragraph"><div class="title">Step 1: Run NullProjectionEdge on just the first and last projections</div><p>Run Athabasca Recon with a configuration file like this example.  The
+key thing is that we set <a href="#Projections_ProjectionStride">Projections.ProjectionStride</a> to be one less than the
+total number of projections.  This way only the first and last projections
+will be processed.</p></div>
+<div class="listingblock">
+<div class="content">
+<pre><code>[Input]
+RawProjectionsFile = projections_decay.mhd <img src="./images/icons/callouts/1.png" alt="1" />
+DarkFieldFile = projections_decay-dark.mhd
+BrightFieldFile = projections_decay-bright.mhd
+
+[Projections]
+ProjectionStride = 128
+
+[Output]
+AttenuationProjectionsFile = attenuation_projections.mhd
+AttenuationCorrectionsFile = attenuation_corrections.txt
+
+[Reconstruction]
+BeamPowerCorrection = NullProjectionEdge</code></pre>
+</div></div>
+<div class="colist arabic"><table>
+<tr><td><img src="./images/icons/callouts/1.png" alt="1" /></td><td>
+You can find this example data set in the distributed test data.
+</td></tr>
+</table></div>
+<div class="paragraph"><p>Notice that we specify <a href="#Output_AttenuationProjectionsFile">Output.AttenuationProjectionsFile</a> but not
+<a href="#Output_VolumeFile">Output.VolumeFile</a>.  Athabasca Recon will stop processing before
+performing back-projection, as it is not requested.  When it has
+completed, because <a href="#Output_AttenuationCorrectionsFile">Output.AttenuationCorrectionsFile</a> is specified,
+it will report the best fit as in this example:</p></div>
+<div class="listingblock">
+<div class="content">
+<pre><code>Linear fit to beam power corrections gives 0.0101782, 1.28658</code></pre>
+</div></div>
+<div class="paragraph"><p>The linear term, which is the second, is based on a projection index
+increase of just 1 (since only two projections were used as input).
+When we run on the complete set of projections, we actually want a linear
+term that is this value divided by N-1, where N is the number of projections, in this case 1.28658 / 128 = 0.0100514 .</p></div>
+<div class="paragraph"><div class="title">Step 2: Run the reconstruction with a Manual beam power correction and the given coefficients</div><p>Step 2 is just like <a href="#step_2_run_the_reconstruction_with_manual">step 2</a> above, only we set
+<a href="#Reconstruction_BeamPowerDecayConstantTerm">Reconstruction.BeamPowerDecayConstantTerm</a> to 0.0101782 and  <a href="#Reconstruction_BeamPowerDecayLinearTerm">Reconstruction.BeamPowerDecayLinearTerm</a> to 0.0100514.</p></div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="low_pass_filtering">5.6. Low-pass filtering</h3>
+<div class="paragraph"><p>CT Reconstruction has the characteristic of amplifying high frequency noise.
+Without additional processing, reconstructed volumes typically have a speckled appearance, with a large amount of high-frequency noise.  Of course,
+this can be dealt with by post-processing with additional software.  However,
+it is common to employ a low-pass filter in the reconstruction process.</p></div>
+<div class="admonitionblock">
+<table><tr>
+<td class="icon">
+<img src="./images/icons/note.png" alt="Note" />
+</td>
+<td class="content">We get the low-pass filter for free computationally, as we can just roll it into the ramp filter transfer function, which
+is pre-calculated.</td>
+</tr></table>
+</div>
+<div class="admonitionblock">
+<table><tr>
+<td class="icon">
+<img src="./images/icons/note.png" alt="Note" />
+</td>
+<td class="content">The filtering is applied only along the rows of the projections,
+as this is the filtering direction in filtered back projection; it is also
+the direction of amplification of high frequency noise.  This corresponds
+to <em>x</em>-<em>y</em> planes in the reconstructed volume.  If you desire smoothing
+in the <em>z</em> direction of the reconstructed volume, that must be done with
+post-processing.  Alternatively, just increase the reconstruction voxel
+size.</td>
+</tr></table>
+</div>
+<div class="paragraph"><p>The options for low pass filtering are described below.  The filter is selected with the parameter <a href="#Reconstruction_SmoothingFilter">Reconstruction.SmoothingFilter</a>.</p></div>
+<div class="sect3">
+<h4 id="gaussian_filter">5.6.1. Gaussian filter</h4>
+<div class="paragraph"><p>The theoretically ideal low pass filter is a Gaussian filter, which minimizes
+the product <em>&#916;x</em> <em>&#916;f</em>.  In other words, it maximizes the
+noise reduction (a small <em>&#916;f</em>) while minimizing the resulting blur
+(a small <em>&#916;x</em>).</p></div>
+<div class="paragraph"><p>The Gaussian filter is characterized by a radius in real space, <em>&#963;<sub>pixels</sub></em>.
+This can be set with the parameter <a href="#Reconstruction_SmoothingFilterRadius">Reconstruction.SmoothingFilterRadius</a> which has units of pixels.</p></div>
+<div class="paragraph"><p>The frequency-space width of the Gaussian <em>&#963;<sub>f</sub></em>, as a fraction of the Nyquist frequency, is related to its real-space
+width in pixels by</p></div>
+<div class="imageblock">
+<div class="content">
+<img src="images/equation_gaussian_sigma.png" alt="images/equation_gaussian_sigma.png" />
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="tapered_cosine_window">5.6.2. Tapered cosine window</h4>
+<div class="paragraph"><p>Although a Gaussian is theoretically ideal with respect to the product <em>&#916;x</em> <em>&#916;f</em>, where <em>&#916;x</em> and <em>&#916;f</em> are the second moments of the respective
+distributions, it is not necessarily the second moments that human
+vision perceives when evaluating sharpness or noisiness.  Some people are of the opinion
+that a kernel that has a zero-crossing (and therefore at least some small
+oscillation) provides a greater degree of perceived sharpness for a given
+degree of perceived noise reduction.</p></div>
+<div class="paragraph"><p>Such a filter is the tapered cosine window, also called a Tukey window.</p></div>
+<div class="admonitionblock">
+<table><tr>
+<td class="icon">
+<img src="./images/icons/note.png" alt="Note" />
+</td>
+<td class="content">A typical usage for windowing functions is to smoothly taper a signal
+to zero outside some interval so it can be sampled.  That would be done in real space.  The usage here is a bit unusual, even strange, in that we are using a windowing function in frequency space as a low pass filter.  This is unusual, because the corresponding real space kernel has some odd properties, such as oscillating tails, and for most applications typically a "cleaner" filter would be desired.  It is these odd properties however that seem to be useful in this
+particular application.  At least, this is regarded as normal in the field
+of CT reconstruction.</td>
+</tr></table>
+</div>
+<div class="paragraph"><p>The tapered cosine window is given by</p></div>
+<div class="imageblock">
+<div class="content">
+<img src="images/equation_tapered_cosine_window.png" alt="images/equation_tapered_cosine_window.png" />
+</div>
+</div>
+<div class="paragraph"><p><em>f<sub>1</sub></em> and <em>f<sub>2</sub></em> are set by the parameter <a href="#Reconstruction_SmoothingFilterFrequencies">Reconstruction.SmoothingFilterFrequencies</a> (specify two numbers, separated by a comma).  They are specified as a fraction of the Nyquist frequency.</p></div>
+<div class="paragraph"><p>The approximate radius of smoothing (or blurring) in pixels can be estimated by taking
+the average of <em>f<sub>1</sub></em> and <em>f<sub>2</sub></em> and sticking that as <em>&#963;<sub>f</sub></em> into the equation given in the above section on the Gaussian filter.</p></div>
+<div class="paragraph"><p>An example of the tapered cosine window with <em>f<sub>1</sub></em>=0.2 and <em>f<sub>2</sub></em>=0.5 is
+shown in the following figure (in frequency space where it is applied as transfer
+function).</p></div>
+<div class="imageblock">
+<div class="content">
+<img src="images/plot_tapered_cosine_window_freq_space.png" alt="images/plot_tapered_cosine_window_freq_space.png" />
+</div>
+</div>
+<div class="paragraph"><p>The corresponding real space kernel looks like this:</p></div>
+<div class="imageblock">
+<div class="content">
+<img src="images/plot_tapered_cosine_window_real_space.png" alt="images/plot_tapered_cosine_window_real_space.png" />
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="pixel_interpolation">5.7. Pixel interpolation</h3>
+<div class="paragraph"><p>Back-projection is essentially ray-tracing from each voxel to the projection.
+Of course, the rays don&#8217;t necessarily hit exactly in the middle of
+a projection pixel, so some kind of interpolation scheme is required.  There
+are a couple of possible approaches.  These
+are selected with the parameter
+<a href="#Reconstruction_PixelInterpolation">Reconstruction.PixelInterpolation</a>.
+The options are discussed below.</p></div>
+<div class="paragraph" id="nearest_neighbor_interpolation"><div class="title">Nearest Neighbor</div><p>The value of the nearest pixel is used.  This is the fastest and least
+accurate method.</p></div>
+<div class="paragraph" id="bilinear_interpolation"><div class="title">Bi-linear interpolation</div><p>A bi-linear interpolation of the 4 nearest pixel centers is used.  This
+is slower than nearest neighbor, but more accurate.</p></div>
+<div class="paragraph"><p>More theoretically accurate schemes exist, such as bi-cubic, but they generally have the
+property of amplifying noise, and are not supported by Athabasca Recon.</p></div>
+<div class="paragraph" id="bilinear_interpolation_with_fallback"><div class="title">Bi-linear interpolation with fall back</div><p>One drawback of bilinear interpolation is that the domain over which
+interpolation can be
+performed is limited to the interior extents of the projection; that is,
+to the rectangular region with corners at the pixel centers of the corner
+pixels. In contrast,
+nearest-neighbor interpolation is valid over a domain going right to the
+edges of the outer pixels (the exterior extents).  Thus the domain of
+nearest-neighbor interpolation
+is 1/2 pixel wider on every side.  In practice, this can make a difference if
+you want to reconstruct a volume that goes right to the edge of a projection
+row.  It sometimes happens that, using bilinear interpolation, the outer
+slices coincident with the top and bottom projection rows are calculated as
+identically zero.  To avoid this problem, use
+the method bi-linear with fallback, which uses bilinear interpolation inside
+the interior extents, and nearest neighbor interpolation within the 1/2 pixel
+wide band outside of the interior extents.</p></div>
+</div>
+<div class="sect2">
+<h3 id="issues_with_large_voxel_sizes">5.8. Issues with large voxel sizes</h3>
+<div class="paragraph"><p>Some care is required when doing reconstructions with large voxels (<em>i.e.</em>
+low volume resolution).  By "large" I mean as compared with the pixel spacing.</p></div>
+<div class="paragraph"><p>To see why, consider a voxel that has an edge length 4 times as big as the
+projection pixel spacing.  Conceptually, each voxel, when back-projected onto the
+projection, would cast a shadow over roughly 4 &#215; 4 = 16 pixels (actually more, since the voxel can be rotated at some angle).  But
+the pixel interpolation methods currently available in this program
+are nearest neighbor on the central ray (uses data from 1 pixel) and bilinear interpolation on the central ray (uses
+data from 4 pixels, although strictly its information content is only 2 pixels).  Thus, assuming bilinear interpolation, only about
+1/8 of the available information is used in the reconstruction.  This has
+the usual undesirable implications for noise and accuracy.</p></div>
+<div class="paragraph"><p>An ideal reconstruction program, if asked to reconstruct a volume with
+a voxel size much larger than the pixel spacing, would first down-sample
+the projection data, using a summing or averaging procedure.  Athabasca
+Recon is not currently that program.</p></div>
+<div class="paragraph"><p>The work-around, if you want high-quality low-resolution reconstructions, is to pre-downsample the projections using some other program.</p></div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="configuration_file_reference">6. Configuration file reference</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_input_parameters">6.1. Input parameters</h3>
+<div class="paragraph"><p>In this section the input files are specified.  You need to specify exactly
+one of <code>RawProjectionsDataFile</code>, <code>AttenuationProjectionsFile</code> and
+<code>FilteredProjectionsFile</code>.  (Note that there are similar parameters
+in the output section, which are independent of the input parameters.)</p></div>
+<div class="paragraph" id="Input_RawProjectionsFile"><div class="title">RawProjectionsFile</div><p>The input data file of unprocessed projections.</p></div>
+<div class="paragraph"><p>The type of file is automatically determined by the extension.</p></div>
+<div class="paragraph" id="Input_DarkFieldFile"><div class="title">DarkFieldFile</div><p>The data file containing the Dark Field.</p></div>
+<div class="paragraph"><p>The data can consist of a single dark field (<em>i.e.</em> 2D data),
+or any number of dark field measurements (<em>i.e.</em> 3D data).  In the latter
+case all the available fields are averaged together with floating point
+precision.</p></div>
+<div class="paragraph"><p>Some CT file formats
+store this integrally, in which case it is not necessary to specify
+a value for this parameter.</p></div>
+<div class="paragraph"><p>The Dark Field is optional; it can be left unspecified if no Dark
+Field is available.</p></div>
+<div class="paragraph" id="Input_BrightFieldFile"><div class="title">BrightFieldFile</div><p>The data file containing the Bright Field.</p></div>
+<div class="paragraph"><p>The data can consist of a single bright field (<em>i.e.</em> 2D data),
+or any number of bright field measurements (<em>i.e.</em> 3D data).  In the latter
+case all the available fields are averaged together with floating point
+precision.</p></div>
+<div class="paragraph"><p>Some CT file formats
+store this integrally, in which case it is not necessary to specify
+a value for this parameter.</p></div>
+<div class="paragraph"><p>A Bright Field is required.</p></div>
+<div class="paragraph" id="Input_PostScanBrightFieldFile"><div class="title">PostScanBrightFieldFile</div><p>The data file containing the bright field as measured after the scan.  This
+data is only required if using the <code>BeforeAndAfterBrightField</code> setting
+for <code>Reconstruction.BeamPowerCorrection</code>.</p></div>
+<div class="paragraph" id="Input_AttenuationProjectionsFile"><div class="title">AttenuationProjectionsFile</div><p>The input data file of projections, converted previously to attenuation values.  This setting is typically useful if you want to perform only
+the attenuation calculation at one time (saving the result with <code>Output.AttenuationProjectionsFile</code>), and then re-use those when running the
+program later.</p></div>
+<div class="paragraph"><p>The type of file is automatically determined by the extension.</p></div>
+<div class="paragraph" id="Input_FilteredProjectionsFile"><div class="title">FilteredProjectionsFile</div><p>The input data file of projections, converted previously to attenutation
+values and DFT filtered. This setting is typically useful if you want to
+prepare the projections for back-projection (saving the result with
+<code>Output.FilteredProjectionsFile</code>), but not actually perform the
+back-projection at the same time. The back-projection alone can then be done
+using this input file parameter.</p></div>
+<div class="paragraph"><p>The type of file is automatically determined by the extension.</p></div>
+</div>
+<div class="sect2">
+<h3 id="_output_parameters">6.2. Output parameters</h3>
+<div class="paragraph" id="Output_VolumeFile"><div class="title">VolumeFile</div><p>The name of the file to write the reconstructed volume to.  At the moment,
+only <code>.mhd</code> output files are supported.</p></div>
+<div class="paragraph"><p>If the parameter is not present, then no back-projection will be performed,
+although projection processing and filtering will proceed as usual (and
+will be saved to the specified files if you choose).</p></div>
+<div class="paragraph" id="Output_AttenuationProjectionsFile"><div class="title">AttenuationProjectionsFile</div><p>If specified, then the attenuation projections will written to the specified
+file.  At the moment,
+only <code>.mhd</code> output files are supported.</p></div>
+<div class="paragraph" id="Output_FilteredProjectionsFile"><div class="title">FilteredProjectionsFile</div><p>If specified, then the FFT filtered projections will written to the specified
+file.  At the moment,
+only <code>.mhd</code> output files are supported.</p></div>
+<div class="paragraph" id="Output_AttenuationCorrectionsFile"><div class="title">AttenuationCorrectionsFile</div><p>If specified, and <code>Reconstruction.BeamPowerCorrection</code> is not <code>None</code>, then the
+attenuation correction for each projection will be written to the
+specified file (in text format, suitable for import into a spreadsheet).</p></div>
+<div class="paragraph"><p>In addition, a best linear fit to the logarithmic beam power corrections
+is automatically performed and reported.</p></div>
+</div>
+<div class="sect2">
+<h3 id="_projections_parameters">6.3. Projections parameters</h3>
+<div class="paragraph"><p>These are parameters which describe the projection data.  For many types
+of projection data files, several of these parameters can be read from the
+data file itself.  In such cases, it is not necessary to also specify them in
+the configuration file.  If however you do so, the value in the configuration
+file overrides the values read from the projection data file.</p></div>
+<div class="paragraph" id="Projections_DataType"><div class="title">DataType</div><p>Specifies the data type of the projection data.  Valid values are
+<code>INT8</code>, <code>UINT8</code>, <code>INT16</code>, <code>UINT16</code>, <code>INT32</code>, <code>UINT32</code>, <code>FLOAT32</code>, <code>FLOAT64</code> .</p></div>
+<div class="admonitionblock">
+<table><tr>
+<td class="icon">
+<img src="./images/icons/tip.png" alt="Tip" />
+</td>
+<td class="content">If your input data file is able to specify its data type (basically
+any type except raw without meta data), and that type conflicts with the
+value of this parameter, an error will be generated.  In general, it is best
+not to specify this parameter at all.  Even if you have a raw data file, I recommend
+creating an .mhd file with meta data for the raw data, rather than setting parameters
+in the configuration file that attempt to describe the structure of the input file.  See
+<a href="#itk_metaimage_file_format">ITK MetaImage file format</a>.</td>
+</tr></table>
+</div>
+<div class="paragraph" id="Projections_Dimensions"><div class="title">Dimensions</div><p>Specifies the number of pixel dimensions of the projections.  Must be a length
+2 tuple in the form (dim <code>u</code>, dim <code>v</code>).</p></div>
+<div class="paragraph" id="Projections_NumberOfProjections"><div class="title">NumberOfProjections</div><p>Specifies the number of projections.</p></div>
+<div class="paragraph" id="Projections_ProjectionAt180"><div class="title">ProjectionAt180</div><p>Specifies whether the number of projections includes the last projection at
+180º or not.  Valid values are <code>True</code> and <code>False</code>.  If <code>False</code>, the
+angle increment is 180º/<code>NumberOfProjections</code> and the last projection
+is back-projected.  If <code>True</code>, the angle increment is 180º/(<code>NumberOfProjections</code> + 1) and the last projection
+is not back-projected.</p></div>
+<div class="paragraph"><p>The default is <code>True</code>.</p></div>
+<div class="paragraph" id="Projections_PixelSize"><div class="title">PixelSize</div><p>Specifies the spacing of the pixels on the projections.  Units are real-space
+units (<em>e.g.</em> mm, or whatever you prefer to have the output in).  Must be a
+length 2 tuple in the form (pixel spacing in the <code>u</code> direction, pixel spacing
+in the <code>v</code> direction).</p></div>
+<div class="paragraph"><p>If this parameter is not specified, and the pixel dimensions cannot be
+determined from the input files, then (1,1) will be assumed.</p></div>
+<div class="paragraph" id="Projections_CenterPixelU"><div class="title">CenterPixelU</div><p>The projection of the center of rotation on the projections.  Units are
+pixels, as an offset from the <code>u</code> origin of the projection.</p></div>
+<div class="paragraph"><p>The default is the center of the projection (<em>i.e.</em> (N<sub>U</sub>-1)/2, where N<sub>U</sub> is the number of pixels in the U direction).</p></div>
+<div class="paragraph" id="Projections_OffsetV"><div class="title">OffsetV</div><p>Specifies the offset of the projections in the <code>v</code> direction in real units; in other words
+the location in the <code>z</code> direction of row 0 (or of <code>v</code>=0).</p></div>
+<div class="paragraph"><p>The default is to center the projections around <code>z</code>=0.</p></div>
+<div class="paragraph" id="Projections_ReverseRotation"><div class="title">ReverseRotation</div><p>Specifies that the projections were obtained in a direction opposite to
+the standard convention for this software.  See <a href="#geometry_and_coordinate_system">Geometry and Coordinate System</a> .</p></div>
+<div class="paragraph" id="Projections_ProjectionStride"><div class="title">ProjectionStride</div><p>This parameter can be used to process only every n<sup>th</sup> projection.  For example,
+if set to 2, only every second projection in the input file will be used.</p></div>
+<div class="admonitionblock">
+<table><tr>
+<td class="icon">
+<img src="./images/icons/note.png" alt="Note" />
+</td>
+<td class="content">If <code>ProjectionStride</code> is set, <code>NumberOfProjections</code> should be set
+to the total number of projections in the input file as usual, not the number
+of projections you want to actually read.</td>
+</tr></table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_volume_parameters">6.4. Volume parameters</h3>
+<div class="paragraph"><p>The volume parameters describe the volume which is to be reconstructed.
+These parameters are superfluous if <code>Output.VolumeFile</code> is not set.</p></div>
+<div class="paragraph" id="Volume_Dimensions"><div class="title">Dimensions</div><p>The dimensions of the reconstruction volume in voxels, specified as a tuple
+in the form (dim x, dim y, dim z).</p></div>
+<div class="paragraph" id="Volume_VoxelSize"><div class="title">VoxelSize</div><p>The spacing of the reconstruction volume voxels, specified as a tuple
+in the form (spacing x, spacing y, spacing z).</p></div>
+<div class="paragraph"><p>The default is the same size as the projection pixels, provided that the
+pixels are square.  If the pixels are non-square, there is no default voxel size.</p></div>
+<div class="paragraph" id="Volume_Origin"><div class="title">Origin</div><p>The origin, in real space, of the reconstruction volume (i.e. the location in
+real space of the center of voxel 0,0,0).  Should be specified as a tuple
+in the form (origin x, origin y, origin z).</p></div>
+<div class="paragraph"><p>If not specified, the volume will be centred at the origin of the coordinate
+system.</p></div>
+</div>
+<div class="sect2">
+<h3 id="_reconstruction_parameters">6.5. Reconstruction parameters</h3>
+<div class="paragraph"><p>These parameters modify how the reconstruction is performed.</p></div>
+<div class="paragraph" id="Reconstruction_ScalingFactor"><div class="title">ScalingFactor</div><p>Sets a scaling factor for the reconstructed volume.  The default is 1.</p></div>
+<div class="paragraph"><p>As an example, if you specify the projection pixel spacing and the voxel
+size in microns, you likely want a ScalingFactor of 1E4 in order to
+obtain attenuation densities in inverse cm.</p></div>
+<div class="paragraph" id="Reconstruction_BadPixelCorrection"><div class="title">BadPixelCorrection</div><p>Sets the method for correcting bad pixels.  Valid values are <code>None</code> and
+<code>Averaging</code>.  The <code>Averaging</code> correction will take the average value of the
+4 nearest neighbors, or, if any of the nearest neighbors are themselves marked
+as bad pixels, will take the 4 nearest good pixels to determine an average.  See the discussion section <a href="#bad_pixel_correction">Bad pixel correction</a>.</p></div>
+<div class="paragraph" id="Reconstruction_FlatFieldBadThreshold"><div class="title">FlatFieldBadThreshold</div><p>If Bad Pixel Correction is being used, sets the threshold <em>below</em> which
+pixels in the flat field are flagged as bad.  The default is 10.  Note
+that this is an integral value which is reasonably plausible for discrete-valued
+input data, as raw projection data typically is.  (<em>i.e.</em> If your detector count is below 10 in the flat field, something is wrong.)  However, it is likely to be totally non-sensical for scaled floating-point input data.</p></div>
+<div class="paragraph" id="Reconstruction_DarkFieldBadThreshold"><div class="title">DarkFieldBadThreshold</div><p>If Bad Pixel Correction is being used, sets the threshold <em>above</em> which
+pixels in the dark field are flagged as bad.  The default is for this
+value not to be set, in which case automatic detection of bad pixels from
+the dark field is disabled.</p></div>
+<div class="paragraph" id="Reconstruction_BeamPowerCorrection"><div class="title">BeamPowerCorrection</div><p>Sets the method for correcting for beam power decay.  See <a href="#beam_power_correction">Correction for decaying beam power</a>.  Valid values are shown in the following table.</p></div>
+<div class="tableblock">
+<table rules="all"
+width="100%"
+frame="border"
+cellspacing="0" cellpadding="4">
+<col width="50%" />
+<col width="50%" />
+<thead>
+<tr>
+<th align="left" valign="top">Value</th>
+<th align="left" valign="top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left" valign="top"><p class="table"><code>None</code></p></td>
+<td align="left" valign="top"><p class="table">No correction for beam power variation.</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table"><code>Manual</code></p></td>
+<td align="left" valign="top"><p class="table">See <a href="#beam_power_normalization_method_manual">Beam Power Normalization Method: Manual</a>.</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table"><code>BeforeAndAfterBrightField</code></p></td>
+<td align="left" valign="top"><p class="table">See <a href="#beam_power_normalization_method_before_and_after_bright_field">Beam Power Normalization Method: Before and after bright field</a>.</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table"><code>NullProjectionEdge</code></p></td>
+<td align="left" valign="top"><p class="table">See <a href="#beam_power_normalization_method_null_projection_edge">Beam Power Normalization Method: Null projection edge</a>.</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table"><code>ConstantTotalAttenuation</code></p></td>
+<td align="left" valign="top"><p class="table">See <a href="#beam_power_normalization_method_constant_total_attenuation">Beam Power Normalization Method: Constant total attenuation</a>.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="paragraph" id="Reconstruction_BeamPowerIndependentVariable"><div class="title">BeamPowerIndependentVariable</div><p>Set the independent variable for the beam power correction.  Valid values
+are <code>ProjectionNumber</code> and <code>Time</code>.  The default is <code>ProjectionNumber</code>.</p></div>
+<div class="paragraph"><p>Note that <code>ProjectionNumber</code> is zero-indexed; the first projection is
+projection number 0.</p></div>
+<div class="admonitionblock">
+<table><tr>
+<td class="icon">
+<img src="./images/icons/note.png" alt="Note" />
+</td>
+<td class="content">Since the current version of Athabasca Recon does not implement
+any file readers that are able to read measurement time meta-data, this
+parameter is currently disabled.</td>
+</tr></table>
+</div>
+<div class="paragraph" id="Reconstruction_BeamPowerDecayConstantTerm"><div class="title">BeamPowerDecayConstantTerm</div><p>This value sets the attenuation correction.
+The constant term is subtracted from each attenuation projection.</p></div>
+<div class="paragraph"><p>Note that this value is typically calculated as the logarithm of a ratio
+of beam powers or intensities.</p></div>
+<div class="paragraph"><p>See <a href="#beam_power_correction">Correction for decaying beam power</a> for details.</p></div>
+<div class="paragraph" id="Reconstruction_BeamPowerDecayLinearTerm"><div class="title">BeamPowerDecayLinearTerm</div><p>This value sets the attenuation correction.
+The linear term is subtracted from each attenuation projection after being
+multiplied by the projection index (which is 0 for the first projection),
+or by the time, depending on the value of <code>BeamPowerIndependentVariable</code>.
+The manual method uses both these values; some other methods allow only the
+constant term to be independently specified.</p></div>
+<div class="paragraph"><p>See <a href="#beam_power_correction">Correction for decaying beam power</a> for details.</p></div>
+<div class="paragraph" id="Reconstruction_ProjectionBackgroundEdgeWidth"><div class="title">ProjectionBackgroundEdgeWidth</div><p>This setting is used only for <code>BeamPowerCorrection</code> = <code>NullProjectionEdge</code>.
+It determines the width (in pixels) of the strip on either side of the projection
+that is used to determine the background beam power.  This strip should
+never have any object causing attenuation in it, and should be illuminated by
+the beam.</p></div>
+<div class="paragraph" id="Reconstruction_PixelInterpolation"><div class="title">PixelInterpolation</div><p>Sets the method for interpolating the pixel values of the projections.  Valid
+values are <code>NearestNeighbor</code>, <code>Bilinear</code> and <code>BilinearWithFallback</code>.  The default is <code>BilinearWithFallback</code>.
+<code>NearestNeighbor</code> will give a speed increase, at the cost of some
+accuracy.</p></div>
+<div class="paragraph"><p>See <a href="#pixel_interpolation">Pixel interpolation</a>.</p></div>
+<div class="paragraph" id="Reconstruction_SmoothingFilter"><div class="title">SmoothingFilter</div><p>Selects a smoothing filter to apply to the projections before back projecting.
+See <a href="#low_pass_filtering">Low pass filtering</a>.  The default is Gaussian.</p></div>
+<div class="tableblock">
+<table rules="all"
+width="100%"
+frame="border"
+cellspacing="0" cellpadding="4">
+<col width="50%" />
+<col width="50%" />
+<thead>
+<tr>
+<th align="left" valign="top">Value</th>
+<th align="left" valign="top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left" valign="top"><p class="table"><code>None</code></p></td>
+<td align="left" valign="top"><p class="table">No smoothing filter is applied.</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table"><code>Gaussian</code></p></td>
+<td align="left" valign="top"><p class="table">A Gaussian filter is applied, which is equivalent
+to convolution with a Gaussian in real space.  See
+<a href="#gaussian_filter">Gaussian filter</a>.</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table"><code>TaperedCosineWindow</code></p></td>
+<td align="left" valign="top"><p class="table">A tapered cosine window is applied in frequency space.  See <a href="#tapered_cosine_window">Tapered cosine window</a>.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="paragraph" id="Reconstruction_SmoothingFilterRadius"><div class="title">SmoothingFilterRadius</div><p>Applies only when <code>Reconstruction.SmoothingFilter</code> = <code>Gaussian</code> .
+Sets the &#963; value of the convolution gaussian, in real space, in units
+of pixels.  The default is 0.5 .</p></div>
+<div class="paragraph" id="Reconstruction_SmoothingFilterFrequencies"><div class="title">SmoothingFilterFrequencies</div><p>Sets the smoothing filter frequencies parameters.  Only relevant for appropriate filter types.  See <a href="#low_pass_filtering">Low-pass filtering</a>.
+No default; must be set if required.</p></div>
+</div>
+<div class="sect2">
+<h3 id="_software_parameters">6.6. Software parameters</h3>
+<div class="paragraph"><p>These parameters affect how the software runs.  They should not affect the
+results, except indirectly by for example changing order at which data is processed (which can affect round off errors).</p></div>
+<div class="paragraph"><div class="title">Engine</div><p>Current options are <code>SingleThreaded</code> and <code>MultiThreaded</code>. The default is
+<code>MultiThreaded</code>. As <code>SingleThreaded</code> is slower but produces the same results,
+it is primarily intended to be used for debugging, since it can be
+difficult to debug a multi-threaded program.</p></div>
+<div class="paragraph"><div class="title">Threads</div><p>This option only applies when <code>Engine</code> is <code>MultiThreaded</code>.  Valid values are
+any positive integer, and <code>Automatic</code>.  <code>Automatic</code> will select a value
+equal to the number of CPU cores in the system.  <code>Automatic</code> is the default.</p></div>
+<div class="paragraph"><div class="title">MaximumVolumeMemory</div><p>Specifies the maximum memory that will be used to store volume data.  This
+will determine how many passes are required to reconstruct the entire
+volume.  Larger values (fewer passes) are typically faster, however if set too large, swapping of virtual memory to disk will occur,
+which will result in very slow calculation times.  Valid values are
+<code>Automatic</code> (which is the default) or a numerical value appended with
+<code>MB</code> or <code>GB</code>.  For <code>Automatic</code>, the value used will be
+the installed system physical minus 1GB.</p></div>
+<div class="paragraph"><div class="title">FilteringModule</div><p>Filtering module selects the module to use for convolution/filtering.  The
+choices are as shown in the following table.</p></div>
+<div class="tableblock">
+<table rules="all"
+width="100%"
+frame="border"
+cellspacing="0" cellpadding="4">
+<col width="50%" />
+<col width="50%" />
+<thead>
+<tr>
+<th align="left" valign="top">Value</th>
+<th align="left" valign="top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left" valign="top"><p class="table"><code>vDSP</code></p></td>
+<td align="left" valign="top"><p class="table">Apple&#8217;s vDSP digital signal processing library.  Only available on OS X; default on OS X.</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table"><code>FFTW</code></p></td>
+<td align="left" valign="top"><p class="table">fftw3 library.  Default on Linux and Windows.</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table"><code>RealSpaceConvolution</code></p></td>
+<td align="left" valign="top"><p class="table">The convolution is performed in real space.  This
+is a whole order slower than the FFT-based approach, and so is not recommended, except as a useful comparison and validation for developers.
+This method also precludes performing any additional filtering
+(<a href="#Reconstruction_SmoothingFilter">Reconstruction.SmoothingFilter</a> is limited to <code>None</code>).</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="admonitionblock">
+<table><tr>
+<td class="icon">
+<img src="./images/icons/note.png" alt="Note" />
+</td>
+<td class="content">Athabasca Recon can
+be compiled with or without support for each of the above options, so
+they might not all be available for your particular build.</td>
+</tr></table>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="imagej_and_data_file_formats">7. ImageJ and data file formats</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_getting_imagej_and_required_plugins">7.1. Getting ImageJ and Required Plugins</h3>
+<div class="paragraph"><p>ImageJ can be obtained from <a href="http://rsbweb.nih.gov/ij/download.html">http://rsbweb.nih.gov/ij/download.html</a> .  Version
+1.45 or newer is required.</p></div>
+<div class="admonitionblock">
+<table><tr>
+<td class="icon">
+<img src="./images/icons/tip.png" alt="Tip" />
+</td>
+<td class="content">For Linux or Windows, get the 64 bit version (assuming your OS is 64 bit;
+if not, upgrade your OS!)  For OS X, always start ImageJ64.</td>
+</tr></table>
+</div>
+<div class="paragraph"><p>The Align Projections plug-in is distributed with Athabasca Recon.  Simply
+put the <code>Align_Projections.jar</code> file in the plugins directory of the ImageJ.</p></div>
+<div class="paragraph"><p>A few other plug-ins are required or recommended.</p></div>
+<div class="paragraph"><p>Align Projections requires Apache Commons Math, which can be obtained from
+<a href="http://commons.apache.org/math/download_math.cgi">http://commons.apache.org/math/download_math.cgi</a> .  Again, just put the
+<code>commons-math-2.2.jar</code> file in the plugins directory of ImageJ.</p></div>
+<div class="paragraph"><p>The plug-in for reading and writing ITK MetaImage files is available at <a href="http://ij-plugins.sourceforge.net/">http://ij-plugins.sourceforge.net/</a> .  The one you want is "ij-Plugins Toolkit".</p></div>
+<div class="admonitionblock">
+<table><tr>
+<td class="icon">
+<img src="./images/icons/important.png" alt="Important" />
+</td>
+<td class="content">You will need a version of ij-Plugins Toolkit <em>newer</em> than 1.6.0.  As of October 3, 2011, no
+newer version has been released.  Version 1.6.0 and earlier are incapable
+of reading or writing virtual stacks, which is required when dealing
+with very large data sets.  We have submitted a patch to enable this
+functionality, but in the meantime, you can just email me at
+<a href="mailto:enodwell@ucalgary.ca">enodwell@ucalgary.ca</a> and I will send you a patched version.</td>
+</tr></table>
+</div>
+<div class="paragraph"><p>The Plugin for reading Hamamatsu&#8217;s SimplePCI files (<code>.cxd</code>) is available
+from <a href="http://www.loci.wisc.edu/bio-formats/imagej">http://www.loci.wisc.edu/bio-formats/imagej</a> .</p></div>
+<div class="admonitionblock">
+<table><tr>
+<td class="icon">
+<img src="./images/icons/important.png" alt="Important" />
+</td>
+<td class="content">Version 4.3.3 is known to work.  Some earlier versions have
+an error when attempting to open very large files.</td>
+</tr></table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="itk_metaimage_file_format">7.2. ITK MetaImage file format</h3>
+<div class="paragraph"><p>In the current version Athabasca recon only reads ITK MetaImage files (and raw data files). This format was chosen because:</p></div>
+<div class="ulist"><ul>
+<li>
+<p>
+It is very simple to deal with from the programmer&#8217;s point of view.
+</p>
+</li>
+<li>
+<p>
+It is fairly widely used.  In particular, ImageJ plug-ins are available.
+</p>
+</li>
+<li>
+<p>
+Raw data files are easily "upgraded" to MetaImage by writing a simple text file of a few lines of meta-data; likewise, MetaImages can always be read as raw data files by programs that don&#8217;t directly support MetaImages.
+</p>
+</li>
+<li>
+<p>
+It is easily extensible to store additional parameters related to CT reconstruction.
+</p>
+</li>
+</ul></div>
+<div class="paragraph"><p>ITK MetaImage files actually consist of two files; one is a raw data file (extension <code>.raw</code>) and one is
+a simple text file that describes the data (extension <code>.mhd</code>). The text file
+can be created or modified with any text editor.</p></div>
+<div class="admonitionblock">
+<table><tr>
+<td class="icon">
+<img src="./images/icons/note.png" alt="Note" />
+</td>
+<td class="content">There is an alternate unified-file format for ITK MetaImage files, in
+which the meta data and raw data are combined into a single file with
+extension <code>.mha</code>.  These files are not supported by Athabasca Recon.</td>
+</tr></table>
+</div>
+<div class="paragraph"><p>Here is an example <code>.mhd</code> file.  Given a raw file with known parameters,
+you can construct the corresponding <code>.mhd</code> file using this template.</p></div>
+<div class="listingblock">
+<div class="content">
+<pre><code>NDims = 3 <img src="./images/icons/callouts/1.png" alt="1" />
+DimSize = 96 64 129 <img src="./images/icons/callouts/2.png" alt="2" />
+ElementType = MET_USHORT <img src="./images/icons/callouts/3.png" alt="3" />
+ElementByteOrderMSB = True <img src="./images/icons/callouts/4.png" alt="4" />
+ElementDataFile = projections.raw
+ElementSpacing = 0.8 0.8 0.8
+Offset = -38 -25.2 0 <img src="./images/icons/callouts/5.png" alt="5" /></code></pre>
+</div></div>
+<div class="colist arabic"><table>
+<tr><td><img src="./images/icons/callouts/1.png" alt="1" /></td><td>
+The dimension will be 2 or 3.
+</td></tr>
+<tr><td><img src="./images/icons/callouts/2.png" alt="2" /></td><td>
+The number of values has to match the NDims.  The order is x,y,z (or just x,y for 2D).
+</td></tr>
+<tr><td><img src="./images/icons/callouts/3.png" alt="3" /></td><td>
+Valid types are <code>MET_CHAR</code>, <code>MET_UCHAR</code>, <code>MET_SHORT</code>, <code>MET_USHORT</code>,
+<code>MET_INT</code>, <code>MET_UINT</code>, <code>MET_LONG</code>, <code>MET_ULONG</code>, <code>MET_FLOAT</code>, <code>MET_DOUBLE</code>.
+</td></tr>
+<tr><td><img src="./images/icons/callouts/4.png" alt="4" /></td><td>
+Whether the data are big-endian (<code>True</code>) or little-endian (<code>False</code>).
+Due to the vagaries of history, Intel processors are little-endian, while
+most image file formats and image-processing software store data as big-endian.  This is not a problem,
+so long as the storage format it is correctly indicated.
+</td></tr>
+<tr><td><img src="./images/icons/callouts/5.png" alt="5" /></td><td>
+The real-space coordinates of the <em>center</em> of pixel/voxel with index (0,0) - or (0,0,0).  Just like in Athabasca Recon (<em>i.e.</em> not measured from the corner of the pixel/voxel).
+</td></tr>
+</table></div>
+</div>
+<div class="sect2">
+<h3 id="_using_imagej_to_convert_simplepci_to_metaimage">7.3. Using ImageJ to Convert SimplePCI to MetaImage</h3>
+<div class="paragraph"><p>To open the <code>.cxd</code> file, you have to to go the "Plugin" menu as shown,
+not to the "File" menu.</p></div>
+<div class="imageblock">
+<div class="content">
+<img src="images/imagej_bioformats_importer_menu.png" alt="images/imagej_bioformats_importer_menu.png" />
+</div>
+</div>
+<div class="paragraph"><p>The important option is "Use virtual stack".  This allows you to open very
+large data files without requiring a lot of RAM.  You should also select
+"View stack with: Standard ImageJ".</p></div>
+<div class="imageblock">
+<div class="content">
+<img src="images/imagej_bioformats_import_options.png" alt="images/imagej_bioformats_import_options.png" />
+</div>
+</div>
+<div class="paragraph"><p>When writing out files as MetaImage, make sure that the option "Save in single
+file" is unselected.</p></div>
+<div class="imageblock">
+<div class="content">
+<img src="images/imagej_metaimage_writer_options.png" alt="images/imagej_metaimage_writer_options.png" />
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_compiling_athabasca_recon">8. Compiling Athabasca Recon</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_requirements">8.1. Requirements</h3>
+<div class="paragraph"><p><strong>A compiler</strong>. Athabasca Recon has been compiled with gcc on Linux and OS X,
+and with Microsoft Visual Studio 2008 on Windows.  Other compilers are also
+likely to work.</p></div>
+<div class="paragraph"><p><strong>cmake</strong>. cmake is used to support cross-platform building of Athabasca Recon.
+You can get cmake from <a href="http://www.cmake.org/">http://www.cmake.org/</a> .</p></div>
+<div class="paragraph"><p><strong>boost</strong>.  Boost is a high quality collection of portable C++ libraries.
+You can get boost from <a href="http://www.boost.org/">http://www.boost.org/</a> .  Note that you will
+typically have to compile boost.</p></div>
+<div class="paragraph"><p><strong>An FFT library</strong>.  On OS X, Apple&#8217;s vDSP is used by default; it is already
+present on any OS X system, and requires no additional installation.  The other FFT library that Athabasca Recon supports is FFTW.  On
+Linux systems, you will typically use your distro&#8217;s package management tool
+to install FFTW.  For Windows users, see <a href="http://www.fftw.org/install/windows.html">http://www.fftw.org/install/windows.html</a> ; make sure that you follow the
+instructions there about running <code>lib</code> with the <code>/machine:x64</code> option.</p></div>
+<div class="admonitionblock">
+<table><tr>
+<td class="icon">
+<img src="./images/icons/warning.png" alt="Warning" />
+</td>
+<td class="content">The binaries for Windows are release-only.  Since in Windows,
+you cannot link Debug libraries to Release executables, it is not
+possible to build a Debug version of Athabasca Recon with those FFTW
+libraries.  If anyone is interested in doing this, please let me know,
+and we can figure out a way; probably by compiling FFTW from source.</td>
+</tr></table>
+</div>
+<div class="paragraph"><p><strong>Google Test</strong>.  Google Test is used for the unit tests.  It is possible to
+build Athabasca Recon without Google Test by setting ENABLE_TESTING to OFF.  However if you are modifying the source code, I really recommend that you
+build and run the unit tests.</p></div>
+<div class="admonitionblock">
+<table><tr>
+<td class="icon">
+<img src="./images/icons/note.png" alt="Note" />
+</td>
+<td class="content">I tried to be careful about coding in a manner that would allow
+for both 32 bit and 64 bit compilation.  By design, even if compiled as a 32 bit program Athabasca Recon should be able to reconstruct volumes larger than the 32 bit limit of 4GB with
+projection data sets also exceeding 4GB.  However, to my knowledge it has
+never actually been compiled as a 32 bit program on any operating system.
+Because it hasn&#8217;t been tested, I can&#8217;t really recommend this, and it&#8217;s best
+to stick with 64 bit builds.</td>
+</tr></table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_example_build_on_os_x_or_linux">8.2. Example build on OS X or Linux</h3>
+<div class="paragraph"><p>Although this example build is done for OS X, building Athabasca Recon
+on Linux will be very similar.</p></div>
+<div class="paragraph"><p><strong>1.</strong> Get FFTW (Linux only)</p></div>
+<div class="paragraph"><p>If you are on OS X, skip this step, since Apple&#8217;s vDSP will be
+used. How you get fftw will depend on the Linux distro you are using.
+on RedHat Enterprise Linux or CentOS, the following should work:</p></div>
+<div class="listingblock">
+<div class="content">
+<pre><code>sudo yum install fftw fftw-devel</code></pre>
+</div></div>
+<div class="paragraph"><p><strong>2.</strong> Get and compile boost.</p></div>
+<div class="paragraph"><p>Here is how I compile boost.</p></div>
+<div class="listingblock">
+<div class="content">
+<pre><code>./bootstrap.sh
+./b2 variant=release link=static</code></pre>
+</div></div>
+<div class="paragraph"><p>Before running CMake, we are going to set a environment variable
+to help CMake find boost. This just simplifies things a bit.</p></div>
+<div class="listingblock">
+<div class="content">
+<pre><code>export BOOST_ROOT="$HOME/build/boost_1_59_0"</code></pre>
+</div></div>
+<div class="paragraph"><p>Of course, you have to specify the actual path to boost.</p></div>
+<div class="paragraph"><p><strong>3.</strong> Create a build directory.</p></div>
+<div class="paragraph"><p>From the source code directory, run</p></div>
+<div class="listingblock">
+<div class="content">
+<pre><code>mkdir build
+cd build</code></pre>
+</div></div>
+<div class="paragraph"><p><strong>4.</strong> Run cmake.</p></div>
+<div class="paragraph"><p>Run ccmake from the build directory, specifying the source directory on
+the command line:</p></div>
+<div class="listingblock">
+<div class="content">
+<pre><code>ccmake ..</code></pre>
+</div></div>
+<div class="paragraph"><p>Hit <code>c</code> for configure.</p></div>
+<div class="admonitionblock">
+<table><tr>
+<td class="icon">
+<img src="./images/icons/note.png" alt="Note" />
+</td>
+<td class="content">This example will be done with the command line version of cmake, <code>ccmake</code>.
+You could also however use the graphical interface to cmake; just double-click
+on the CMake application in the Applications folder.  Furthermore, we are
+going to generate Unix Makefiles.  If you prefer to work with XCode, then
+I recommend starting the graphical CMake client and selecting XCode from
+the Select Generator dialog.</td>
+</tr></table>
+</div>
+<div class="paragraph"><p><strong>5.</strong> Set CMake variables.</p></div>
+<div class="paragraph"><p>Set <code>CMAKE_BUILD_TYPE</code> to <code>Release</code> (or <code>Debug</code>, if you want to be able
+to debug the program; but it runs slower).</p></div>
+<div class="paragraph"><p>Currently, we also have to add <code>-fpermissive</code> to <code>CMAKE_CXX_FLAGS</code>.
+This is an advanced setting, which you get to by hitting <code>t</code>.</p></div>
+<div class="paragraph"><p>Hit <code>c</code> again for configure. Now hit <code>g</code> for generate.  CMake will exit.</p></div>
+<div class="paragraph"><p><strong>6.</strong> Run make.</p></div>
+<div class="listingblock">
+<div class="content">
+<pre><code>make -j 4 <img src="./images/icons/callouts/1.png" alt="1" /></code></pre>
+</div></div>
+<div class="colist arabic"><table>
+<tr><td><img src="./images/icons/callouts/1.png" alt="1" /></td><td>
+The <code>-j 4</code> option specifies 4 threads for building; this is optional of course.
+</td></tr>
+</table></div>
+<div class="paragraph"><p>That&#8217;s it.  You should now have an executable <code>athabasca_recon</code>.</p></div>
+</div>
+<div class="sect2">
+<h3 id="_example_build_on_windows">8.3. Example build on Windows</h3>
+<div class="paragraph"><p><strong>1.</strong> Start CMake.</p></div>
+<div class="paragraph"><p><strong>2.</strong> Enter the source directory Athabasca Recon, and for the build directory
+a subdirectory named "build", as shown in the example.</p></div>
+<div class="imageblock">
+<div class="content">
+<img src="images/cmake_windows.png" alt="images/cmake_windows.png" />
+</div>
+</div>
+<div class="paragraph"><p><strong>3.</strong> Hit <code>Configure</code>.</p></div>
+<div class="paragraph"><p>You&#8217;ll get a pop-up window; choose your development environment ("Visual Studio 9 2008 Win64" is what we use).</p></div>
+<div class="paragraph"><p>Click Finish.  You&#8217;ll get an error message: "Error in configuration process,
+project files may be invalid".  This is normal.</p></div>
+<div class="paragraph"><p><strong>4.</strong> Identify the location of the boost libraries.</p></div>
+<div class="paragraph"><p>Make sure the Advanced box is checked, then under Boost, find the variable
+<code>Boost_INCLUDE_DIR</code>., and set it to the
+location of your boost include files (boost is structured such that this will always contain a subdirectory
+named <code>boost</code>); on my system, this is <code>C:/Users/eric/source/boost_1_45_0/</code> .
+Hit <code>Configure</code> again; it should now have identified the location of all the
+required boost libraries.</p></div>
+<div class="paragraph"><p><strong>5.</strong> Identify the location of FFTW</p></div>
+<div class="paragraph"><p>Unlike Boost, for FFTW you need to manually specify both the include path and
+the two required libraries, as shown in the example.</p></div>
+<div class="imageblock">
+<div class="content">
+<img src="images/cmake_windows_fftw.png" alt="images/cmake_windows_fftw.png" />
+</div>
+</div>
+<div class="paragraph"><p>Now hit <code>Configure</code> again.  This time there should be no error messages,
+and you should get the message "Configuring done".</p></div>
+<div class="paragraph"><p><strong>6.</strong> Hit <code>Generate</code>.</p></div>
+<div class="paragraph"><p>You will now have a Visual Studio solution file, <code>Athabasca_Recon.sln</code>, in
+your build directory.  Double click on it to open it in Visual Studio.</p></div>
+<div class="paragraph"><p><strong>7.</strong> Build.</p></div>
+<div class="paragraph"><p>Select <code>Release</code> from the Solution Configurations drop-down box.  Select the
+project <code>ALL_BUILD</code> in the solution explorer, then from the menu select
+Build &#8594; Build Solution.</p></div>
+<div class="paragraph"><p><strong>8.</strong> Make sure that the FFTW libraries can be found.</p></div>
+<div class="paragraph"><p>You will need to make sure that either the path to the FFTW libraries is
+added to your PATH variable, or you can simply copy the FFTW <code>.dll</code>
+files to the <code>build\Release</code> directory.</p></div>
+</div>
+<div class="sect2">
+<h3 id="_running_the_tests">8.4. Running the tests</h3>
+<div class="paragraph"><p>If you&#8217;re modified the source code, it is important to run the tests to verify
+the code.  Unit test coverage is not complete, but it catches many errors.</p></div>
+<div class="paragraph"><p>The tests can be run from the build system.  On Unix and OS X, run the tests with</p></div>
+<div class="listingblock">
+<div class="content">
+<pre><code>make test</code></pre>
+</div></div>
+<div class="paragraph"><p>On Windows, from Visual Studio select the RUN_TESTS project, and then <code>Build</code>
+from the <code>Build</code> menu.</p></div>
+<div class="paragraph"><p>In either case, the output will look something like this:</p></div>
+<div class="listingblock">
+<div class="content">
+<pre><code>Running tests...
+Test project /Users/ericlocal/code/athabasca_recon/trunk/build
+    Start 1: bonelabTests
+1/5 Test #1: bonelabTests .....................   Passed    0.00 sec
+    Start 2: utilTests
+2/5 Test #2: utilTests ........................   Passed    0.00 sec
+    Start 3: ProjectionCorrectionTests
+3/5 Test #3: ProjectionCorrectionTests ........   Passed    0.00 sec
+    Start 4: FilteringTests
+4/5 Test #4: FilteringTests ...................   Passed    0.02 sec
+    Start 5: BackProjectionTests
+5/5 Test #5: BackProjectionTests ..............   Passed    0.00 sec
+
+100% tests passed, 0 tests failed out of 5
+
+Total Test time (real) =   0.04 sec</code></pre>
+</div></div>
+<div class="paragraph"><p>Each of the tests listed is actually a collection of Google Test units tests.
+If a test fails, you can examine the detailed output in the file
+<code>Testing/Temporary/LastTest.log</code> (in the build directory).</p></div>
+<div class="paragraph"><p>You can also run each Google Test suite individually, for example, from
+the build directory, the BackProjectionTests can be run with</p></div>
+<div class="listingblock">
+<div class="content">
+<pre><code>source/back_projection/tests/BackProjectionTests</code></pre>
+</div></div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="generating_synthetic_test_data">9. Generating synthetic test data</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>TO DO.</p></div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_topics_for_developers">10. Topics for developers</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_careful_treatment_of_the_ramp_function">10.1. Careful treatment of the ramp function</h3>
+<div class="paragraph"><p>Theoretical derivation of filtered back-projection shows that convolution
+with a ramp function is required, which in continuous k-space is</p></div>
+<div class="imageblock">
+<div class="content">
+<img src="images/equation_ramp_function.png" alt="images/equation_ramp_function.png" />
+</div>
+</div>
+<div class="paragraph"><p>Convolution is usually performed as multiplication in k-space using FFTs, as
+this is much the fastest way to perform this operation.  There are however,
+two potential pitfalls.  The first is that the above function fails to exist
+in continuous real space.  That at first might appear not to affect us so much as we are doing a
+discrete transform anyway.  The discrete real space filter function is</p></div>
+<div class="imageblock">
+<div class="content">
+<img src="images/equation_ramp_function_real_space.png" alt="images/equation_ramp_function_real_space.png" />
+</div>
+</div>
+<div class="paragraph"><p>Now of course we can only deal with discrete functions with finite support.
+This seems a bit obscure and theoretical, but the practical implication is that
+Discrete Fourier Transform of <em>g<sub>i</sub></em> defined for <em>i</em> &lt; <em>N</em> is not longer exactly |k|.
+The correct procedure is to perform a DFT of the given <em>g<sub>i</sub></em> to obtain the correct
+<em>G</em>.  <span class="footnote"><br />[For further details see "Computed Tomography, Principles, Design, Artifacts, and Recent Advances", by Jiang Hsieh, 2003, published by SPIE]<br /></span></p></div>
+<div class="paragraph"><p>The other thing to be careful of is that when using an FFT to perform a
+convolution, we must zero-pad (in real-space) the input rows out to at least twice the original length in order to avoid wrap-around, which in this application would be
+an error.  Note that that ramp function itself should not be zero-padded, but you must
+use the length equal to the padded length.</p></div>
+<div class="paragraph"><p>One more thought: It may have occurred to you to wonder whether you can get
+away with a real-space kernel for the ramp function that is shorter than
+the projection row length and hence potentially a shorter FFT.  (Well, it occurred to me.)  The answer is no.
+Basically because the real-space kernel has a 1/r dependence, and so its
+absolute sum diverges; given a desired accuracy, there is nowhere safe to truncate it.  A couple of consequences are:</p></div>
+<div class="olist arabic"><ol class="arabic">
+<li>
+<p>
+The projections (the Attenuation Projections actually) must vanish at
+the row edges.
+</p>
+</li>
+<li>
+<p>
+The real-space kernel of the ramp function must be at least as long
+as the projection rows.
+</p>
+</li>
+</ol></div>
+<div class="admonitionblock">
+<table><tr>
+<td class="icon">
+<img src="./images/icons/note.png" alt="Note" />
+</td>
+<td class="content">Interestingly, this is not the case for back-projected filtering, where
+the kernel has a 1/r<sup>2</sup> dependence (but is 2-dimensional).  But that&#8217;s
+entirely academic, since Athabasca Recon doesn&#8217;t do back-projected filtering
+(nor does most of the world).</td>
+</tr></table>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_planned_features">11. Planned features</h2>
+<div class="sectionbody">
+<div class="paragraph"><p><strong>Reader for Hamamatsu&#8217;s SimplePCI files (<code>.cxd</code>)</strong></p></div>
+<div class="paragraph"><p><strong>GPGPU back-projection</strong>.  Back-projection is the ideal algorithm for
+calculation on a GPGPU.  At some point I&#8217;ll probably add support for this.</p></div>
+<div class="paragraph"><p><strong>Asynchronous read-ahead file reader</strong>.  Currently the program stalls whenever a new
+projection is read from disk.  (Operating system read-ahead caching alone is
+not aggressive enough, particularly under conditions of limited free memory.)
+This is not a significant issue for most calculations, as back-projection
+tends to be the time-limiting step.  However, for certain tasks, such
+as generating attenuation projections, having an asynchronous read-ahead file reader would speed it up considerably.</p></div>
+<div class="paragraph"><p><strong>Cone beam geometry</strong>.  If there is demand for it, I will likely add support for
+cone beam geometries, as the additional work would only be a fraction of
+what has already been done.</p></div>
+<div class="paragraph"><p><strong>Double precision</strong>.  Mostly because it&#8217;s trivial to add (as an option), since
+the whole program has been implemented as templates anyway.</p></div>
+<div class="paragraph"><p><strong>Automatic downsampling of projections</strong>.  See <a href="#issues_with_large_voxel_sizes">Issues with large voxel sizes</a>.</p></div>
+<div class="paragraph"><p><strong>Suite of Functional Tests</strong>.  To ensure the correctness of the reconstructions.</p></div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_colophon">12. Colophon</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>This documentation was written in asciidoc (<a href="http://www.methods.co.nz/asciidoc/">http://www.methods.co.nz/asciidoc/</a>).
+PDF output is generated by compiling asciidoc into DocBook (<a href="http://www.oasis-open.org/docbook/">http://www.oasis-open.org/docbook/</a>) and then processing with dblatex (<a href="http://dblatex.sourceforge.net/">http://dblatex.sourceforge.net/</a>).  HTML output is
+generated directly with asciidoc.</p></div>
+</div>
+</div>
+</div>
+<div id="footnotes"><hr /></div>
+<div id="footer">
+<div id="footer-text">
+Version 1.3<br />
+Last updated 2015-10-02 14:57:20 CEST
+</div>
+</div>
+</body>
+</html>
