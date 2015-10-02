@@ -7,7 +7,7 @@ Athabasca Recon Manual
 :toc:
 :icons:
 :numbered:
-:copyright: Copyright (c) 2011, Numerics88 Solutions Ltd.
+:copyright: Copyright (c) 2011-2015, Eric Nodwell
 
 
 //////////////////////////////////////////
@@ -58,7 +58,7 @@ http://en.wikipedia.org/wiki/List_of_XML_and_HTML_character_entity_references
 
 ifdef::basebackend-html[]
 *******************************************************************
-Copyright (c) 2011, Eric Nodwell
+Copyright (c) 2011-2015, Eric Nodwell
 
 http://bonelab.ucalgary.ca/software/athabasca_recon/
 *******************************************************************
@@ -81,7 +81,7 @@ is not limited at all in the size of models in can reconstruct, regardless
 of the memory limit.  Projection data are streamed and never loaded
 all into memory at once, reducing the required memory.
 
-*Cross-platform*. It has been compiled on OS-X, Linux and Windows.
+*Cross-platform*. It has been compiled on OS X, Linux and Windows.
 
 Because it was created to process synchrotron tomographic data, it currently  only handles parallel beam reconstruction.
 
@@ -1729,7 +1729,7 @@ choices are as shown in the following table.
 [options="header"]
 |=======================
 |Value|Description
-|+vDSP+     | Apple's vDSP digital signal processing library.  Only available on OS-X; default on OS-X.
+|+vDSP+     | Apple's vDSP digital signal processing library.  Only available on OS X; default on OS X.
 |+FFTW+ | fftw3 library.  Default on Linux and Windows.
 |+RealSpaceConvolution+    | The convolution is performed in real space.  This
 is a whole order slower than the FFT-based approach, and so is not recommended, except as a useful comparison and validation for developers.
@@ -1753,7 +1753,7 @@ ImageJ can be obtained from http://rsbweb.nih.gov/ij/download.html .  Version
 1.45 or newer is required.
 
 TIP: For Linux or Windows, get the 64 bit version (assuming your OS is 64 bit;
-if not, upgrade your OS!)  For OS-X, always start ImageJ64.
+if not, upgrade your OS!)  For OS X, always start ImageJ64.
 
 The Align Projections plug-in is distributed with Athabasca Recon.  Simply
 put the +Align_Projections.jar+ file in the plugins directory of the ImageJ.
@@ -1853,7 +1853,7 @@ image::images/imagej_metaimage_writer_options.png[scale="50"]
 
 === Requirements
 
-*A compiler*. Athabasca Recon has been compiled with gcc on Linux and OS-X,
+*A compiler*. Athabasca Recon has been compiled with gcc on Linux and OS X,
 and with Microsoft Visual Studio 2008 on Windows.  Other compilers are also
 likely to work.
 
@@ -1864,8 +1864,8 @@ You can get cmake from http://www.cmake.org/ .
 You can get boost from http://www.boost.org/ .  Note that you will
 typically have to compile boost.
 
-*An FFT library*.  On OS-X, Apple's vDSP is used by default; it is already
-present on any OS-X system, and requires no additional installation.  The other FFT library that Athabasca Recon supports is FFTW.  On
+*An FFT library*.  On OS X, Apple's vDSP is used by default; it is already
+present on any OS X system, and requires no additional installation.  The other FFT library that Athabasca Recon supports is FFTW.  On
 Linux systems, you will typically use your distro's package management tool
 to install FFTW.  For Windows users, see http://www.fftw.org/install/windows.html ; make sure that you follow the
 instructions there about running +lib+ with the +/machine:x64+ option.
@@ -1887,20 +1887,49 @@ never actually been compiled as a 32 bit program on any operating system.
 Because it hasn't been tested, I can't really recommend this, and it's best
 to stick with 64 bit builds.
 
-=== Example build on OS-X
+=== Example build on OS X or Linux
 
-Although this example build is done for OS-X, building Athabasca Recon
+Although this example build is done for OS X, building Athabasca Recon
 on Linux will be very similar.
 
-*1.* Create a build directory.
+*1.* Get FFTW (Linux only)
+
+If you are on OS X, skip this step, since Apple's vDSP will be
+used. How you get fftw will depend on the Linux distro you are using.
+on RedHat Enterprise Linux or CentOS, the following should work:
+
+--------------------------------------------------------------
+sudo yum install fftw fftw-devel
+--------------------------------------------------------------
+
+*2.* Get and compile boost.
+
+Here is how I compile boost.
+
+--------------------------------------------------------------
+./bootstrap.sh
+./b2 variant=release link=static
+--------------------------------------------------------------
+
+Before running CMake, we are going to set a environment variable
+to help CMake find boost. This just simplifies things a bit.
+
+--------------------------------------------------------------
+export BOOST_ROOT="$HOME/build/boost_1_59_0"
+--------------------------------------------------------------
+
+Of course, you have to specify the actual path to boost.
+
+*3.* Create a build directory.
 
 From the source code directory, run
 
 --------------------------------------------------------------
 mkdir build
+cd build
 --------------------------------------------------------------
 
-*2.* Run cmake.
+*4.* Run cmake.
 
 Run ccmake from the build directory, specifying the source directory on
 the command line:
@@ -1918,24 +1947,17 @@ going to generate Unix Makefiles.  If you prefer to work with XCode, then
 I recommend starting the graphical CMake client and selecting XCode from
 the Select Generator dialog.
 
-*3.* Set CMake variables.
+*5.* Set CMake variables.
 
-CMake may complain about not finding boost libraries.  Hit +t+ for toggle advanced mode, find the variable +Boost_INCLUDE_DIR+, and set it to the
-location of your boost include files (boost is structured such that this will always contain a subdirectory
-named +boost+); on my system, this is +/opt/boost-1.47.0/include/+ .  Now
-hit +c+ again, and it should automatically locate all the required boost
-libraries.
-
-TIP: If your boost library directory is on your +DYLD_LIBRARY_PATH+, then cmake
-will find boost automatically.
-
-Once the libraries are located, hit +t+ again to toggle off advanced mode.
 Set +CMAKE_BUILD_TYPE+ to +Release+ (or +Debug+, if you want to be able
 to debug the program; but it runs slower).
 
-Now hit +g+ for generate.  CMake will exit.
+Currently, we also have to add +-fpermissive+ to +CMAKE_CXX_FLAGS+.
+This is an advanced setting, which you get to by hitting +t+.
 
-*4.* Run make.
+Hit +c+ again for configure. Now hit +g+ for generate.  CMake will exit.
+
+*6.* Run make.
 
 --------------------------------------------------------------
 make -j 4 <1>
@@ -2003,7 +2025,7 @@ files to the +build\Release+ directory.
 If you're modified the source code, it is important to run the tests to verify
 the code.  Unit test coverage is not complete, but it catches many errors.
 
-The tests can be run from the build system.  On Unix and OS-X, run the tests with
+The tests can be run from the build system.  On Unix and OS X, run the tests with
 
 ---------------------------------------------------------------------
 make test

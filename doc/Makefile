@@ -7,7 +7,6 @@ html: athabasca_recon_manual.txt
 pdf: athabasca_recon_manual.txt
 	a2x -f pdf \
     --asciidoc-opts "-a docinfo" \
-    --dblatex-opts "-s asciidoc-dblatex.sty"\
     --dblatex-opts "-P latex.output.revhistory=0 -P doc.publisher.show=0" \
 		athabasca_recon_manual.txt
 		mv athabasca_recon_manual.pdf $(PDF_MANUAL_NAME)
