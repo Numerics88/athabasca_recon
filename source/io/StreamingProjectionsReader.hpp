@@ -1,5 +1,5 @@
 /*
-Copyright (C) 2011 Eric Nodwell
+Copyright (C) 2011-2015 Eric Nodwell
 enodwell@ucalgary.ca
 
 This program is free software; you can redistribute it and/or
@@ -19,7 +19,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #ifndef BONELAB_StreamingProjectionsReader_HPP_INCLUDED
 #define BONELAB_StreamingProjectionsReader_HPP_INCLUDED
 
-#include "io/StreamingIoBase.hpp"
+#include "io/StreamingIOBase.hpp"
 #include "bonelab/Image.hpp"
 
 namespace athabasca_recon
