@@ -60,7 +60,7 @@ ifdef::basebackend-html[]
 *******************************************************************
 Copyright (c) 2011-2015, Eric Nodwell
 
-http://bonelab.ucalgary.ca/software/athabasca_recon/
+http://numerics88.com/
 *******************************************************************
 endif::basebackend-html[]
 
@@ -83,12 +83,19 @@ all into memory at once, reducing the required memory.
 
 *Cross-platform*. It has been compiled on OS X, Linux and Windows.
 
-Because it was created to process synchrotron tomographic data, it currently  only handles parallel beam reconstruction.
+Because it was created to process synchrotron tomographic data, it currently only handles parallel beam reconstruction.
 
-The home page for Athabasca Recon is http://bonelab.ucalgary.ca/software/athabasca_recon .
+The home page for Athabasca Recon is http://numerics88.github.io/athabasca_recon/ .
 
-License and Citing
-------------------
+Athabasca Recon was originally developed by Eric Nodwell
+at the Bone Imaging Laboratory,
+University of Calgary (http://bonelab.ucalgary.ca/) under the supervision
+of Dr. Steven K. Boyd for the purpose of processing data synchrotron
+data obtained at the Canadian Light Source. It is now supported and
+maintained by Numerics88 Solutions Ltd. (http://numerics88.com./)
+
+License
+-------
 
 Athabasca Recon is licensed under GPL version 2.  Here is the
 standard licensing statement that goes with it:
@@ -111,17 +118,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 The complete text of the license is in the file +LICENSE.txt+, distributed
 with the source code.
 
-If by chance the GPL is too restrictive for your purposes, please contact
-us at skboyd@ucalgary.ca .
-
 We are interested to know who is using our software.  If you find this software useful,
-please send us an email at skboyd@ucalgary.ca or enodwell@ucalgary.ca .
-
-There are currently no published articles about Athabasca Recon that can be
-cited.  We recommend citing it something like this,
-
-_Athabasca Recon, v1.3, Bone Imaging Laboratory, University of Calgary, 
-http://bonelab.ucalgary.ca/software/athabasca_recon_
+please send us an email at skboyd@ucalgary.ca .
 
 
 Definitions and conventions
