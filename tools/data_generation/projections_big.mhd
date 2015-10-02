@@ -1,0 +1,13 @@
+ObjectType = Image
+NDims = 3
+BinaryData = True
+BinaryDataByteOrderMSB = False
+CompressedData = False
+TransformMatrix = 1 0 0 0 1 0 0 0 1
+Offset = -153.2 -102 0
+CenterOfRotation = 0 0 0
+ElementSpacing = 0.8 0.8 0.8
+DimSize = 384 256 257
+AnatomicalOrientation = ???
+ElementType = MET_SHORT
+ElementDataFile = projections_big.raw

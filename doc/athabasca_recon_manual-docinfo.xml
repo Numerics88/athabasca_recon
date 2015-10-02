@@ -1,0 +1,39 @@
+<!--
+  faim_manual-docinfo.xml
+  
+  See http://www.docbook.org/tdg/en/html/bookinfo.html for valid fields.
+-->
+
+<authorgroup>
+  <author>
+    <firstname>Eric</firstname>
+    <surname>Nodwell</surname>
+    <email>enodwell@ucalgary.ca</email>
+  </author>
+
+  <author>
+    <firstname>Steven</firstname>
+    <surname>Boyd</surname>
+    <othername role='mi'>K</othername>
+    <email>skboyd@ucalgary.ca</email>
+  </author>
+</authorgroup>
+
+<copyright>
+  <year>2011</year>
+  <holder>Eric Nodwell</holder>
+</copyright>
+
+<legalnotice>
+  <simpara>
+    All Rights Reserved.
+  </simpara>
+</legalnotice>
+
+<edition>1.3</edition>
+
+<address>
+  <otheraddr>
+      <ulink url="http://bonelab.ucalgary.ca/software/athabasca_recon/">http://bonelab.ucalgary.ca/software/athabasca_recon/</ulink>
+  </otheraddr>
+</address>

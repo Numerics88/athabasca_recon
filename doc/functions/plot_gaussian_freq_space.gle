@@ -1,0 +1,9 @@
+size 10 5
+begin graph
+    data "gaussian_freq_space"
+    xaxis min -64 max 64
+    xaxis ftick 0 dticks 64 nticks 1
+    yaxis min 0
+    yaxis ftick 0 dticks 1 nticks 1
+    d1 line
+end graph

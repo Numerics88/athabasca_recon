@@ -1,0 +1,32 @@
+<project>
+
+	<property name="package.name" value="align_projections"/>
+
+	<fileset id="library.files"
+	         dir="lib">
+	    <include name="**/commons-math-*.jar"/>
+	</fileset>
+
+	<path id="classpath">
+		<pathelement location="lib/ij.jar"/>
+		<pathelement location="lib/commons-math-2.2.jar"/>
+    </path>
+
+    <target name="clean">
+        <delete dir="build"/>
+    </target>
+
+    <target name="compile">
+        <mkdir dir="build/classes"/>
+        <javac srcdir="src" destdir="build/classes" classpathref="classpath"/>
+    </target>
+
+    <target name="jar" depends="compile">
+        <mkdir dir="build/jar"/>
+		<copy file="plugins.config" todir="build/classes"/>
+        <jar destfile="build/jar/Align_Projections.jar" basedir="build/classes" compress="true">
+            <zipgroupfileset refid="library.files"/>
+        </jar>
+    </target>
+
+</project>

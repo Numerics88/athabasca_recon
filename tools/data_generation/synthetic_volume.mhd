@@ -1,0 +1,13 @@
+ObjectType = Image
+NDims = 3
+BinaryData = True
+BinaryDataByteOrderMSB = False
+CompressedData = False
+TransformMatrix = 1 0 0 0 1 0 0 0 1
+Offset = -31.875 -31.875 -15.875
+CenterOfRotation = 0 0 0
+ElementSpacing = 0.25 0.25 0.25
+DimSize = 256 256 128
+AnatomicalOrientation = ???
+ElementType = MET_FLOAT
+ElementDataFile = synthetic_volume.raw

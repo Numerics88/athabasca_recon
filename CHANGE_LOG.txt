@@ -1,0 +1,94 @@
+Changes from version 1.2.2 to version 1.3
+---------------------------------------
+
+- Added option BilinearWithFallback to PixelInterpolation.  This is now the
+default.  See the manual.
+
+- Option Reconstruction.BrightFieldBadThreshold changed to
+Reconstruction.FlatFieldBadThreshold.  (Previously it applied to the flat
+field, even though it was named "bright".)
+
+
+Changes from version 1.2 to version 1.2.2
+---------------------------------------
+
+- Fixed a bug where setting a projection stride > 1 results in garbage.  This
+bug only affected Windows (is actually due to a Windows library bug).
+
+- Note that reading/writing large files still only works correctly on Windows
+if Visual Studio 10 (i.e. 2010) or newer is used to compile athabasca_recon.
+
+
+Changes from version 1.1 to version 1.2
+---------------------------------------
+
+- Fixed a bug where writing output files larger than 2GB on Windows may
+cause a crash.
+
+
+Changes from version 1.0 to version 1.1
+---------------------------------------
+
+- Fixed memory leak of volume memory on multiple passes.
+
+- Default for MaximumVolumeMemory changed to system memory minus 1GB.
+
+- Double buffered asynchronous file I/O is implemented.  In certain
+scenarios (e.g. a stack of individual projection files), this can speed up
+I/O.
+
+- Better trapping and reporting of exceptions in worker threads.
+
+
+Changes from version 0.4 to version 1.0
+---------------------------------------
+
+- Source code released.
+
+- Back-projection is somewhat faster.
+
+
+Changes from version 0.3 to version 0.4
+---------------------------------------
+
+- Fixed a bug in the length of real-space ramp kernel function.  As an example
+of the magnitude of the error, in the example reconstruction of the synthetic
+phantom in section 4.2 of the Manual, the sphere with attenuation density
+0.004 was formerly reconstructed with an average attenuation density 0.004015.
+After fixing this bug, it now reconstructs with average attenuation density
+0.004004.
+
+- No back-projection is performed on pixels outside of the cylindrical
+reconstructable volume.  Voxels lying outside of this volume have some,
+but not all, projections passing through them.  As a result they have
+meaningless values.  They will now have identically zero value.  This has
+no real impact on the meaningful part of the image, however there are two
+possible minor benefits: (1) The images may appear to have better contrast,
+as the range of intensities won't start at some meaningless negative value.
+(2) a slight reduction in reconstruction times in some cases will be observed.
+
+
+Changes from version 0.2 to version 0.3
+---------------------------------------
+
+- Enabled the option "BeforeAndAfterBrightField"
+for +Reconstruction.BeamPowerCorrection+.  (Previously described in the
+manual, but not actually enabled.)
+
+- Allow the specification of a value for
+Reconstruction.BeamPowerDecayConstantTerm with the
+Reconstruction.BeamPowerCorrection methods "BeforeAndAfterBrightField" and
+"ConstantTotalAttenuation".  (Previously described in the manual, but not
+previously actually functional.)
+
+- Addition of command-line option "--config" or "-c", which will print out
+the complete configuration and then exit without performing any calculations
+(eg. "athabasca_recon --config example.conf").
+
+- The option "ZeroProjectionEdgeAttenuation" for
+Reconstruction.BeamPowerCorrection has been renamed "NullProjectionEdge".
+(For backwards compatibility, "ZeroProjectionEdgeAttenuation" is still
+accepted.)
+
+- Fixed a crash that occurred if the number of requested slices was fewer
+than the number of threads.
