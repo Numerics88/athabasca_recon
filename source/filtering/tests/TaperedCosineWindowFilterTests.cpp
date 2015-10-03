@@ -11,7 +11,7 @@
 #define ENABLE_TEST_TRANSFORM_PROPERTIES
 #endif
 
-using boost::math::constants::pi;
+namespace constants = boost::math::constants;
 using namespace athabasca_recon;
 
 typedef float TValue;
@@ -34,7 +34,7 @@ TValue evalFilter(TValue f, TValue f0, TValue f1)
     { return 1; }
   else if (f < f1)
     {
-    return 0.5 + 0.5*cos(pi<TValue>()*(f-f0)/(f1-f0));
+    return 0.5 + 0.5*cos(constants::pi<TValue>()*(f-f0)/(f1-f0));
     }
   else
     { return 0; }

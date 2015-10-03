@@ -38,7 +38,6 @@ using namespace athabasca_recon;
 using boost::filesystem::path;
 using boost::algorithm::to_lower_copy;
 using boost::optional;
-using boost::math::constants::pi;
 
 namespace athabasca_recon
   {

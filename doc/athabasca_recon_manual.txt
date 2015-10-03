@@ -1920,12 +1920,13 @@ good, so just run
 cd googletest-release-1.7.0
 mkdir build
 cd build
+cmake ..
 make
 --------------------------------------------------------------
 
 *4.* Create a build directory.
 
-From the source code directory, run
+From the source code directory of Athabasca Recon, do
 
 --------------------------------------------------------------
 mkdir build
@@ -1969,10 +1970,10 @@ We need to specify the location of Google Test, so hit +t+ for
 advanced settings, and modify the following values. Of course
 you have to use paths appropriate for your system.
 
-[cols=">m,>m",options="header"]
+[cols="30%,70%",options="header"]
 |=========================================================
-| CMake variable   | value |
-| GTEST_INCLUDE_DIR | /home/eric/build/googletest-release-1.7.0/include |
+| CMake variable   | value
+| GTEST_INCLUDE_DIR | /home/eric/build/googletest-release-1.7.0/include 
 | GTEST_LIBRARY | /home/eric/build/googletest-release-1.7.0/build/libgtest.a
 | GTEST_MAIN_LIBRARY | /home/eric/build/googletest-release-1.7.0/build/libgtest_main.a
 |=========================================================
@@ -2050,7 +2051,8 @@ Make sure to build the Release configuration.
 
 It is best to launch CMake from a VS2013 Native Tools Command Prompt.
 
-First change to the directory where you have the source code:
+First change to the directory where you have the Athabasca Recon
+source code:
 
 --------------------------------------------------------------
 cd athabasca_recon

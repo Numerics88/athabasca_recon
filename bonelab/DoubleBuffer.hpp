@@ -122,8 +122,8 @@ namespace bonelab
       DoubleBuffer(const Array<N,TValue,TIndex>& sourceA,
                    const Array<N,TValue,TIndex>& sourceB)
         {
-        this->m_A.construct(sourceA, dims);
-        this->m_B.construct(sourceB, dims);
+        this->m_A.construct(sourceA, sourceA.dims());
+        this->m_B.construct(sourceB, sourceB.dims());
         }
 
       /** Allocate space.
@@ -253,8 +253,8 @@ namespace bonelab
       DoubleBuffer(const Image<N,TValue,TIndex,TSpace>& sourceA,
                    const Image<N,TValue,TIndex,TSpace>& sourceB)
         {
-        this->m_A.construct(sourceA, dims);
-        this->m_B.construct(sourceB, dims);
+        this->m_A.construct(sourceA, sourceA.dims());
+        this->m_B.construct(sourceB, sourceB.dims());
         }
 
       /** Allocate space.

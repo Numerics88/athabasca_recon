@@ -1,5 +1,5 @@
 /*
-Copyright (C) 2011 Eric Nodwell
+Copyright (C) 2011-2015 Eric Nodwell
 enodwell@ucalgary.ca
 
 This program is free software; you can redistribute it and/or
@@ -35,7 +35,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 using boost::scoped_ptr;
 using boost::format;
-using boost::math::constants::pi;
+namespace constants = boost::math::constants;
 
 namespace athabasca_recon
   {
@@ -98,9 +98,9 @@ namespace athabasca_recon
     // Determine angle increment
     TSpace deltaTheta;
     if (this->m_ProjectionsAtBothLimits)
-      { deltaTheta = pi<TSpace>()/(numberOfProjections-1); }
+      { deltaTheta = constants::pi<TSpace>()/(numberOfProjections-1); }
     else
-      { deltaTheta = pi<TSpace>()/numberOfProjections; }
+      { deltaTheta = constants::pi<TSpace>()/numberOfProjections; }
     if (this->m_ReverseRotation)
       { deltaTheta = -deltaTheta; }
     
@@ -171,7 +171,7 @@ namespace athabasca_recon
       {
       TSpace angle = p*deltaTheta;
       this->Print(format("Projection %d at angle %.2f : ")
-                    % p % (angle*180/pi<TSpace>()));
+                    % p % (angle*180/constants::pi<TSpace>()));
 
       if (this->m_RawProjectionsReader)
         {

@@ -10,7 +10,7 @@
 #define ENABLE_TEST_TRANSFORM_PROPERTIES
 #endif
 
-using boost::math::constants::pi;
+namespace constants = boost::math::constants;
 using namespace athabasca_recon;
 
 typedef float TValue;
@@ -39,7 +39,7 @@ TEST_F (GaussianFilterTests, FilterConstruction)
   {
   TFilter filter;
   TValue f0 = 1.0/3.0;  // As a fraction of the Nyquist frequency
-  TValue radius = 1.0/(pi<TValue>()*f0);
+  TValue radius = 1.0/(constants::pi<TValue>()*f0);
   filter.SetLength(16);
   filter.SetRadius(radius);
   ASSERT_FLOAT_EQ(f0, filter.GetSigma());
@@ -108,7 +108,7 @@ TEST_F (GaussianFilterTests, TransformProperties)
   // At the location of the delta function, smoothing reduces by at least
   // a factor of 1/(sigma*sqrt(2*pi)).  Actually reduces even more, because the
   // negative tails get somewhat mixed in.
-  TValue factor = 1/(radius*sqrt(2*pi<TValue>()));
+  TValue factor = 1/(radius*sqrt(2*constants::pi<TValue>()));
   ASSERT_LE (projOut_with_smoothing(0,locationOfDelta),
              factor*projOut_no_smoothing(0,locationOfDelta));
 

@@ -2,7 +2,7 @@
 #include <gtest/gtest.h>
 #include <boost/math/constants/constants.hpp>
 
-using boost::math::constants::pi;
+namespace constants = boost::math::constants;
 using namespace athabasca_recon;
 
 typedef float TValue;
@@ -20,7 +20,7 @@ template <typename T> inline T sqr(T x) { return x*x; }
 
 TValue oddTerm(int k, TValue spacing)
   {
-  return TValue(-1)/(sqr(pi<TValue>()*k)*spacing);
+  return TValue(-1)/(sqr(constants::pi<TValue>()*k)*spacing);
   }
 
 // --------------------------------------------------------------------

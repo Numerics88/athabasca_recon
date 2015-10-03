@@ -1,5 +1,5 @@
 /*
-Copyright (C) 2011 Eric Nodwell
+Copyright (C) 2011-2015 Eric Nodwell
 enodwell@ucalgary.ca
 
 This program is free software; you can redistribute it and/or
@@ -38,7 +38,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include <boost/math/constants/constants.hpp>
 
 using boost::format;
-using boost::math::constants::pi;
+namespace constants = boost::math::constants;
 
 namespace athabasca_recon
   {
@@ -176,9 +176,9 @@ namespace athabasca_recon
     // Determine angle increment
     TSpace deltaTheta;
     if (this->m_ProjectionsAtBothLimits)
-      { deltaTheta = pi<TSpace>()/(numberOfProjections-1); }
+      { deltaTheta = constants::pi<TSpace>()/(numberOfProjections-1); }
     else
-      { deltaTheta = pi<TSpace>()/numberOfProjections; }
+      { deltaTheta = constants::pi<TSpace>()/numberOfProjections; }
     if (this->m_ReverseRotation)
       { deltaTheta = -deltaTheta; }
     
@@ -335,8 +335,8 @@ namespace athabasca_recon
         { angles[pp] = (p+pp)*deltaTheta;  }
       this->Print(format("Projections %d-%d at angles %.2f to %.2f : ")
                     % p % (p+projectionsThisStep-1)
-                    % (angles[0]*180/pi<TProjectionOutValue>())
-                    % (angles[projectionsThisStep-1]*180/pi<TProjectionOutValue>()));
+                    % (angles[0]*180/constants::pi<TProjectionOutValue>())
+                    % (angles[projectionsThisStep-1]*180/constants::pi<TProjectionOutValue>()));
 
       // If writing attenuation output, swap buffers before using.
       if (this->m_AttenuationProjectionsWriter)
