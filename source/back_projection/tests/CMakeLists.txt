@@ -9,4 +9,8 @@ add_executable(BackProjectionTests
 
 target_link_libraries(BackProjectionTests ${GTEST_BOTH_LIBRARIES})
 
+if (UNIX AND NOT APPLE)
+    target_link_libraries(BackProjectionTests pthread)
+endif (UNIX AND NOT APPLE)
+
 add_test(BackProjectionTests BackProjectionTests)

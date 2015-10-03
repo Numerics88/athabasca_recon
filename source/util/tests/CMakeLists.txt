@@ -12,4 +12,8 @@ add_executable(utilTests
 
 target_link_libraries(utilTests ${GTEST_BOTH_LIBRARIES})
 
+if (UNIX AND NOT APPLE)
+    target_link_libraries(utilTests pthread)
+endif (UNIX AND NOT APPLE)
+
 add_test(utilTests utilTests)

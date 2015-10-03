@@ -14,4 +14,8 @@ add_executable(ProjectionCorrectionTests ${TEST_SOURCE_FILES})
 
 target_link_libraries(ProjectionCorrectionTests ${GTEST_BOTH_LIBRARIES})
 
+if (UNIX AND NOT APPLE)
+    target_link_libraries(ProjectionCorrectionTests pthread)
+endif (UNIX AND NOT APPLE)
+
 add_test(ProjectionCorrectionTests ProjectionCorrectionTests)

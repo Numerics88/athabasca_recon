@@ -39,4 +39,8 @@ if (USE_FFTW)
       )
 endif (USE_FFTW)
 
+if (UNIX AND NOT APPLE)
+    target_link_libraries(FilteringTests pthread)
+endif (UNIX AND NOT APPLE)
+
 add_test(FilteringTests FilteringTests)

@@ -1911,7 +1911,19 @@ Here is how I compile boost.
 ./b2 variant=release link=static
 --------------------------------------------------------------
 
-*3.* Create a build directory.
+*3.* Get and compile Google Test.
+
+Unpack the source code. On Linux and OS X the defaults are all
+good, so just run
+
+--------------------------------------------------------------
+cd googletest-release-1.7.0
+mkdir build
+cd build
+make
+--------------------------------------------------------------
+
+*4.* Create a build directory.
 
 From the source code directory, run
 
@@ -1920,7 +1932,7 @@ mkdir build
 cd build
 --------------------------------------------------------------
 
-*4.* Run cmake.
+*5.* Run cmake.
 
 Before running CMake, we are going to set a environment variable
 to help CMake find boost. This just simplifies things a bit.
@@ -1948,17 +1960,31 @@ going to generate Unix Makefiles.  If you prefer to work with XCode, then
 I recommend starting the graphical CMake client and selecting XCode from
 the Select Generator dialog.
 
-*5.* Set CMake variables.
+*6.* Set CMake variables.
 
 Set +CMAKE_BUILD_TYPE+ to +Release+ (or +Debug+, if you want to be able
 to debug the program; but it runs slower).
 
-Currently, we also have to add +-fpermissive+ to +CMAKE_CXX_FLAGS+.
+We need to specify the location of Google Test, so hit +t+ for
+advanced settings, and modify the following values. Of course
+you have to use paths appropriate for your system.
+
+[cols=">m,>m",options="header"]
+|=========================================================
+| CMake variable   | value |
+| GTEST_INCLUDE_DIR | /home/eric/build/googletest-release-1.7.0/include |
+| GTEST_LIBRARY | /home/eric/build/googletest-release-1.7.0/build/libgtest.a
+| GTEST_MAIN_LIBRARY | /home/eric/build/googletest-release-1.7.0/build/libgtest_main.a
+|=========================================================
+
+
+Currently, in Linux we also have to add +-fpermissive+ to
++CMAKE_CXX_FLAGS+.
 This is an advanced setting, which you get to by hitting +t+.
 
 Hit +c+ again for configure. Now hit +g+ for generate.  CMake will exit.
 
-*6.* Run make.
+*7.* Run make.
 
 --------------------------------------------------------------
 make -j 4 <1>
@@ -2014,7 +2040,7 @@ cmake-gui ..
 
 Hit +Configure+. You'll get a pop-up window; choose your development environment ("Visual Studio 12 2013 Win64" is what we use).
 
-It is easiest to link to Google Test dynamic librariesm so select
+It is easiest to link to Google Test dynamic libraries, so select
 BUILD_SHARED_LIBS. Hit +Configure+, then +Generate+. Close CMake.
 In the build directory is a Visual
 Studio solution file that you can now open to build Google Test.
@@ -2108,19 +2134,18 @@ For example, on Windows:
 set PATH=C:\Users\Eric\build\googletest-release-1.7.0\build\Release;C:\Users\Eric\Install\fftw-3.3.4;%PATH%
 ---------------------------------------------------------------------
 
-On Linux:
-
----------------------------------------------------------------------
-export LD_LIBRARY_PATH="/home/eric/build/googletest-release-1.7.0/build:$LD_LIBRARY_PATH"
----------------------------------------------------------------------
-
 On OS X:
 
 ---------------------------------------------------------------------
 export DYLD_LIBRARY_PATH="/Users/eric/build/googletest-release-1.7.0/build:$DYLD_LIBRARY_PATH"
 ---------------------------------------------------------------------
 
-The tests can be run from the build folder by running
+On Linux it is gnerally not necessary to set any library search paths,
+as we link google test statically and FFTW is installed in system
+locations by the package manager. (However should it be necessary,
+we could add a path to LD_LIBRARY_PATH.)
+
+The tests can be run from the +build+ directory by running
 
 ---------------------------------------------------------------------
 ctest

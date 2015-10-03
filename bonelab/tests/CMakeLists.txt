@@ -20,4 +20,8 @@ add_executable(bonelabTests
 
 target_link_libraries(bonelabTests ${GTEST_BOTH_LIBRARIES})
 
+if (UNIX AND NOT APPLE)
+    target_link_libraries(bonelabTests pthread)
+endif (UNIX AND NOT APPLE)
+
 add_test(bonelabTests bonelabTests)
