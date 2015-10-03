@@ -34,6 +34,7 @@ if (USE_FFTW)
   target_link_libraries (FilteringTests
       ${FFTW_LIBRARIES}
       ${Boost_THREAD_LIBRARY}
+      ${Boost_SYSTEM_LIBRARY}
       ${Boost_DATE_TIME_LIBRARY}
       )
 endif (USE_FFTW)

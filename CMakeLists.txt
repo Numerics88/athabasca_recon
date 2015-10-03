@@ -25,6 +25,11 @@ if (WIN32)
   add_definitions("/wd4244 /wd4018 /wd4305")
 endif (WIN32)
 
+# Disable auto-linking for boost on Windows, as it causes endless grief
+if (WIN32)
+  add_definitions (-DBOOST_ALL_NO_LIB)
+endif ()
+
 option (ENABLE_TESTING "Build unit and other tests" ON)
 if (ENABLE_TESTING)
   ENABLE_TESTING()

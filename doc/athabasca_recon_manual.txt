@@ -1851,32 +1851,29 @@ image::images/imagej_metaimage_writer_options.png[scale="50"]
 
 === Requirements
 
-*A compiler*. Athabasca Recon has been compiled with gcc on Linux and OS X,
-and with Microsoft Visual Studio 2008 on Windows.  Other compilers are also
+*A compiler*. Athabasca Recon has been compiled with gcc on Linux,
+XCode 6.4 on OS X,
+and with Visual Studio 2013 on Windows.  Other compilers are also
 likely to work.
 
-*cmake*. cmake is used to support cross-platform building of Athabasca Recon.
+*CMake*. CMake is used to support cross-platform building of Athabasca Recon.
 You can get cmake from http://www.cmake.org/ .
 
 *boost*.  Boost is a high quality collection of portable C++ libraries.
-You can get boost from http://www.boost.org/ .  Note that you will
-typically have to compile boost.
+You can get boost from http://www.boost.org/ .
 
 *An FFT library*.  On OS X, Apple's vDSP is used by default; it is already
 present on any OS X system, and requires no additional installation.  The other FFT library that Athabasca Recon supports is FFTW.  On
 Linux systems, you will typically use your distro's package management tool
-to install FFTW.  For Windows users, see http://www.fftw.org/install/windows.html ; make sure that you follow the
+to install FFTW.  For Windows users, see
+http://www.fftw.org/install/windows.html . Make sure that you follow the
 instructions there about running +lib+ with the +/machine:x64+ option.
-
-WARNING: The binaries for Windows are release-only.  Since in Windows,
-you cannot link Debug libraries to Release executables, it is not
-possible to build a Debug version of Athabasca Recon with those FFTW
-libraries.  If anyone is interested in doing this, please let me know,
-and we can figure out a way; probably by compiling FFTW from source.
+In any case see the example builds below. 
 
 *Google Test*.  Google Test is used for the unit tests.  It is possible to
 build Athabasca Recon without Google Test by setting ENABLE_TESTING to OFF.  However if you are modifying the source code, I really recommend that you
-build and run the unit tests.
+build and run the unit tests. You can get Google Test from
+https://github.com/google/googletest .
 
 NOTE: I tried to be careful about coding in a manner that would allow
 for both 32 bit and 64 bit compilation.  By design, even if compiled as a 32 bit program Athabasca Recon should be able to reconstruct volumes larger than the 32 bit limit of 4GB with
@@ -1887,18 +1884,23 @@ to stick with 64 bit builds.
 
 === Example build on OS X or Linux
 
-Although this example build is done for OS X, building Athabasca Recon
-on Linux will be very similar.
-
 *1.* Get FFTW (Linux only)
 
 If you are on OS X, skip this step, since Apple's vDSP will be
 used. How you get fftw will depend on the Linux distro you are using.
-on RedHat Enterprise Linux or CentOS, the following should work:
+
+On RedHat Enterprise Linux or CentOS, the following should work:
 
 --------------------------------------------------------------
 sudo yum install fftw fftw-devel
 --------------------------------------------------------------
+
+On Ubuntu Linux, the following should work:
+
+--------------------------------------------------------------
+sudo apt-get install libfftw3-3
+--------------------------------------------------------------
+
 
 *2.* Get and compile boost.
 
@@ -1908,15 +1910,6 @@ Here is how I compile boost.
 ./bootstrap.sh
 ./b2 variant=release link=static
 --------------------------------------------------------------
-
-Before running CMake, we are going to set a environment variable
-to help CMake find boost. This just simplifies things a bit.
-
---------------------------------------------------------------
-export BOOST_ROOT="$HOME/build/boost_1_59_0"
---------------------------------------------------------------
-
-Of course, you have to specify the actual path to boost.
 
 *3.* Create a build directory.
 
@@ -1928,6 +1921,16 @@ cd build
 --------------------------------------------------------------
 
 *4.* Run cmake.
+
+Before running CMake, we are going to set a environment variable
+to help CMake find boost. This just simplifies things a bit.
+
+--------------------------------------------------------------
+export BOOST_ROOT="$HOME/build/boost_1_59_0"
+--------------------------------------------------------------
+
+Of course, this is just an example: you have to specify the actual path
+to boost.
 
 Run ccmake from the build directory, specifying the source directory on
 the command line:
@@ -1968,71 +1971,162 @@ That's it.  You should now have an executable +athabasca_recon+.
 
 === Example build on Windows
 
-*1.* Start CMake.
+*1.* Get FFTW
 
-*2.* Enter the source directory Athabasca Recon, and for the build directory
-a subdirectory named "build", as shown in the example.
+As mentioned above, download the DLLs from
+http://www.fftw.org/install/windows.html . Unpack the zip files anywhere.
+For this example, I used C:\Users\Eric\Install\fftw-3.3.4 .
 
-image::images/cmake_windows.png[scale="75"]
+Now, open a VS2013 Native Tools Command Prompt, change to the folder
+where you unpacked fftw and run
 
-*3.* Hit +Configure+.
+--------------------------------------------------------------
+lib /machine:x64 /def:libfftw3-3.def
+lib /machine:x64 /def:libfftw3f-3.def
+lib /machine:x64 /def:libfftw3l-3.def
+--------------------------------------------------------------
 
-You'll get a pop-up window; choose your development environment ("Visual Studio 9 2008 Win64" is what we use).
+*2.* Get and compile boost.
+
+Here is how I compile boost.
+
+--------------------------------------------------------------
+bootstrap
+b2 toolset=msvc-14.0 address-model=64 link=static
+--------------------------------------------------------------
+
+*3.* Build Google Test (optional)
+
+https://github.com/google/googletest . Instructions are
+at https://github.com/google/googletest/blob/master/googletest/README.md ,
+but they build be default 32 bit libraries, so we have to modify
+a bit.
+
+Unpack the zip file somewhere. Start a VS2013 x64 Native Tools
+Command Prompt. cd to the directory you unpacked the gtest source code,
+then
+
+--------------------------------------------------------------
+mkdir build
+cd build
+cmake-gui ..
+--------------------------------------------------------------
+
+Hit +Configure+. You'll get a pop-up window; choose your development environment ("Visual Studio 12 2013 Win64" is what we use).
+
+It is easiest to link to Google Test dynamic librariesm so select
+BUILD_SHARED_LIBS. Hit +Configure+, then +Generate+. Close CMake.
+In the build directory is a Visual
+Studio solution file that you can now open to build Google Test.
+Make sure to build the Release configuration.
+
+*4.* Start CMake.
+
+It is best to launch CMake from a VS2013 Native Tools Command Prompt.
+
+First change to the directory where you have the source code:
+
+--------------------------------------------------------------
+cd athabasca_recon
+--------------------------------------------------------------
+
+or wherever it is. Now create a build directory
+
+--------------------------------------------------------------
+mkdir build
+cd build
+--------------------------------------------------------------
+
+And we will set an environment variable to help it find boost.
+
+--------------------------------------------------------------
+set BOOST_ROOT=C:/Users/eric/build/boost_1_59_0
+--------------------------------------------------------------
+
+Of course you have to specify the folder where boost is on your system.
+Yes, those are forward slashes. Backwards slashes work in principle
+as well.
+
+Now we are ready to launch CMake:
+
+--------------------------------------------------------------
+cmake-gui ..
+--------------------------------------------------------------
+
+*5.* Hit +Configure+.
+
+You'll get a pop-up window; choose your development environment ("Visual Studio 12 2013 Win64" is what we use).
 
 Click Finish.  You'll get an error message: "Error in configuration process,
 project files may be invalid".  This is normal.
 
-*4.* Identify the location of the boost libraries.
+*6.* Identify the location of Google Test and FFTW
 
-Make sure the Advanced box is checked, then under Boost, find the variable
-+Boost_INCLUDE_DIR+., and set it to the
-location of your boost include files (boost is structured such that this will always contain a subdirectory
-named +boost+); on my system, this is +C:/Users/eric/source/boost_1_45_0/+ .
-Hit +Configure+ again; it should now have identified the location of all the
-required boost libraries.
+If building with Google Test, then specify the location of the
+libraries and the include directory, as shown in the screenshot.
+Otherwise, set +ENABLE_TESTING+ to +OFF+.
 
-*5.* Identify the location of FFTW
+image::images/cmake_windows_gtest.png[scale="75"]
 
-Unlike Boost, for FFTW you need to manually specify both the include path and
-the two required libraries, as shown in the example.
+For FFTW you need to manually specify both the include path and
+the two required libraries, as shown in the screenshot.
 
 image::images/cmake_windows_fftw.png[scale="75"]
 
 Now hit +Configure+ again.  This time there should be no error messages,
 and you should get the message "Configuring done".
 
-*6.* Hit +Generate+.
+*7.* Hit +Generate+.
 
 You will now have a Visual Studio solution file, +Athabasca_Recon.sln+, in
 your build directory.  Double click on it to open it in Visual Studio.
 
-*7.* Build.
+*8.* Build.
 
 Select +Release+ from the Solution Configurations drop-down box.  Select the
 project +ALL_BUILD+ in the solution explorer, then from the menu select
 Build -> Build Solution.
 
-*8.* Make sure that the FFTW libraries can be found.
+*9.* Make sure that the FFTW libraries can be found.
 
 You will need to make sure that either the path to the FFTW libraries is
 added to your PATH variable, or you can simply copy the FFTW +.dll+
 files to the +build\Release+ directory.
+
 
 === Running the tests
 
 If you're modified the source code, it is important to run the tests to verify
 the code.  Unit test coverage is not complete, but it catches many errors.
 
-The tests can be run from the build system.  On Unix and OS X, run the tests with
+Before running the tests, make sure that all necessary dynamically linked
+libraries can be found.
+
+For example, on Windows:
 
 ---------------------------------------------------------------------
-make test
+set PATH=C:\Users\Eric\build\googletest-release-1.7.0\build\Release;C:\Users\Eric\Install\fftw-3.3.4;%PATH%
 ---------------------------------------------------------------------
 
-On Windows, from Visual Studio select the RUN_TESTS project, and then +Build+
-from the +Build+ menu.
+On Linux:
 
-In either case, the output will look something like this:
+---------------------------------------------------------------------
+export LD_LIBRARY_PATH="/home/eric/build/googletest-release-1.7.0/build:$LD_LIBRARY_PATH"
+---------------------------------------------------------------------
+
+On OS X:
+
+---------------------------------------------------------------------
+export DYLD_LIBRARY_PATH="/Users/eric/build/googletest-release-1.7.0/build:$DYLD_LIBRARY_PATH"
+---------------------------------------------------------------------
+
+The tests can be run from the build folder by running
+
+---------------------------------------------------------------------
+ctest
+---------------------------------------------------------------------
+
+The output will look something like this:
 
 ---------------------------------------------------------------------
 Running tests...
@@ -2057,11 +2151,11 @@ Each of the tests listed is actually a collection of Google Test units tests.
 If a test fails, you can examine the detailed output in the file
 +Testing/Temporary/LastTest.log+ (in the build directory).
 
-You can also run each Google Test suite individually, for example, from
-the build directory, the BackProjectionTests can be run with
+You can also run each Google Test suite individually and with more verbose
+output, for example
 
 ---------------------------------------------------------------------
-source/back_projection/tests/BackProjectionTests
+ctest -V -R BackProjectionTests
 ---------------------------------------------------------------------
 
 

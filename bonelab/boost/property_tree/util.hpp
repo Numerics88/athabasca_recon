@@ -20,7 +20,7 @@ inline void merge
       // Data value
       std::string key = parent_keys + it->first;
       std::string value = it->second.get_value<std::string>();
-      bool exists = a.get_optional<std::string>(key);
+      boost::optional<std::string> exists = a.get_optional<std::string>(key);
       if (overwrite || !exists)
         { a.put(key, value); }
       }

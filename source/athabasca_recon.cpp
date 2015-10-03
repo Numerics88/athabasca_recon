@@ -1,5 +1,5 @@
 /*
-Copyright (C) 2011 Eric Nodwell
+Copyright (C) 2011-2015 Eric Nodwell
 enodwell@ucalgary.ca
 
 This program is free software; you can redistribute it and/or
@@ -62,8 +62,7 @@ int main(int argc, char **argv)
   {
   
   std::cout << "Athabasca Recon version " ATHABASCA_RECON_VERSION "\n"
-            << "Copyright 2011, Eric Nodwell and Steven K. Boyd\n"
-            << "http://bonelab.ucalgary.ca/\n\n";
+            << "Copyright 2011-2015, Eric Nodwell\n\n";
 
   std::string config_file;
 
