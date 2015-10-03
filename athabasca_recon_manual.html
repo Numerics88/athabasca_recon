@@ -3,7 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
 <head>
 <meta http-equiv="Content-Type" content="application/xhtml+xml; charset=UTF-8" />
-<meta name="generator" content="AsciiDoc 8.6.8" />
+<meta name="generator" content="AsciiDoc 8.6.9" />
 <title>Athabasca Recon Manual</title>
 <style type="text/css">
 /* Shared CSS for AsciiDoc xhtml11 and html5 backends */
@@ -94,7 +94,9 @@ ul > li > * { color: black; }
   padding: 0;
   margin: 0;
 }
-
+pre {
+  white-space: pre-wrap;
+}
 
 #author {
   color: #527bbd;
@@ -223,7 +225,7 @@ div.exampleblock > div.content {
 }
 
 div.imageblock div.content { padding-left: 0; }
-span.image img { border-style: none; }
+span.image img { border-style: none; vertical-align: text-bottom; }
 a.image:visited { color: white; }
 
 dl {
@@ -2488,34 +2490,25 @@ file" is unselected.</p></div>
 <div class="sectionbody">
 <div class="sect2">
 <h3 id="_requirements">8.1. Requirements</h3>
-<div class="paragraph"><p><strong>A compiler</strong>. Athabasca Recon has been compiled with gcc on Linux and OS X,
-and with Microsoft Visual Studio 2008 on Windows.  Other compilers are also
+<div class="paragraph"><p><strong>A compiler</strong>. Athabasca Recon has been compiled with gcc on Linux,
+XCode 6.4 on OS X,
+and with Visual Studio 2013 on Windows.  Other compilers are also
 likely to work.</p></div>
-<div class="paragraph"><p><strong>cmake</strong>. cmake is used to support cross-platform building of Athabasca Recon.
+<div class="paragraph"><p><strong>CMake</strong>. CMake is used to support cross-platform building of Athabasca Recon.
 You can get cmake from <a href="http://www.cmake.org/">http://www.cmake.org/</a> .</p></div>
 <div class="paragraph"><p><strong>boost</strong>.  Boost is a high quality collection of portable C++ libraries.
-You can get boost from <a href="http://www.boost.org/">http://www.boost.org/</a> .  Note that you will
-typically have to compile boost.</p></div>
+You can get boost from <a href="http://www.boost.org/">http://www.boost.org/</a> .</p></div>
 <div class="paragraph"><p><strong>An FFT library</strong>.  On OS X, Apple&#8217;s vDSP is used by default; it is already
 present on any OS X system, and requires no additional installation.  The other FFT library that Athabasca Recon supports is FFTW.  On
 Linux systems, you will typically use your distro&#8217;s package management tool
-to install FFTW.  For Windows users, see <a href="http://www.fftw.org/install/windows.html">http://www.fftw.org/install/windows.html</a> ; make sure that you follow the
-instructions there about running <code>lib</code> with the <code>/machine:x64</code> option.</p></div>
-<div class="admonitionblock">
-<table><tr>
-<td class="icon">
-<img src="./images/icons/warning.png" alt="Warning" />
-</td>
-<td class="content">The binaries for Windows are release-only.  Since in Windows,
-you cannot link Debug libraries to Release executables, it is not
-possible to build a Debug version of Athabasca Recon with those FFTW
-libraries.  If anyone is interested in doing this, please let me know,
-and we can figure out a way; probably by compiling FFTW from source.</td>
-</tr></table>
-</div>
+to install FFTW.  For Windows users, see
+<a href="http://www.fftw.org/install/windows.html">http://www.fftw.org/install/windows.html</a> . Make sure that you follow the
+instructions there about running <code>lib</code> with the <code>/machine:x64</code> option.
+In any case see the example builds below.</p></div>
 <div class="paragraph"><p><strong>Google Test</strong>.  Google Test is used for the unit tests.  It is possible to
 build Athabasca Recon without Google Test by setting ENABLE_TESTING to OFF.  However if you are modifying the source code, I really recommend that you
-build and run the unit tests.</p></div>
+build and run the unit tests. You can get Google Test from
+<a href="https://github.com/google/googletest">https://github.com/google/googletest</a> .</p></div>
 <div class="admonitionblock">
 <table><tr>
 <td class="icon">
@@ -2532,15 +2525,18 @@ to stick with 64 bit builds.</td>
 </div>
 <div class="sect2">
 <h3 id="_example_build_on_os_x_or_linux">8.2. Example build on OS X or Linux</h3>
-<div class="paragraph"><p>Although this example build is done for OS X, building Athabasca Recon
-on Linux will be very similar.</p></div>
 <div class="paragraph"><p><strong>1.</strong> Get FFTW (Linux only)</p></div>
 <div class="paragraph"><p>If you are on OS X, skip this step, since Apple&#8217;s vDSP will be
-used. How you get fftw will depend on the Linux distro you are using.
-on RedHat Enterprise Linux or CentOS, the following should work:</p></div>
+used. How you get fftw will depend on the Linux distro you are using.</p></div>
+<div class="paragraph"><p>On RedHat Enterprise Linux or CentOS, the following should work:</p></div>
 <div class="listingblock">
 <div class="content">
 <pre><code>sudo yum install fftw fftw-devel</code></pre>
+</div></div>
+<div class="paragraph"><p>On Ubuntu Linux, the following should work:</p></div>
+<div class="listingblock">
+<div class="content">
+<pre><code>sudo apt-get install libfftw3-3</code></pre>
 </div></div>
 <div class="paragraph"><p><strong>2.</strong> Get and compile boost.</p></div>
 <div class="paragraph"><p>Here is how I compile boost.</p></div>
@@ -2549,21 +2545,33 @@ on RedHat Enterprise Linux or CentOS, the following should work:</p></div>
 <pre><code>./bootstrap.sh
 ./b2 variant=release link=static</code></pre>
 </div></div>
+<div class="paragraph"><p><strong>3.</strong> Get and compile Google Test.</p></div>
+<div class="paragraph"><p>Unpack the source code. On Linux and OS X the defaults are all
+good, so just run</p></div>
+<div class="listingblock">
+<div class="content">
+<pre><code>cd googletest-release-1.7.0
+mkdir build
+cd build
+cmake ..
+make</code></pre>
+</div></div>
+<div class="paragraph"><p><strong>4.</strong> Create a build directory.</p></div>
+<div class="paragraph"><p>From the source code directory of Athabasca Recon, do</p></div>
+<div class="listingblock">
+<div class="content">
+<pre><code>mkdir build
+cd build</code></pre>
+</div></div>
+<div class="paragraph"><p><strong>5.</strong> Run cmake.</p></div>
 <div class="paragraph"><p>Before running CMake, we are going to set a environment variable
 to help CMake find boost. This just simplifies things a bit.</p></div>
 <div class="listingblock">
 <div class="content">
 <pre><code>export BOOST_ROOT="$HOME/build/boost_1_59_0"</code></pre>
 </div></div>
-<div class="paragraph"><p>Of course, you have to specify the actual path to boost.</p></div>
-<div class="paragraph"><p><strong>3.</strong> Create a build directory.</p></div>
-<div class="paragraph"><p>From the source code directory, run</p></div>
-<div class="listingblock">
-<div class="content">
-<pre><code>mkdir build
-cd build</code></pre>
-</div></div>
-<div class="paragraph"><p><strong>4.</strong> Run cmake.</p></div>
+<div class="paragraph"><p>Of course, this is just an example: you have to specify the actual path
+to boost.</p></div>
 <div class="paragraph"><p>Run ccmake from the build directory, specifying the source directory on
 the command line:</p></div>
 <div class="listingblock">
@@ -2584,13 +2592,46 @@ I recommend starting the graphical CMake client and selecting XCode from
 the Select Generator dialog.</td>
 </tr></table>
 </div>
-<div class="paragraph"><p><strong>5.</strong> Set CMake variables.</p></div>
+<div class="paragraph"><p><strong>6.</strong> Set CMake variables.</p></div>
 <div class="paragraph"><p>Set <code>CMAKE_BUILD_TYPE</code> to <code>Release</code> (or <code>Debug</code>, if you want to be able
 to debug the program; but it runs slower).</p></div>
-<div class="paragraph"><p>Currently, we also have to add <code>-fpermissive</code> to <code>CMAKE_CXX_FLAGS</code>.
+<div class="paragraph"><p>We need to specify the location of Google Test, so hit <code>t</code> for
+advanced settings, and modify the following values. Of course
+you have to use paths appropriate for your system.</p></div>
+<div class="tableblock">
+<table rules="all"
+width="100%"
+frame="border"
+cellspacing="0" cellpadding="4">
+<col width="30%" />
+<col width="70%" />
+<thead>
+<tr>
+<th align="left" valign="top"> CMake variable   </th>
+<th align="left" valign="top"> value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left" valign="top"><p class="table">GTEST_INCLUDE_DIR</p></td>
+<td align="left" valign="top"><p class="table">/home/eric/build/googletest-release-1.7.0/include</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table">GTEST_LIBRARY</p></td>
+<td align="left" valign="top"><p class="table">/home/eric/build/googletest-release-1.7.0/build/libgtest.a</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table">GTEST_MAIN_LIBRARY</p></td>
+<td align="left" valign="top"><p class="table">/home/eric/build/googletest-release-1.7.0/build/libgtest_main.a</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="paragraph"><p>Currently, in Linux we also have to add <code>-fpermissive</code> to
+<code>CMAKE_CXX_FLAGS</code>.
 This is an advanced setting, which you get to by hitting <code>t</code>.</p></div>
 <div class="paragraph"><p>Hit <code>c</code> again for configure. Now hit <code>g</code> for generate.  CMake will exit.</p></div>
-<div class="paragraph"><p><strong>6.</strong> Run make.</p></div>
+<div class="paragraph"><p><strong>7.</strong> Run make.</p></div>
 <div class="listingblock">
 <div class="content">
 <pre><code>make -j 4 <img src="./images/icons/callouts/1.png" alt="1" /></code></pre>
@@ -2604,28 +2645,87 @@ The <code>-j 4</code> option specifies 4 threads for building; this is optional 
 </div>
 <div class="sect2">
 <h3 id="_example_build_on_windows">8.3. Example build on Windows</h3>
-<div class="paragraph"><p><strong>1.</strong> Start CMake.</p></div>
-<div class="paragraph"><p><strong>2.</strong> Enter the source directory Athabasca Recon, and for the build directory
-a subdirectory named "build", as shown in the example.</p></div>
-<div class="imageblock">
+<div class="paragraph"><p><strong>1.</strong> Get FFTW</p></div>
+<div class="paragraph"><p>As mentioned above, download the DLLs from
+<a href="http://www.fftw.org/install/windows.html">http://www.fftw.org/install/windows.html</a> . Unpack the zip files anywhere.
+For this example, I used C:\Users\Eric\Install\fftw-3.3.4 .</p></div>
+<div class="paragraph"><p>Now, open a VS2013 Native Tools Command Prompt, change to the folder
+where you unpacked fftw and run</p></div>
+<div class="listingblock">
 <div class="content">
-<img src="images/cmake_windows.png" alt="images/cmake_windows.png" />
-</div>
-</div>
-<div class="paragraph"><p><strong>3.</strong> Hit <code>Configure</code>.</p></div>
-<div class="paragraph"><p>You&#8217;ll get a pop-up window; choose your development environment ("Visual Studio 9 2008 Win64" is what we use).</p></div>
+<pre><code>lib /machine:x64 /def:libfftw3-3.def
+lib /machine:x64 /def:libfftw3f-3.def
+lib /machine:x64 /def:libfftw3l-3.def</code></pre>
+</div></div>
+<div class="paragraph"><p><strong>2.</strong> Get and compile boost.</p></div>
+<div class="paragraph"><p>Here is how I compile boost.</p></div>
+<div class="listingblock">
+<div class="content">
+<pre><code>bootstrap
+b2 toolset=msvc-14.0 address-model=64 link=static</code></pre>
+</div></div>
+<div class="paragraph"><p><strong>3.</strong> Build Google Test (optional)</p></div>
+<div class="paragraph"><p><a href="https://github.com/google/googletest">https://github.com/google/googletest</a> . Instructions are
+at <a href="https://github.com/google/googletest/blob/master/googletest/README.md">https://github.com/google/googletest/blob/master/googletest/README.md</a> ,
+but they build be default 32 bit libraries, so we have to modify
+a bit.</p></div>
+<div class="paragraph"><p>Unpack the zip file somewhere. Start a VS2013 x64 Native Tools
+Command Prompt. cd to the directory you unpacked the gtest source code,
+then</p></div>
+<div class="listingblock">
+<div class="content">
+<pre><code>mkdir build
+cd build
+cmake-gui ..</code></pre>
+</div></div>
+<div class="paragraph"><p>Hit <code>Configure</code>. You&#8217;ll get a pop-up window; choose your development environment ("Visual Studio 12 2013 Win64" is what we use).</p></div>
+<div class="paragraph"><p>It is easiest to link to Google Test dynamic libraries, so select
+BUILD_SHARED_LIBS. Hit <code>Configure</code>, then <code>Generate</code>. Close CMake.
+In the build directory is a Visual
+Studio solution file that you can now open to build Google Test.
+Make sure to build the Release configuration.</p></div>
+<div class="paragraph"><p><strong>4.</strong> Start CMake.</p></div>
+<div class="paragraph"><p>It is best to launch CMake from a VS2013 Native Tools Command Prompt.</p></div>
+<div class="paragraph"><p>First change to the directory where you have the Athabasca Recon
+source code:</p></div>
+<div class="listingblock">
+<div class="content">
+<pre><code>cd athabasca_recon</code></pre>
+</div></div>
+<div class="paragraph"><p>or wherever it is. Now create a build directory</p></div>
+<div class="listingblock">
+<div class="content">
+<pre><code>mkdir build
+cd build</code></pre>
+</div></div>
+<div class="paragraph"><p>And we will set an environment variable to help it find boost.</p></div>
+<div class="listingblock">
+<div class="content">
+<pre><code>set BOOST_ROOT=C:/Users/eric/build/boost_1_59_0</code></pre>
+</div></div>
+<div class="paragraph"><p>Of course you have to specify the folder where boost is on your system.
+Yes, those are forward slashes. Backwards slashes work in principle
+as well.</p></div>
+<div class="paragraph"><p>Now we are ready to launch CMake:</p></div>
+<div class="listingblock">
+<div class="content">
+<pre><code>cmake-gui ..</code></pre>
+</div></div>
+<div class="paragraph"><p><strong>5.</strong> Hit <code>Configure</code>.</p></div>
+<div class="paragraph"><p>You&#8217;ll get a pop-up window; choose your development environment ("Visual Studio 12 2013 Win64" is what we use).</p></div>
 <div class="paragraph"><p>Click Finish.  You&#8217;ll get an error message: "Error in configuration process,
 project files may be invalid".  This is normal.</p></div>
-<div class="paragraph"><p><strong>4.</strong> Identify the location of the boost libraries.</p></div>
-<div class="paragraph"><p>Make sure the Advanced box is checked, then under Boost, find the variable
-<code>Boost_INCLUDE_DIR</code>., and set it to the
-location of your boost include files (boost is structured such that this will always contain a subdirectory
-named <code>boost</code>); on my system, this is <code>C:/Users/eric/source/boost_1_45_0/</code> .
-Hit <code>Configure</code> again; it should now have identified the location of all the
-required boost libraries.</p></div>
-<div class="paragraph"><p><strong>5.</strong> Identify the location of FFTW</p></div>
-<div class="paragraph"><p>Unlike Boost, for FFTW you need to manually specify both the include path and
-the two required libraries, as shown in the example.</p></div>
+<div class="paragraph"><p><strong>6.</strong> Identify the location of Google Test and FFTW</p></div>
+<div class="paragraph"><p>If building with Google Test, then specify the location of the
+libraries and the include directory, as shown in the screenshot.
+Otherwise, set <code>ENABLE_TESTING</code> to <code>OFF</code>.</p></div>
+<div class="imageblock">
+<div class="content">
+<img src="images/cmake_windows_gtest.png" alt="images/cmake_windows_gtest.png" />
+</div>
+</div>
+<div class="paragraph"><p>For FFTW you need to manually specify both the include path and
+the two required libraries, as shown in the screenshot.</p></div>
 <div class="imageblock">
 <div class="content">
 <img src="images/cmake_windows_fftw.png" alt="images/cmake_windows_fftw.png" />
@@ -2633,14 +2733,14 @@ the two required libraries, as shown in the example.</p></div>
 </div>
 <div class="paragraph"><p>Now hit <code>Configure</code> again.  This time there should be no error messages,
 and you should get the message "Configuring done".</p></div>
-<div class="paragraph"><p><strong>6.</strong> Hit <code>Generate</code>.</p></div>
+<div class="paragraph"><p><strong>7.</strong> Hit <code>Generate</code>.</p></div>
 <div class="paragraph"><p>You will now have a Visual Studio solution file, <code>Athabasca_Recon.sln</code>, in
 your build directory.  Double click on it to open it in Visual Studio.</p></div>
-<div class="paragraph"><p><strong>7.</strong> Build.</p></div>
+<div class="paragraph"><p><strong>8.</strong> Build.</p></div>
 <div class="paragraph"><p>Select <code>Release</code> from the Solution Configurations drop-down box.  Select the
 project <code>ALL_BUILD</code> in the solution explorer, then from the menu select
 Build &#8594; Build Solution.</p></div>
-<div class="paragraph"><p><strong>8.</strong> Make sure that the FFTW libraries can be found.</p></div>
+<div class="paragraph"><p><strong>9.</strong> Make sure that the FFTW libraries can be found.</p></div>
 <div class="paragraph"><p>You will need to make sure that either the path to the FFTW libraries is
 added to your PATH variable, or you can simply copy the FFTW <code>.dll</code>
 files to the <code>build\Release</code> directory.</p></div>
@@ -2649,14 +2749,28 @@ files to the <code>build\Release</code> directory.</p></div>
 <h3 id="_running_the_tests">8.4. Running the tests</h3>
 <div class="paragraph"><p>If you&#8217;re modified the source code, it is important to run the tests to verify
 the code.  Unit test coverage is not complete, but it catches many errors.</p></div>
-<div class="paragraph"><p>The tests can be run from the build system.  On Unix and OS X, run the tests with</p></div>
+<div class="paragraph"><p>Before running the tests, make sure that all necessary dynamically linked
+libraries can be found.</p></div>
+<div class="paragraph"><p>For example, on Windows:</p></div>
 <div class="listingblock">
 <div class="content">
-<pre><code>make test</code></pre>
+<pre><code>set PATH=C:\Users\Eric\build\googletest-release-1.7.0\build\Release;C:\Users\Eric\Install\fftw-3.3.4;%PATH%</code></pre>
 </div></div>
-<div class="paragraph"><p>On Windows, from Visual Studio select the RUN_TESTS project, and then <code>Build</code>
-from the <code>Build</code> menu.</p></div>
-<div class="paragraph"><p>In either case, the output will look something like this:</p></div>
+<div class="paragraph"><p>On OS X:</p></div>
+<div class="listingblock">
+<div class="content">
+<pre><code>export DYLD_LIBRARY_PATH="/Users/eric/build/googletest-release-1.7.0/build:$DYLD_LIBRARY_PATH"</code></pre>
+</div></div>
+<div class="paragraph"><p>On Linux it is gnerally not necessary to set any library search paths,
+as we link google test statically and FFTW is installed in system
+locations by the package manager. (However should it be necessary,
+we could add a path to LD_LIBRARY_PATH.)</p></div>
+<div class="paragraph"><p>The tests can be run from the <code>build</code> directory by running</p></div>
+<div class="listingblock">
+<div class="content">
+<pre><code>ctest</code></pre>
+</div></div>
+<div class="paragraph"><p>The output will look something like this:</p></div>
 <div class="listingblock">
 <div class="content">
 <pre><code>Running tests...
@@ -2679,11 +2793,11 @@ Total Test time (real) =   0.04 sec</code></pre>
 <div class="paragraph"><p>Each of the tests listed is actually a collection of Google Test units tests.
 If a test fails, you can examine the detailed output in the file
 <code>Testing/Temporary/LastTest.log</code> (in the build directory).</p></div>
-<div class="paragraph"><p>You can also run each Google Test suite individually, for example, from
-the build directory, the BackProjectionTests can be run with</p></div>
+<div class="paragraph"><p>You can also run each Google Test suite individually and with more verbose
+output, for example</p></div>
 <div class="listingblock">
 <div class="content">
-<pre><code>source/back_projection/tests/BackProjectionTests</code></pre>
+<pre><code>ctest -V -R BackProjectionTests</code></pre>
 </div></div>
 </div>
 </div>
@@ -2792,7 +2906,7 @@ generated directly with asciidoc.</p></div>
 <div id="footer">
 <div id="footer-text">
 Version 1.3<br />
-Last updated 2015-10-02 14:57:20 CEST
+Last updated 2015-10-03 11:47:32 CEST
 </div>
 </div>
 </body>
