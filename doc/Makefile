@@ -2,11 +2,15 @@ VERSION_TEXT = 1.3
 PDF_MANUAL_NAME = athabasca_recon_manual_v$(VERSION_TEXT).pdf
 
 html: athabasca_recon_manual.txt
-	asciidoc -a toc -a icons -a numbered -a toclevels=4 athabasca_recon_manual.txt
+	asciidoctor \
+		athabasca_recon_manual.adoc
 
 pdf: athabasca_recon_manual.txt
-	a2x -f pdf \
-    --asciidoc-opts "-a docinfo" \
-    --dblatex-opts "-P latex.output.revhistory=0 -P doc.publisher.show=0" \
-		athabasca_recon_manual.txt
-		mv athabasca_recon_manual.pdf $(PDF_MANUAL_NAME)
+	asciidoctor -b docbook5 \
+		athabasca_recon_manual.adoc
+	dblatex -t pdf -p /etc/asciidoc/dblatex/asciidoc-dblatex.xsl \
+	    -s asciidoc-dblatex.sty \
+	    -P latex.output.revhistory=0 \
+	    -P doc.publisher.show=0 \
+	    athabasca_recon_manual.xml
+	mv athabasca_recon_manual.pdf $(PDF_MANUAL_NAME)
