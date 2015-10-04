@@ -51,16 +51,6 @@ http://en.wikipedia.org/wiki/List_of_XML_and_HTML_character_entity_references
 :Delta: &#916;
 
 
-ifdef::basebackend-html[]
-*******************************************************************
-Copyright (c) 2011-2015, Eric Nodwell
-
-http://numerics88.com/
-*******************************************************************
-endif::basebackend-html[]
-
-
-
 About Athabasca Recon
 ---------------------
 
