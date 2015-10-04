@@ -2236,7 +2236,7 @@ the whole program has been implemented as templates anyway.
 Colophon
 --------
 
-(C) 2013 by Eric Nodwell
+(C) 2011-2015 by Eric Nodwell
 
 This documentation is written in asciidoc and processed with
 asciidoctor (http://asciidoctor.org/). Conversion of

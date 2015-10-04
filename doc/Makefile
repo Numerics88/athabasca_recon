@@ -1,11 +1,11 @@
 VERSION_TEXT = 1.3
 PDF_MANUAL_NAME = athabasca_recon_manual_v$(VERSION_TEXT).pdf
 
-html: athabasca_recon_manual.txt
+html: athabasca_recon_manual.adoc
 	asciidoctor \
 		athabasca_recon_manual.adoc
 
-pdf: athabasca_recon_manual.txt
+pdf: athabasca_recon_manual.adoc
 	asciidoctor -b docbook5 \
 		athabasca_recon_manual.adoc
 	dblatex -t pdf -p /etc/asciidoc/dblatex/asciidoc-dblatex.xsl \
