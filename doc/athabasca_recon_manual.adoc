@@ -718,7 +718,9 @@ in intensity according to
 
 [stem]
 +++++++++++++++++++++++++++++++++++++++
+\[
 \frac{dI}{ds} = - \alpha(s) I
+\]
 +++++++++++++++++++++++++++++++++++++++
 
 where {alpha} is the attenuation coefficient.  Integrating this, we obtain
@@ -726,7 +728,9 @@ the intensity, which is more or less what we measure experimentally:
 
 [stem]
 +++++++++++++++++++++++++++++++++++++++
+\[
 I = I_o e^{-\int_0^s \alpha(\xi) d \xi }
+\]
 +++++++++++++++++++++++++++++++++++++++
 
 This is not very practical for direct fast reconstruction, as it is nonlinear in {alpha}.
@@ -735,7 +739,9 @@ linear equation relating a quantity, _A_, derived from the data, to something we
 
 [stem]
 +++++++++++++++++++++++++++++++++++++++
+\[
 A = log \left( \frac{I_o}{I} \right) = \int \alpha(\xi) ds
+\]
 +++++++++++++++++++++++++++++++++++++++
 
 To obtain the Attenuation Projections as output from Athabasca Recon,
@@ -755,7 +761,9 @@ view.  Then we calculate the attenuation, on a per-pixel basis, according to
 
 [stem]
 +++++++++++++++++++++++++++++++++++++++
+\[
 A = log \left( \frac{I_{bright} - I_{dark}}{I - I_{dark}} \right)
+\]
 +++++++++++++++++++++++++++++++++++++++
 
 In this manual, and in Athabasca Recon, the difference of the bright and the dark fields is referred to as the "flat field".
@@ -920,7 +928,9 @@ surface:
 
 [stem]
 +++++++++++++++++++++++++++++++++++++++
+\[
 \int\!\!\!\int\!\!\!\int_V \alpha d \tau = \int\!\!\!\int_S A d \sigma
+\]
 +++++++++++++++++++++++++++++++++++++++
 
 From which it is clear that the integrated attenuation of each projection
@@ -1133,7 +1143,9 @@ width in pixels by
 
 [stem]
 +++++++++++++++++++++++++++++++++++++++
+\[
 \frac{\sigma_f}{f_{Nyquist}} = \frac{1}{\pi \sigma_{pixels}}
+\]
 +++++++++++++++++++++++++++++++++++++++
 
 
@@ -1158,7 +1170,9 @@ The tapered cosine window is given by
 
 [stem]
 +++++++++++++++++++++++++++++++++++++++
+\[
 w(f) = \left\{ \begin{array}{ll} 1 & \text{if } |f| \leq f_1 \\ \frac{1}{2} + \frac{1}{2} cos \left( \pi \left( \dfrac{|f| - f_1}{f_2 - f_1} \right) \right) & \text{if } f_1 < |f| < f_2 \\ 0 & \text{if } |f| \geq f_2  \end{array} \right .
+\]
 +++++++++++++++++++++++++++++++++++++++
 
 _f~1~_ and _f~2~_ are set by the parameter <<Reconstruction_SmoothingFilterFrequencies,Reconstruction.SmoothingFilterFrequencies>> (specify two numbers, separated by a comma).  They are specified as a fraction of the Nyquist frequency.
@@ -2152,7 +2166,9 @@ with a ramp function is required, which in continuous k-space is
 
 [stem]
 +++++++++++++++++++++++++++++++++++++++
+\[
 G(k) = | k |
+\]
 +++++++++++++++++++++++++++++++++++++++
 
 Convolution is usually performed as multiplication in k-space using FFTs, as
@@ -2163,8 +2179,10 @@ discrete transform anyway.  The discrete real space filter function is
 
 [stem]
 +++++++++++++++++++++++++++++++++++++++
+\[
 g_i = \left\{ \begin{array}{ll} \dfrac{1}{4 (\Delta x)^2} & \text{for } i=0,\\ \dfrac{1}{\pi^2 i^2 (\Delta x)^2} & \text{for } i \text{ odd},\\ 
 0 & \text{for } i \text{ even}, \neq 0 .\\  \end{array} \right.
+\]
 +++++++++++++++++++++++++++++++++++++++
 
 Now of course we can only deal with discrete functions with finite support.
